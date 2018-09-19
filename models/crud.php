@@ -1,0 +1,440 @@
+<?php
+
+require_once "conexion.php";
+
+class Datos extends Conexion{
+
+	/*=============================================
+	CONSULTAR ORDENES PARA IMPRESION
+	=============================================*/
+
+	static public function mdlMostrarVentas($tabla, $codigo){
+
+		if($codigo != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE orderNo = :codigo LIMIT 1");
+
+			$stmt -> bindParam(":codigo", $codigo, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}
+
+		//$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+
+
+
+	#REGISTRO DE USUARIOS
+	#-------------------------------------
+	public function registroUsuarioModel($datosModel, $tabla){
+
+		#prepare() Prepara una sentencia SQL para ser ejecutada por el método PDOStatement::execute(). La sentencia SQL puede contener cero o más marcadores de parámetros con nombre (:name) o signos de interrogación (?) por los cuales los valores reales serán sustituidos cuando la sentencia sea ejecutada. Ayuda a prevenir inyecciones SQL eliminando la necesidad de entrecomillar manualmente los parámetros.
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombre, usuario, password, email, sistema, rol, activo) VALUES (:nombre,:usuario,:password,:email,:sistema,:rol,:activo)");
+
+		#bindParam() Vincula una variable de PHP a un parámetro de sustitución con nombre o de signo de interrogación correspondiente de la sentencia SQL que fue usada para preparar la sentencia.
+
+		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
+		$stmt->bindParam(":password", $datosModel["password"], PDO::PARAM_STR);
+		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
+		$stmt->bindParam(":sistema", $datosModel["sistema"], PDO::PARAM_STR);
+		$stmt->bindParam(":rol", $datosModel["rol"], PDO::PARAM_INT);
+		$stmt->bindParam(":activo", $datosModel["activo"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+
+			return "success";
+
+		}
+
+		else{
+
+			return "error";
+
+		}
+
+		$stmt->close();
+
+	}
+
+
+	#REGISTRO DE ORDENES
+	#-------------------------------------
+	public function registroOrden($datosModel, $tabla){
+
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (orderNo, trailerNo, trailerVin, dueDate, orderDate, notes, trailerHrs, trailerPrice, subTotal, discount, totHrs, totPrice, options, trailerSpecs) VALUES (:orderNo, :trailerNo, :trailerVin, :dueDate, :orderDate, :notes, :horasMdl, :precioMdl, :subTotal, :discount, :TotalHoras, :Total, :ops, :specifications)");
+
+				$stmt->bindParam(":orderNo", $datosModel["order"], PDO::PARAM_INT);
+				$stmt->bindParam(":trailerNo", $datosModel["trailerNo"], PDO::PARAM_INT);
+				$stmt->bindParam(":trailerVin", $datosModel["trailerVin"], PDO::PARAM_STR);
+				$stmt->bindParam(":dueDate", $datosModel["dueDate"], PDO::PARAM_STR);
+				$stmt->bindParam(":orderDate", $datosModel["orderDate"], PDO::PARAM_STR);
+				$stmt->bindParam(":notes", $datosModel["notes"], PDO::PARAM_STR);
+				$stmt->bindParam(":horasMdl", $datosModel["horasMdl"], PDO::PARAM_STR);
+				$stmt->bindParam(":precioMdl", $datosModel["precioMdl"], PDO::PARAM_STR);
+				$stmt->bindParam(":subTotal", $datosModel["subTotal"], PDO::PARAM_STR);
+				$stmt->bindParam(":discount", $datosModel["descuento"], PDO::PARAM_STR);
+				$stmt->bindParam(":TotalHoras", $datosModel["TotalHoras"], PDO::PARAM_STR);
+				$stmt->bindParam(":Total", $datosModel["Total"], PDO::PARAM_STR);
+				$stmt->bindParam(":ops", $datosModel["ops"], PDO::PARAM_STR);
+				$stmt->bindParam(":specifications", $datosModel["specifications"], PDO::PARAM_STR);
+
+
+			if($stmt->execute()){
+
+					return "success";
+
+				}
+
+			else{
+
+					return "error";
+
+				}
+
+			$stmt->close();
+
+		}
+
+
+
+
+	#VISTA USUARIOS
+	#-------------------------------------
+
+	public function vistaUsuariosModel($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT id, usuario, password, email FROM $tabla");
+		$stmt->execute();
+
+		#fetchAll(): Obtiene todas las filas de un conjunto de resultados asociado al objeto PDOStatement.
+		return $stmt->fetchAll();
+
+		$stmt->close();
+
+	}
+
+
+public function llenaLista($tabla){
+
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY descEnglish");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+
+    }
+
+
+
+
+    public function buscaPrecio($tabla, $codigo){
+
+        $stmt = Conexion::conectar()->prepare("SELECT precio,horas FROM $tabla WHERE codigo=:codigo");
+
+        $stmt->bindParam(":codigo", $codigo, PDO::PARAM_STR);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+
+    }
+
+
+   //Consulta codigo, descripcion ingles-espanol horas y precio de la tabla de opciones
+   public function buscaOpcion($tabla, $codigo){
+
+        $stmt = Conexion::conectar()->prepare("SELECT codigo, descEnglish, descEspanol,horas, precio FROM $tabla WHERE codigo=:codigo");
+
+        $stmt->bindParam(":codigo", $codigo, PDO::PARAM_STR);
+
+        $stmt -> execute();
+
+        return $stmt -> fetchALL();
+
+        $stmt->close();
+
+    }
+
+
+    //Consulta codigo, descripcion ingles-espanol horas y precio de la tabla de saddles
+   public function llenaSaddles($tabla){
+
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY codigo");
+
+        $stmt->bindParam(":codigo", $codigo, PDO::PARAM_STR);
+
+        $stmt -> execute();
+
+        return $stmt -> fetchALL();
+
+        $stmt->close();
+
+    }
+
+
+    #VERIFICA SI UN EMPLEADO YA ESTA REGISTRADO PARA REGISTRARLO DESPUES
+	#--------------------------------------------------------------------------
+
+	public function consultaEmpleadosModel($datosModel, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE usuario = :usuario and password = :password");
+
+		$stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
+		$stmt->bindParam(":password", $datosModel["password"], PDO::PARAM_STR);
+
+		$stmt -> execute();
+		return $stmt -> fetch();
+
+		$stmt->close();
+	}
+
+
+	#REGISTRO DE EMPLEADOS
+	#---------------------------------------------------------------------------
+	public function registroEmpleadosModel($datosModel, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (usuario, password, nombre, email, celular, rol) VALUES (:usuario,:password,:nombre,:email, :celular, :rol)");
+
+		$stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
+		$stmt->bindParam(":password", $datosModel["password"], PDO::PARAM_STR);
+		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
+		$stmt->bindParam(":celular", $datosModel["celular"], PDO::PARAM_STR);
+		$stmt->bindParam(":rol", $datosModel["rol"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+			return "ok";
+		}
+
+		else{
+			return "error";
+		}
+		$stmt->close();
+	}
+
+
+
+	#VERIFICA SI UN PRODUCTO YA ESTA REGISTRADO EN LAS TABLAS DE OPCIONES, SADDLES Y VENTS PARA REGISTRARLO DESPUES
+	#----------------------------------------------------------------------------------------------------------
+
+	public function consultaProductosModel($codigo,$tabla){
+		$stmt=Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE codigo = $codigo");
+
+		//$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE usuario = :usuario and password = :password");
+
+		//$stmt->bindParam(":codigo", $datosModel["codigo"], PDO::PARAM_STR);
+
+		return $stmt -> fetchAll();
+
+		$stmt->close();
+	}
+
+
+	#REGISTRO DE PRODUCTOS EN LAS TABLAS OPCIONES, SADDLES Y VENTS RESPECTIVAMENTE
+	#------------------------------------------------------------------------------------------------------------------
+	public function registroProductosModel($datosModel){
+
+	$stmt = Conexion::conectar()->prepare("INSERT INTO :tabla (id, codigo, descEnglish, descEspanol, precio, horas) VALUES (NULL, :codigo, :descEnglish, :descEspanol, :precio, :horas)");
+//	$stmt = Conexion::conectar()->prepare("INSERT INTO :tabla (id, codigo, descEnglish, descEspanol, horas, precio) VALUES (NULL, :codigo, :descEnglish, :descEspanol, :horas, :precio)");
+
+		$stmt->bindParam(":codigo", $datosModel["codigo"], PDO::PARAM_STR);
+		$stmt->bindParam(":descEnglish", $datosModel["descEnglish"], PDO::PARAM_STR);
+		$stmt->bindParam(":descEspanol", $datosModel["descEspanol"], PDO::PARAM_STR);
+		$stmt->bindParam(":horas", $datosModel["horas"], PDO::PARAM_STR);
+		$stmt->bindParam(":precio", $datosModel["precio"], PDO::PARAM_STR);
+		$stmt->bindParam(":tabla", $datosModel["tabla"], PDO::PARAM_STR);
+
+
+		if($stmt->execute()){
+
+			return "ok";
+		}
+
+		else{
+
+			return "error";
+
+			//return "INSERT INTO ".$datosModel["tabla"]." (id, codigo, descEnglish, descEspanol, precio, horas) VALUES (NULL, ".$datosModel["codigo"].", ".$datosModel["descEnglish"].", ".$datosModel["descEspanol"].", ".$datosModel["precio"].", ".$datosModel["horas"].")";
+
+
+
+		}
+
+		$stmt->close();
+
+	}
+
+
+
+
+
+
+	#DEVUELVE UN LISTADO DE TODOS REGISTROS DE CUALQUIER TABLA QUE RECIBA COMO PARAMETRO
+	#---------------------------------------------------------------------------------------------------------
+
+	public function listaTablaModel($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
+	#DEVUELVE UN LISTADO DE TODAS LAS ORDENES
+	#-------------------------------------
+
+	public function listaOrdenesModel($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT orderNo, trailerNo, trailerVin, dueDate, orderDate FROM $tabla");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
+
+	#DEVUELVE UN LISTADO DE TODOS LOS EMPLEADOS
+	#-------------------------------------
+
+	public function listaEmpleadosModel($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
+
+
+	#BORRAR ORDEN
+	#-------------------------------------
+	public function borrarOrdenModel($datosModel,$tabla){
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE orderNo = :id");
+		$stmt -> bindPARAM(":id",$datosModel, PDO::PARAM_INT);
+		if ($stmt->execute()){
+			return "success";
+		} else {
+			return "error";
+		}
+		$stmt -> close();
+	}
+
+
+	#BORRAR EMPLEADO
+	#-------------------------------------
+	public function borrarEmpleadoModel($datosModel,$tabla){
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+		$stmt -> bindPARAM(":id",$datosModel, PDO::PARAM_INT);
+		if ($stmt->execute()){
+			return "success";
+		} else {
+			return "error";
+		}
+		$stmt -> close();
+	}
+
+	#BUSCA UN EMPLEADO
+	#-------------------------------------
+
+	public function buscaEmpleadoModel($usuario, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id = :id");
+
+		$stmt->bindParam(":id", $usuario, PDO::PARAM_INT);
+
+		$stmt -> execute();
+		return $stmt -> fetch();
+
+		$stmt->close();
+	}
+
+	#BUSCA UN CODIGO EN LA TABLA QUE RECIBA COMO PARAMETRO
+	#-------------------------------------
+
+	public function buscaCodigoModel($usuario, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id = :id");
+
+		$stmt->bindParam(":id", $usuario, PDO::PARAM_INT);
+
+		$stmt -> execute();
+		return $stmt -> fetch();
+
+		$stmt->close();
+	}
+
+
+	#ACTUALIZA LOS DATOS DE UN EMPLEADO
+	#-------------------------------------
+	public function actualizaEmpleadoModel($datosModel, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET usuario=:usuario, password=:password, nombre=:nombre, email=:email, celular=:celular, rol=:rol WHERE id=:id");
+
+		$stmt->bindParam(":id", $datosModel["id"], PDO::PARAM_INT);
+		$stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
+		$stmt->bindParam(":password", $datosModel["password"], PDO::PARAM_STR);
+		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(":celular", $datosModel["celular"], PDO::PARAM_STR);
+		$stmt->bindParam(":rol", $datosModel["rol"], PDO::PARAM_STR);
+		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}
+
+		else{
+
+			return "error";
+
+		}
+
+		$stmt->close();
+
+	}
+
+
+	#ACTUALIZA OPCIONES, SADDLE Y VENTS
+	#-------------------------------------
+	public function actualizaOpcionesModel($datosModel, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET descEnglish=:descEnglish, descEspanol=:descEspanol, horas=:horas, precio=:precio WHERE id=:id");
+
+		$stmt->bindParam(":id", $datosModel["id"], PDO::PARAM_INT);
+		$stmt->bindParam(":descEnglish", $datosModel["descEnglish"], PDO::PARAM_STR);
+		$stmt->bindParam(":descEspanol", $datosModel["descEspanol"], PDO::PARAM_STR);
+		$stmt->bindParam(":horas", $datosModel["horas"], PDO::PARAM_STR);
+		$stmt->bindParam(":precio", $datosModel["precio"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}
+
+		else{
+
+			return "error";
+
+		}
+
+		$stmt->close();
+
+	}
+
+
+}
