@@ -228,33 +228,30 @@ public function llenaLista($tabla){
 	#VERIFICA SI UN PRODUCTO YA ESTA REGISTRADO EN LAS TABLAS DE OPCIONES, SADDLES Y VENTS PARA REGISTRARLO DESPUES
 	#----------------------------------------------------------------------------------------------------------
 
-	public function consultaProductosModel($codigo,$tabla){
-		$stmt=Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE codigo = $codigo");
+	public function consultaProductosModel($datosModel, $tabla){
+		$stmt=Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE codigo = :codigo");
 
-		//$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE usuario = :usuario and password = :password");
-
-		//$stmt->bindParam(":codigo", $datosModel["codigo"], PDO::PARAM_STR);
-
-		return $stmt -> fetchAll();
+		$stmt->bindParam(":codigo", $datosModel["codigo"], PDO::PARAM_STR);
+		$stmt -> execute();
+		return $stmt -> fetch();
 
 		$stmt->close();
+
+
 	}
 
 
 	#REGISTRO DE PRODUCTOS EN LAS TABLAS OPCIONES, SADDLES Y VENTS RESPECTIVAMENTE
 	#------------------------------------------------------------------------------------------------------------------
-	public function registroProductosModel($datosModel){
+	public function registroProductosModel($datosModel, $tabla){
 
-	$stmt = Conexion::conectar()->prepare("INSERT INTO :tabla (id, codigo, descEnglish, descEspanol, precio, horas) VALUES (NULL, :codigo, :descEnglish, :descEspanol, :precio, :horas)");
-//	$stmt = Conexion::conectar()->prepare("INSERT INTO :tabla (id, codigo, descEnglish, descEspanol, horas, precio) VALUES (NULL, :codigo, :descEnglish, :descEspanol, :horas, :precio)");
+	$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id, codigo, descEnglish, descEspanol, precio, horas) VALUES (NULL, :codigo, :descEnglish, :descEspanol, :precio, :horas)");
 
 		$stmt->bindParam(":codigo", $datosModel["codigo"], PDO::PARAM_STR);
 		$stmt->bindParam(":descEnglish", $datosModel["descEnglish"], PDO::PARAM_STR);
 		$stmt->bindParam(":descEspanol", $datosModel["descEspanol"], PDO::PARAM_STR);
 		$stmt->bindParam(":horas", $datosModel["horas"], PDO::PARAM_STR);
 		$stmt->bindParam(":precio", $datosModel["precio"], PDO::PARAM_STR);
-		$stmt->bindParam(":tabla", $datosModel["tabla"], PDO::PARAM_STR);
-
 
 		if($stmt->execute()){
 
@@ -264,10 +261,6 @@ public function llenaLista($tabla){
 		else{
 
 			return "error";
-
-			//return "INSERT INTO ".$datosModel["tabla"]." (id, codigo, descEnglish, descEspanol, precio, horas) VALUES (NULL, ".$datosModel["codigo"].", ".$datosModel["descEnglish"].", ".$datosModel["descEspanol"].", ".$datosModel["precio"].", ".$datosModel["horas"].")";
-
-
 
 		}
 
@@ -323,6 +316,20 @@ public function llenaLista($tabla){
 	#-------------------------------------
 	public function borrarOrdenModel($datosModel,$tabla){
 		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE orderNo = :id");
+		$stmt -> bindPARAM(":id",$datosModel, PDO::PARAM_INT);
+		if ($stmt->execute()){
+			return "success";
+		} else {
+			return "error";
+		}
+		$stmt -> close();
+	}
+
+
+	#BORRAR OPCION
+	#-------------------------------------------------------------------------------------
+	public function borrarOpcionModel($datosModel,$tabla){
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
 		$stmt -> bindPARAM(":id",$datosModel, PDO::PARAM_INT);
 		if ($stmt->execute()){
 			return "success";

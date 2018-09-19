@@ -72,7 +72,8 @@ switch ($minus) {
                 <?php
                   $ingreso = new controller();
                   $ingreso -> listaOpcionesController($minus);
-                  $ingreso -> borrarEmpleadoController();
+                  $ingreso -> borrarOpcionController($minus);
+                  echo $minus;
                 ?>
               </tbody>
             </table>

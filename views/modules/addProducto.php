@@ -35,7 +35,7 @@ else {
             <div class="form-row">
               <div class="col-md-6">
                 <label for="nombre">Code</label>
-                <input class="form-control" name ="codigo" id="codigo" type="text" aria-describedby="nameHelp" placeholder="Type the code" required="true">
+                <input class="form-control" name ="codigo" id="codigo" type="text" aria-describedby="nameHelp" placeholder="Type the code" required>
               </div>
             </div>
           </div>
@@ -68,7 +68,7 @@ else {
                 </select>
               </div>
               <div class="col-md-6">
-
+                <label>* Please select the correct category for this option.</label>
               </div>
             </div>
           </div>

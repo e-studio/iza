@@ -232,7 +232,7 @@ class controller{
 
 
     # REGISTRO DE OPCIONES, SADDLES Y VENTS
-    #------------------------------------
+    #---------------------------------------------------------------------------------------
 
     public function registroProductosController(){
 
@@ -244,26 +244,31 @@ class controller{
                                       "horas"=>$_POST["horas"],
                                       "tabla"=>$_POST['tabla'],
                                       "precio"=>$_POST["precio"]);
+            //echo $datosController['codigo'].' - '. $datosController['tabla'].'<br>';
 
-            $respuesta = Datos::consultaProductosModel("CODIGO1", "opciones");
+            $respuesta = Datos::consultaProductosModel($datosController, $_POST['tabla']);
 
-            foreach ($respuesta as $row => $valor) {
-                echo $valor["codigo"].'-';
-             }
-            //var_dump($respuesta);
+                if ($respuesta['codigo'] == ""){
 
+                    $inserta = Datos::registroProductosModel($datosController, $_POST['tabla']);
 
-            /*$inserta = Datos::registroProductosModel($datosController);
-            if ($inserta=="ok"){
-                    echo '<div class="alert alert-success">';
-                    echo 'Empleado Registrado Exitosamente!.';
-                    echo '</div>';
+                    if ($inserta=="ok"){
+                        echo '<div class="alert alert-success">';
+                        echo 'Code saved succesfully!.';
+                        echo '</div>';
+                    }
+                    else{
+                        echo '<div class="alert alert-danger">';
+                        echo "<strong>Error!</strong> al insertar.";
+                        echo "</div>";
+
+                    }
                 }
-                else {
+                else{
                     echo '<div class="alert alert-danger">';
-                    echo "<strong>Error!</strong> Error al Insertar.";
+                    echo "<strong>Error!</strong> code already exists.";
                     echo "</div>";
-                }*/
+                }
 
         }
 
@@ -318,9 +323,10 @@ class controller{
                 <td>'.$item["descEspanol"].'</td>
                 <td>'.$item["horas"].'</td>
                 <td>'.$item["precio"].'</td>
-                <td><a href="index.php?action=editOpciones&idEditar='.$item["id"].'&a='.$tabla.'"><button class="btn btn-warning">Edit</button></a></td>
+                <td class="ancho150"><a href="index.php?action=editOpciones&idEditar='.$item["id"].'&a='.$tabla.'"><button class="btn btn-warning">Edit</button></a>
+                    <a href="index.php?action='.$tabla.'&idBorrar='.$item["id"].'" onclick="return Confirmation()"><button class="btn btn-danger">Delete</button></a>
+                </td>
             </tr>';
-        //echo "<td><a href="index.php?action=opciones&idBorrar='.$item["codigo"].'"><button class="btn btn-danger">Delete</button></a></td>";
         }
 
     }
@@ -338,8 +344,12 @@ class controller{
                 <td>'.$item["password"].'</td>
                 <td>'.$item["email"].'</td>
                 <td>'.$item["celular"].'</td>
-                <td><a href="index.php?action=editEmpleados&idEditar='.$item["id"].'"><button class="btn btn-warning">Editar</button></a></td>
-                <td><a href="index.php?action=empleados&idBorrar='.$item["id"].'"><button class="btn btn-danger">Borrar</button></a></td>
+                <td>
+                    <a href="index.php?action=editEmpleados&idEditar='.$item["id"].'"><button class="btn btn-warning">Edit</button></a>
+                </td>
+                <td>
+                    <a href="index.php?action=empleados&idBorrar='.$item["id"].'" onclick="return Confirmation()"><button class="btn btn-danger">Delete</button></a>
+                </td>
             </tr>';
         }
 
@@ -359,6 +369,19 @@ class controller{
         }
     }
 
+    #BORRAR OPCION
+    #-------------------------------------------------------------------------------------------------------------------
+    public function borrarOpcionController($tabla){
+        if (isset($_GET['idBorrar'])){
+            $datosController = $_GET['idBorrar'];
+            echo $_GET['idBorrar'];
+            $respuesta = Datos::borrarOpcionModel($datosController,$tabla);
+            if ($respuesta == "success"){
+                echo "<script type='text/javascript'>window.location.href='index.php?action=opciones</script>";
+            }
+        }
+    }
+
 
 
     #BORRAR EMPLEADO
@@ -366,7 +389,7 @@ class controller{
     public function borrarEmpleadoController(){
         if (isset($_GET['idBorrar'])){
             $datosController = $_GET['idBorrar'];
-            $respuesta = Datos::borrarEmpleadoModel($datosController,"orders");
+            $respuesta = Datos::borrarEmpleadoModel($datosController,"usuarios");
             if ($respuesta == "success"){
                 echo "<script type='text/javascript'>window.location.href='index.php?action=empleados'</script>";
             }

@@ -94,6 +94,7 @@ switch ($tabla) {
         $actualiza = new controller();
         $actualiza -> actualizaOpcionesController($tabla);
 
+
         ?>
 
       </div>

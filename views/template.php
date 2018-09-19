@@ -14,8 +14,9 @@
     <script type="text/javascript">
       function Confirmation() {
 
-        if (confirm('Are you shure you want to delete this order?')==true) {
-            alert('Order deleted');
+        if (confirm('Are you shure you want to delete?')==true) {
+            alert('Deleted');
+            window.location.href='index.php?action=inicio';
             return true;
         }else{
             //alert('Cancelo la eliminacion');
@@ -71,24 +72,6 @@
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
             <a class="btn btn-primary" href="views/modules/salir.php">Log Out</a>
-          </div>
-        </div>
-      </div>
-    </div>
-        <!-- Borrar Modal-->
-    <div class="modal fade" id="borraModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Alert</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Are you shure you want to delete this order?</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-danger" <?php echo 'href="index.php?action=empleados&idBorrar='.$item["orderNo"].'"'?> >Delete</a>
           </div>
         </div>
       </div>
