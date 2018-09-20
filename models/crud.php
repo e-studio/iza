@@ -138,7 +138,7 @@ public function llenaLista($tabla){
 
     public function buscaPrecio($tabla, $codigo){
 
-        $stmt = Conexion::conectar()->prepare("SELECT precio,horas FROM $tabla WHERE codigo=:codigo");
+        $stmt = Conexion::conectar()->prepare("SELECT precio,horas,weight FROM $tabla WHERE codigo=:codigo");
 
         $stmt->bindParam(":codigo", $codigo, PDO::PARAM_STR);
 

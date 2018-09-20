@@ -1,4 +1,4 @@
-<?php 
+<?php
   session_start();
 if(!$_SESSION["validar"]){
 
@@ -20,7 +20,7 @@ $lista = new controller();
 
 
 <div class="content-wrapper">
-  <form action="" name="cotizador" method="post"> 
+  <form action="" name="cotizador" method="post">
 
     <div class="container-fluid">
 
@@ -28,28 +28,28 @@ $lista = new controller();
           <div class="col-sm-4">
             <div class="card">
                 <div class="card-header">Order</div>
-                <div class="card-body">   
+                <div class="card-body">
                     <p class="card-text">ORDER # : <input class="ancho170" type="text" name="tbd" id="tbd"></p>
                     <p class="card-text">Trailer # : <input class="ancho120" type="text" name="trailerNo" id="trailerNo"></p>
                     <p class="card-text">Trailer Vin # : <input class="ancho120" type="text" name="trailerVin" id="trailerVin"></p>
-                    <p class="card-text">Due Date : <input class="ancho170" type="date" name="dueDate" id="dueDate"></p> 
+                    <p class="card-text">Due Date : <input class="ancho170" type="date" name="dueDate" id="dueDate"></p>
                 </div>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="card">
               <div class="card-body">
-                
+
                 <p style="text-align: center; font-size: 105px;" class="card-text">TBD</p>
                 <textarea rows="3" cols="75" name="notes" id="notes" placeholder="Notes..."></textarea>
                 <input type="submit" class="btn btn-primary" name="envia" value="Prueba">
-                
+
               </div>
             </div>
           </div>
         </div><!-- row -->
         <br>
-          
+
           <div class="row">
             <div class="col-md-12">
                 <table class="table table-bordered table-sm">
@@ -57,7 +57,7 @@ $lista = new controller();
                             <tr class="table-secondary">
                                 <td colspan="12" style="text-align: center;"><strong><h3>Trailer Model & Size</h3></strong></td>
                             </tr>
-                         <tr class="table-secondary">   
+                         <tr class="table-secondary">
                             <td colspan="2">Trailer Model
                              </td>
                             <td>Trailer Length</td>
@@ -78,7 +78,7 @@ $lista = new controller();
                                 </select>
                             </td>
                             <td>
-                                <select name="tLength">
+                                <select name="tLength" id="tLenght" onchange="calculaPeso()">
                                     <option value="">Select Length</option>
                                     <option value="12">12</option>
                                     <option value="14">14</option>
@@ -91,12 +91,12 @@ $lista = new controller();
                                     <option value="28">28</option>
                                     <option value="32">32</option>
                                     <option value="36">36</option>
-                                    <option value="40">40</option>                 
+                                    <option value="40">40</option>
                                 </select>
 
                             </td>
                             <td>
-                                <select name="tWidth">
+                                <select name="tWidth" id="tWidth" onchange="calculaPeso()">
                                     <option value="">Select Width</option>
                                     <option value="5">5</option>
                                     <option value="6">6</option>
@@ -136,7 +136,7 @@ $lista = new controller();
                                     <option value="STANDARDSIDES">Standard</option>
                                     <option value="4HIGHSIDE">4' High</option>
                                     <option value="FLUSHFENDERS">Flush With Fender</option>
-                                    <option value="DOUBLEDECKSIDE">For Double Deck</option>            
+                                    <option value="DOUBLEDECKSIDE">For Double Deck</option>
                                 </select>
 
                             </td>
@@ -146,7 +146,7 @@ $lista = new controller();
                                     <option value="Full Top">Full Top</option>
                                     <option value="3/4 Top">3/4 Top</option>
                                     <option value="1/2 Top">1/2 Top</option>
-                                    <option value="Bow Top">Bow Top</option>                
+                                    <option value="Bow Top">Bow Top</option>
                                 </select>
 
                             </td>
@@ -155,7 +155,7 @@ $lista = new controller();
                                     <option value="">Select Gate</option>
                                     <option value="BUTTERFLYGATE">Butterfly</option>
                                     <option value="SINGLESWING">Single Swing</option>
-                                    <option value="SWING/SLIDER">Swing/Slider</option>           
+                                    <option value="SWING/SLIDER">Swing/Slider</option>
                                 </select>
 
                             </td>
@@ -165,7 +165,7 @@ $lista = new controller();
                                     <option value="">None</option>
                                     <option value="Driver Side">Driver Side</option>
                                     <option value="Passenger Side">Passenger Side</option>
-                                    <option value="Both Sides">Both Sides</option>            
+                                    <option value="Both Sides">Both Sides</option>
                                 </select>
 
                             </td>
@@ -189,7 +189,7 @@ $lista = new controller();
                                     <option value="">None</option>
                                     <option value="1 - DS">1 - DS</option>
                                     <option value="1 - PS">1 - PS</option>
-                                    <option value="2 - BS">2 - BS</option>            
+                                    <option value="2 - BS">2 - BS</option>
                                 </select>
 
                             </td>
@@ -207,18 +207,18 @@ $lista = new controller();
                                     <option value="1 - BS">1 - BS</option>
                                     <option value="2 - BS">2 - BS</option>
                                     <option value="3 - BS">3 - BS</option>
-                                    <option value="4 - BS">4 - BS</option>            
+                                    <option value="4 - BS">4 - BS</option>
                                 </select>
 
                             </td>
                             <td><input style="width: 100px !important;" type="text" name="tBlanketBars" id="blanketBars"></td>
-                            
+
                             <td>
                                <select id="tFloorType" name="tFloorType" onchange="buscaOpcion('opciones','codigo1','descEnglish1','descEspanol1','horas1', 'precio1', this.value)" onblur="sumaTotales()">
                                     <option value="">Select Floor</option>
                                     <option value="WOODFLOOR">Wood Floor</option>
                                     <option value="CRUBBERBOARD">C Rubber Boards</option>
-                                    <option value="SRUBBERBOARD">S Rubber Boards</option>            
+                                    <option value="SRUBBERBOARD">S Rubber Boards</option>
                                 </select>
 
                             </td>
@@ -227,7 +227,7 @@ $lista = new controller();
                                     <option value="Standard">Standard</option>
                                     <option value="0">0</option>
                                     <option value="1/2\"">1/2"</option>
-                                    <option value="3/4\"">3/4"</option>            
+                                    <option value="3/4\"">3/4"</option>
                                 </select>
 
                             </td>
@@ -253,11 +253,11 @@ $lista = new controller();
 
                                     <?php
                                     for ($i=1; $i<=36; $i++){
-                                        echo '<option value="'.$i.'">'.$i.'</option>'; 
+                                        echo '<option value="'.$i.'">'.$i.'</option>';
                                     }
 
                                     ?>
-                                    
+
                                 </select>
 
                             </td>
@@ -267,11 +267,11 @@ $lista = new controller();
 
                                     <?php
                                     for ($i=1; $i<=72; $i++){
-                                        echo '<option value="'.$i.'">'.$i.'</option>'; 
+                                        echo '<option value="'.$i.'">'.$i.'</option>';
                                     }
 
                                     ?>
-                                    
+
                                 </select>
 
                             </td>
@@ -287,10 +287,10 @@ $lista = new controller();
                             <td>Extra Tire</td>
                          </tr>
                          <tr>
-                            <td colspan="2"> 
+                            <td colspan="2">
                                 <select name="tCalf">
                                     <option value="Normal">Normal</option>
-                                    <option value="Move to Back">Move to Back</option>            
+                                    <option value="Move to Back">Move to Back</option>
                                 </select>
 
                             </td>
@@ -303,7 +303,7 @@ $lista = new controller();
                             </td>
                             <td>
                                 <select id="tVents" name="tVents" onchange="buscaOpcion('vents','codigo16','descEnglish16','descEspanol16','horas16', 'precio16', this.value)" onblur="sumaTotales()">
-                                    <?php $lista ->llenaVents(); ?>                
+                                    <?php $lista ->llenaVents(); ?>
                                     </select>
                                 </td>
                             <td>
@@ -312,20 +312,20 @@ $lista = new controller();
 
                                     <?php
                                     for ($i=1; $i<=125; $i++){
-                                        echo '<option value="'.$i.'">'.$i.'</option>'; 
+                                        echo '<option value="'.$i.'">'.$i.'</option>';
                                     }
 
                                     ?>
-                                    
+
                                 </select>
 
                             </td>
-                            
+
                             <td><input class="ancho120" type="text" name="tSideRails" id="tSideRails"></td>
                             <td colspan="2">
                                 <select name="tSaddleBox">
                                     <option value="With Divider Wall">With Divider Wall</option>
-                                    <option value="Only HSS for Racks">Only HSS for Racks</option>            
+                                    <option value="Only HSS for Racks">Only HSS for Racks</option>
                                 </select>
 
                             </td>
@@ -336,7 +336,7 @@ $lista = new controller();
                                     <option value="12PLY16SR">12PLY16SR</option>
                                     <option value="14PLY16SR">14PLY16SR</option>
                                     <option value="14PLY16AR">14PLY16AR</option>
-                                    <option value="18PLY17.5SR">18PLY16SR</option>            
+                                    <option value="18PLY17.5SR">18PLY16SR</option>
                                 </select>
 
                             </td>
@@ -347,7 +347,7 @@ $lista = new controller();
                                     <option value="12PLY16SRE">12PLY16SRE</option>
                                     <option value="14PLY16SRE">14PLY16SRE</option>
                                     <option value="14PLY16ARE">14PLY16ARE</option>
-                                    <option value="18PLY16SRE">18PLY16SRE</option>            
+                                    <option value="18PLY16SRE">18PLY16SRE</option>
                                 </select>
 
                             </td>
@@ -378,13 +378,14 @@ $lista = new controller();
                                     <option value="PLS8-C0004-C50">PLS8-C0004-C50</option>
                                     <option value="Tan 311-76 SD">Tan 311-76 SD</option>
                                     <option value="Tan 311-75 SD">Tan 311-75 SD</option>
-                                    <option value="Café 311-09">Café 311-09</option>
-                                    <option value="White 311-05 SD">White 311-05 SD</option>            
+                                    <option value="Café 311-09">Brown 311-09</option>
+                                    <option value="White 311-05 SD">White 311-05 SD</option>
                                 </select>
 
                             </td>
                             <td>
                                 <select name="tFrontPlug">
+                                    <option value="">Select</option>
                                     <option value="6 Way">6 Way</option>
                                     <option value="7 Way">7 Way</option>
                                 </select>
@@ -392,6 +393,7 @@ $lista = new controller();
                             </td>
                             <td>
                                 <select name="tRearPlug">
+                                    <option value="">Select</option>
                                     <option value="6 Way">6 Way</option>
                                     <option value="7 Way">7 Way</option>
                                 </select>
@@ -411,8 +413,12 @@ $lista = new controller();
                             </td>
 
                             <td colspan="2">&nbsp;</td>
-                            <td><input class="ancho120" name="totWeight" id="totWeight"></td>
-                            <td><input class="ancho120" name="floorFt" id="floorFt"></td>
+                            <td><input class="ancho120" name="totWeight" id="totWeight" value="0" readonly="readonly"></td>
+                            <td><input class="ancho120" name="floorFt" id="floorFt" value="0" readonly="readonly">
+                                <input id="pesoTrailer" value="999" hidden>
+
+                            </td>
+
                          </tr>
                 </tbody>
                 </table>
@@ -428,7 +434,7 @@ $lista = new controller();
     <div class="container-fluid">
         <!-- ***********************************   opciones    *********************************************************-->
       <div class="row">
-        
+
         <div class="col-md-12">
             <table class="table table-bordered table-sm">
                 <tbody>
@@ -511,7 +517,7 @@ $lista = new controller();
                  <tr>
                     <td>8</td>
                     <td><input readonly="readonly" value="-" class="ancho150" id="codigo8" name="codigo8"> </td>
-                    <td colspan="4">   
+                    <td colspan="4">
                         <select id="descEnglish8" name="descEnglish8" onchange="buscaOpcion2('opciones','codigo8','descEspanol8','horas8', 'precio8', this.value)" onblur="sumaTotales()">
                             <?php $lista ->llenaOpciones(); ?>
                         </select>
@@ -525,7 +531,7 @@ $lista = new controller();
                  <tr>
                     <td>9</td>
                     <td><input readonly="readonly" value="-" class="ancho150" id="codigo9" name="codigo9"> </td>
-                    <td colspan="4">   
+                    <td colspan="4">
                         <select id="descEnglish9" name="descEnglish9" onchange="buscaOpcion2('opciones','codigo9','descEspanol9','horas9', 'precio9', this.value)" onblur="sumaTotales()">
                             <?php $lista ->llenaOpciones(); ?>
                         </select>
@@ -539,7 +545,7 @@ $lista = new controller();
                  <tr>
                     <td>10</td>
                     <td><input readonly="readonly" value="-" class="ancho150" id="codigo10" name="codigo10"> </td>
-                    <td colspan="4">   
+                    <td colspan="4">
                         <select id="descEnglish10" name="descEnglish10" onchange="buscaOpcion2('opciones','codigo10','descEspanol10','horas10', 'precio10', this.value)" onblur="sumaTotales()">
                             <?php $lista ->llenaOpciones(); ?>
                         </select>
@@ -553,7 +559,7 @@ $lista = new controller();
                  <tr>
                     <td>11</td>
                     <td><input readonly="readonly" value="-" class="ancho150" id="codigo11" name="codigo11"> </td>
-                    <td colspan="4">   
+                    <td colspan="4">
                         <select id="descEnglish11" name="descEnglish11" onchange="buscaOpcion2('opciones','codigo11','descEspanol11','horas11', 'precio11', this.value)" onblur="sumaTotales()">
                             <?php $lista ->llenaOpciones(); ?>
                         </select>
@@ -567,7 +573,7 @@ $lista = new controller();
                  <tr>
                     <td>12</td>
                     <td><input readonly="readonly" value="-" class="ancho150" id="codigo12" name="codigo12"> </td>
-                    <td colspan="4">   
+                    <td colspan="4">
                         <select id="descEnglish12" name="descEnglish12" onchange="buscaOpcion2('opciones','codigo12','descEspanol12','horas12', 'precio12', this.value)" onblur="sumaTotales()">
                             <?php $lista ->llenaOpciones(); ?>
                         </select>
@@ -581,7 +587,7 @@ $lista = new controller();
                  <tr>
                     <td>13</td>
                     <td><input readonly="readonly" value="-" class="ancho150" id="codigo13" name="codigo13"> </td>
-                    <td colspan="4">   
+                    <td colspan="4">
                         <select id="descEnglish13" name="descEnglish13" onchange="buscaOpcion2('opciones','codigo13','descEspanol13','horas13', 'precio13', this.value)" onblur="sumaTotales()">
                             <?php $lista ->llenaOpciones(); ?>
                         </select>
@@ -595,7 +601,7 @@ $lista = new controller();
                  <tr>
                     <td>14</td>
                     <td><input readonly="readonly" value="-" class="ancho150" id="codigo14" name="codigo14"> </td>
-                    <td colspan="4">   
+                    <td colspan="4">
                         <select id="descEnglish14" name="descEnglish14" onchange="buscaOpcion2('opciones','codigo14','descEspanol14','horas14', 'precio14', this.value)" onblur="sumaTotales()">
                             <?php $lista ->llenaOpciones(); ?>
                         </select>
@@ -622,7 +628,7 @@ $lista = new controller();
                     <td><input readonly="readonly" class="ancho50" id="horas16" name="horas16" value="0" ></td>
                     <td><input readonly="readonly" class="ancho100" id="precio16" name="precio16" value="0" ></td>
                  </tr>
-                 
+
                 </tbody>
             </table>
         </div> <!--  col-   -->
@@ -632,7 +638,7 @@ $lista = new controller();
         <!-- *************************************************************************************************************-->
         <!--   ******************************************     Totales     ****************************************-->
       <div class="row">
-        
+
         <div class="col-md-8">
         </div>
         <div class="col-md-4">
@@ -643,30 +649,30 @@ $lista = new controller();
 
                     </tr>
                 <tr>
-                    
+
                     <td>Total Horas</td>
                     <td><input readonly="readonly" type="text" size="10" id="TotalHoras" name="TotalHoras" value="0" ></td>
                     <td>Total Options</td>
                     <td><input readonly="readonly" type="text" size="10" id="TotalOpciones" name="TotalOpciones" value="0" ></td>
-                    
+
                  </tr>
                  <tr>
                     <td colspan="2">&nbsp;</td>
                     <td>Sub-Total</td>
                     <td><input readonly="readonly" type="text" size="10" id="subTotal" name="subTotal" value="0" ></td>
-                    
+
                  </tr>
                  <tr>
                     <td colspan="2">&nbsp;</td>
                     <td>2% Discount</td>
                     <td><input readonly="readonly" type="text" size="10" id="descuento" name="descuento" value="0" ></td>
-                    
+
                  </tr>
                  <tr>
                     <td colspan="2">&nbsp;</td>
                     <td>Total</td>
                     <td><input readonly="readonly" class="ancho120" type="number" min="1" step="any" size="10" id="Total" name="Total" value="0" ></td>
-                    
+
                  </tr>
                     </tbody>
             </table>
@@ -684,7 +690,7 @@ $lista = new controller();
 
         $registro = new controller();
         $registro -> registroOrdenes();
-        
+
         ?>
   <?php include "views/modules/footer.php"; ?>
 

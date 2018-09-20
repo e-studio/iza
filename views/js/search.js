@@ -4,6 +4,24 @@
  *
  */
 
+function calculaPeso() {
+
+
+
+
+}
+
+
+
+
+
+
+/**
+ *
+ * Esta funcion busca el codigo del trailer y devuelve las horas y el precio
+ *
+ */
+
 function buscaPrecio(table,obj,obj2,mdl) {
     if (mdl == "0") {
         document.getElementById(obj).value = "";
@@ -23,6 +41,8 @@ function buscaPrecio(table,obj,obj2,mdl) {
                 var responseArray = xmlhttp.responseText.split("||");
                 document.getElementById(obj).value=responseArray[0];
                 document.getElementById(obj2).value=responseArray[1];
+                document.getElementById("pesoTrailer").value=responseArray[2];
+
             }
         }
         xmlhttp.open("GET","busca.php?t="+table+"&q="+mdl,true);
@@ -113,6 +133,53 @@ function buscaOpcion2(table,codigo,espanol,horas,precio,mdl) {
 
 
 function sumaTotales(){
+    //instrucciones para calcular peso del trailer y la superficie del piso
+
+
+    var largo = document.getElementById("tLenght").value;
+    var pesoTrailer = document.getElementById("pesoTrailer").value;
+    var ancho = document.getElementById("tWidth").value;
+    var tFloorType = document.getElementById("tFloorType").value;
+    var precioPiso = document.getElementById("precio1").value;
+
+    var pesoTabla =1;
+    var totWeight=0;
+    var totBoards = 1;
+
+
+
+    if (tFloorType=='WOODFLOOR') pesoTabla=2.2;
+    if (tFloorType=='CRUBBERBOARD' || tFloorType=='SRUBBERBOARD') pesoTabla = 7;
+
+    if (largo=='') largo=1;
+    if (ancho=='') ancho=1;
+
+
+    if (ancho == 5) totBoards = 7;
+    if (ancho == 6) totBoards = 8;
+    if (ancho == 6.8) totBoards = 9;
+    if (ancho == 7) totBoards = 9;
+    if (ancho == 7.5) totBoards = 10;
+
+    var footFt = parseInt(largo * totBoards);
+
+
+    totWeight = parseInt(pesoTrailer) + footFt;
+    var pPiso = precioPiso * footFt;
+
+
+    document.getElementById("floorFt").value= largo * totBoards;
+    document.getElementById("totWeight").value= totWeight;
+
+
+    // Instrucciones  para afectar el precio del piso segun el tipo
+
+    alert(pPiso);
+
+
+
+
+
 
     //Carga de precios
     var precioMdl= document.getElementById('precioMdl').value;

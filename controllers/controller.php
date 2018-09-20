@@ -87,6 +87,9 @@ class controller{
             echo $val['precio'];
             echo " || ";
             echo $val['horas'];
+            echo " || ";
+            echo $val['weight'];
+
         }
 
     }
