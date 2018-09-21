@@ -4,9 +4,73 @@
  *
  */
 
+//document.getElementById("tLenght").addEventListener("change", myFunction);
+
+
 function calculaPeso() {
 
+        var largo = document.getElementById("tLenght").value;
+        var pesoTrailer = document.getElementById("pesoTrailer").value;
+        var ancho = document.getElementById("tWidth").value;
+        var tFloorType = document.getElementById("tFloorType").value;
+        var saddle = document.getElementById("codigo7").value;
+        var precioAxle = document.getElementById("precioAxle").value;
+        var totAxles = 0;
+        var llantas=0;
 
+        var axlesNo = document.getElementById("tAxles").value;
+        llantas = parseInt(axlesNo.substr(0,1));
+        //alert(llantas);
+        if (llantas==0 || llantas=='') llantas=1;
+
+
+
+
+        totAxles = precioAxle * llantas;
+
+        //alert("Boton");
+
+        var tipoSaddle =0;
+
+        var precioPiso = 0;
+
+        var pesoTabla =1;
+        var totWeight=0;
+        var totBoards = 1;
+        var footFt=0, pPiso=0;
+        var x =0;
+
+        if (saddle=='2FTSADDLEBOX2D ' || saddle=='2FTSADDLEBOX3D ' || saddle == '2FTSADDLEBOX4D ') tipoSaddle =2;
+        if (saddle=='3FTSADDLEBOX2D' || saddle=='3FTSADDLEBOX3D' || saddle == '3FTSADDLEBOX4D' || saddle=='2X4FTTACKROOM' || saddle=='3FTSADDLEBOX3D' || saddle == '3.5FTTACKROOM') tipoSaddle =3;
+        if (saddle=='4FTTACKROOM' || saddle=='DELUXETACKROOM') tipoSaddle =4;
+
+
+        if (tFloorType=='WOODFLOOR') {pesoTabla=2.2; precioPiso=0;}
+        if (tFloorType=='SRUBBERBOARD') {pesoTabla = 7; precioPiso=3.75;}
+        if (tFloorType=='CRUBBERBOARD') {pesoTabla = 7; precioPiso=4.22;}
+
+        if (largo=='') largo=1;
+        if (ancho=='') ancho=1;
+
+
+        if (ancho == 5) {totBoards = 7; x=2;}
+        if (ancho == 6) {totBoards = 8; x=3;}
+        if (ancho == 6.8) {totBoards = 9; x=4;}
+        if (ancho == 7) {totBoards = 9; x=4;}
+        if (ancho == 7.5) {totBoards = 10; x=5;}
+
+        footFt = parseInt(largo * totBoards) - (x * tipoSaddle);
+
+
+        totWeight = parseInt(pesoTrailer) + (pesoTabla * largo * totBoards);
+        pPiso = precioPiso * footFt;
+
+
+        document.getElementById("floorFt").value= footFt;
+        document.getElementById("totWeight").value= totWeight;
+        document.getElementById("precio1").value= pPiso;
+        document.getElementById("precio5").value= totAxles;
+        //alert(saddle+": "+ x +"-"+ tipoSaddle+"="+ footFt);
 
 
 }
@@ -80,9 +144,13 @@ function buscaOpcion(table,codigo,ingles,espanol,horas,precio,mdl) {
                 document.getElementById(ingles).value = responseArray[1]
                 document.getElementById(espanol).value=responseArray[2];
                 document.getElementById(horas).value=responseArray[3];
-                document.getElementById(precio).value=responseArray[4];
+                // procedimiento para multiplicar el valor de los axles segun se haya eleccion 1,2 o 3 axles
+                /*var axlesNo = document.getElementById("tAxles").value;
+                var llantas = parseInt(axlesNo.substr(0,1));
+                if (llantas==0 || llantas=='') llantas=1;*/
+                //------------------------------------------------------------------------------------------
 
-                //alert("Dato"+responseArray[1]);
+                document.getElementById(precio).value=responseArray[4];
             }
         }
         xmlhttp.open("GET","buscaOpcion.php?t="+table+"&q="+mdl,true);
@@ -133,53 +201,6 @@ function buscaOpcion2(table,codigo,espanol,horas,precio,mdl) {
 
 
 function sumaTotales(){
-    //instrucciones para calcular peso del trailer y la superficie del piso
-
-
-    var largo = document.getElementById("tLenght").value;
-    var pesoTrailer = document.getElementById("pesoTrailer").value;
-    var ancho = document.getElementById("tWidth").value;
-    var tFloorType = document.getElementById("tFloorType").value;
-    var precioPiso = document.getElementById("precio1").value;
-
-    var pesoTabla =1;
-    var totWeight=0;
-    var totBoards = 1;
-
-
-
-    if (tFloorType=='WOODFLOOR') pesoTabla=2.2;
-    if (tFloorType=='CRUBBERBOARD' || tFloorType=='SRUBBERBOARD') pesoTabla = 7;
-
-    if (largo=='') largo=1;
-    if (ancho=='') ancho=1;
-
-
-    if (ancho == 5) totBoards = 7;
-    if (ancho == 6) totBoards = 8;
-    if (ancho == 6.8) totBoards = 9;
-    if (ancho == 7) totBoards = 9;
-    if (ancho == 7.5) totBoards = 10;
-
-    var footFt = parseInt(largo * totBoards);
-
-
-    totWeight = parseInt(pesoTrailer) + footFt;
-    var pPiso = precioPiso * footFt;
-
-
-    document.getElementById("floorFt").value= largo * totBoards;
-    document.getElementById("totWeight").value= totWeight;
-
-
-    // Instrucciones  para afectar el precio del piso segun el tipo
-
-    alert(pPiso);
-
-
-
-
-
 
     //Carga de precios
     var precioMdl= document.getElementById('precioMdl').value;

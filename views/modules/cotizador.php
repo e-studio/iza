@@ -78,7 +78,7 @@ $lista = new controller();
                                 </select>
                             </td>
                             <td>
-                                <select name="tLength" id="tLenght" onchange="calculaPeso()">
+                                <select name="tLength" id="tLenght">
                                     <option value="">Select Length</option>
                                     <option value="12">12</option>
                                     <option value="14">14</option>
@@ -96,7 +96,7 @@ $lista = new controller();
 
                             </td>
                             <td>
-                                <select name="tWidth" id="tWidth" onchange="calculaPeso()">
+                                <select name="tWidth" id="tWidth">
                                     <option value="">Select Width</option>
                                     <option value="5">5</option>
                                     <option value="6">6</option>
@@ -104,11 +104,14 @@ $lista = new controller();
                                     <option value="7">7</option>
                                     <option value="7.5">7.5</option>
                                 </select>
+                                <script>
+                                    document.getElementById("tWidth").addEventListener("change", calculaPeso);
+                                </script>
 
                             </td>
                             <td>
-                                <select name="tAxles">
-                                    <option value="">Select Axles</option>
+                                <select name="tAxles" id="tAxles">
+                                    <option value="0">Select Axles</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -128,6 +131,9 @@ $lista = new controller();
                                     <option value="3 - 6.5' T Axle">3 - 6.5' T Axle</option>
                                     <option value="2 7.2K axles">2 7.2K axles</option>
                                 </select>
+                                <script>
+                                    document.getElementById("tAxles").addEventListener("change", calculaPeso);
+                                </script>
 
                             </td>
                             <td>
@@ -220,6 +226,11 @@ $lista = new controller();
                                     <option value="CRUBBERBOARD">C Rubber Boards</option>
                                     <option value="SRUBBERBOARD">S Rubber Boards</option>
                                 </select>
+
+                                <script>
+                                    document.getElementById("tFloorType").addEventListener("change", calculaPeso);
+                                </script>
+
 
                             </td>
                             <td>
@@ -330,7 +341,7 @@ $lista = new controller();
 
                             </td>
                             <td>
-                                <select id="tires" name="tTires" onchange="buscaOpcion('opciones','codigo5','descEnglish5','descEspanol5','horas5', 'precio5', this.value)" onblur="sumaTotales()">
+                                <select id="tires" name="tTires" onchange="buscaOpcion('opciones','codigo5','descEnglish5','descEspanol5','horas5', 'precioAxle', this.value)" onblur="sumaTotales()">
                                     <option value="">Select Tire</option>
                                     <option value="10PLY16SR">10PLY16SR</option>
                                     <option value="12PLY16SR">12PLY16SR</option>
@@ -338,6 +349,9 @@ $lista = new controller();
                                     <option value="14PLY16AR">14PLY16AR</option>
                                     <option value="18PLY17.5SR">18PLY16SR</option>
                                 </select>
+                                <script>
+                                    document.getElementById("tires").addEventListener("change", calculaPeso);
+                                </script>
 
                             </td>
                             <td>
@@ -349,6 +363,9 @@ $lista = new controller();
                                     <option value="14PLY16ARE">14PLY16ARE</option>
                                     <option value="18PLY16SRE">18PLY16SRE</option>
                                 </select>
+                                <script>
+                                    document.getElementById("eTires").addEventListener("change", calculaPeso);
+                                </script>
 
                             </td>
                          </tr>
@@ -364,7 +381,7 @@ $lista = new controller();
                          </tr>
                          <tr>
                             <td colspan="2">
-                                <select name="tColor">
+                                <select name="tColor" id="tColor">
                                     <option value="">Select Paint</option>
                                     <option value="White">White</option>
                                     <option value="Off White">Off White</option>
@@ -381,6 +398,9 @@ $lista = new controller();
                                     <option value="Café 311-09">Brown 311-09</option>
                                     <option value="White 311-05 SD">White 311-05 SD</option>
                                 </select>
+                                <script>
+                                    document.getElementById("tColor").addEventListener("change", sumaTotales);
+                                </script>
 
                             </td>
                             <td>
@@ -416,6 +436,7 @@ $lista = new controller();
                             <td><input class="ancho120" name="totWeight" id="totWeight" value="0" readonly="readonly"></td>
                             <td><input class="ancho120" name="floorFt" id="floorFt" value="0" readonly="readonly">
                                 <input id="pesoTrailer" value="999" hidden>
+                                <input id="precioAxle" value="0" hidden>
 
                             </td>
 
@@ -504,9 +525,13 @@ $lista = new controller();
                     <td>7</td>
                     <td><input readonly="readonly" value="-" class="ancho150" id="codigo7" name="codigo7"></td>
                     <td colspan="4">
-                        <select id="descEnglish7" name="descEnglish7" onchange="buscaOpcion2('saddles','codigo7','descEspanol7','horas7', 'precio7', this.value)" onblur="sumaTotales()">
+                        <select id="descEnglish7" name="descEnglish7" onchange="buscaOpcion2('saddles','codigo7','descEspanol7','horas7', 'precio7', this.value)" onblur="calculaPeso()">
                             <?php $lista ->llenaSaddles(); ?>
                         </select>
+                        <script>
+                            //document.getElementById("codigo7").addEventListener("change", calculaPeso);
+                        </script>
+
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol7" name="descEspanol7" value="-"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas7" name="horas7" value="0" ></td>
