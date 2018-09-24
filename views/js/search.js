@@ -8,7 +8,6 @@
 
 
 function calculaPeso() {
-
         var largo = document.getElementById("tLenght").value;
         var pesoTrailer = document.getElementById("pesoTrailer").value;
         var ancho = document.getElementById("tWidth").value;
@@ -18,20 +17,13 @@ function calculaPeso() {
         var totAxles = 0;
         var llantas=0;
 
+        // Calculo de el valor de las llantas segun el numero de axles
         var axlesNo = document.getElementById("tAxles").value;
         llantas = parseInt(axlesNo.substr(0,1));
-        //alert(llantas);
         if (llantas==0 || llantas=='') llantas=1;
-
-
-
-
         totAxles = precioAxle * llantas;
 
-        //alert("Boton");
-
         var tipoSaddle =0;
-
         var precioPiso = 0;
 
         var pesoTabla =1;
@@ -40,11 +32,13 @@ function calculaPeso() {
         var footFt=0, pPiso=0;
         var x =0;
 
+        // Parametros de los saddle box para el calculo del floor/ft
+
         if (saddle=='2FTSADDLEBOX2D ' || saddle=='2FTSADDLEBOX3D ' || saddle == '2FTSADDLEBOX4D ') tipoSaddle =2;
         if (saddle=='3FTSADDLEBOX2D' || saddle=='3FTSADDLEBOX3D' || saddle == '3FTSADDLEBOX4D' || saddle=='2X4FTTACKROOM' || saddle=='3FTSADDLEBOX3D' || saddle == '3.5FTTACKROOM') tipoSaddle =3;
         if (saddle=='4FTTACKROOM' || saddle=='DELUXETACKROOM') tipoSaddle =4;
 
-
+        // calculo del peso del piso segun el tipo de material
         if (tFloorType=='WOODFLOOR') {pesoTabla=2.2; precioPiso=0;}
         if (tFloorType=='SRUBBERBOARD') {pesoTabla = 7; precioPiso=3.75;}
         if (tFloorType=='CRUBBERBOARD') {pesoTabla = 7; precioPiso=4.22;}
@@ -52,7 +46,7 @@ function calculaPeso() {
         if (largo=='') largo=1;
         if (ancho=='') ancho=1;
 
-
+        // numero de tablas necesarias segun el ancho del remnolque
         if (ancho == 5) {totBoards = 7; x=2;}
         if (ancho == 6) {totBoards = 8; x=3;}
         if (ancho == 6.8) {totBoards = 9; x=4;}
@@ -60,8 +54,6 @@ function calculaPeso() {
         if (ancho == 7.5) {totBoards = 10; x=5;}
 
         footFt = parseInt(largo * totBoards) - (x * tipoSaddle);
-
-
         totWeight = parseInt(pesoTrailer) + (pesoTabla * largo * totBoards);
         pPiso = precioPiso * footFt;
 
@@ -70,8 +62,6 @@ function calculaPeso() {
         document.getElementById("totWeight").value= totWeight;
         document.getElementById("precio1").value= pPiso;
         document.getElementById("precio5").value= totAxles;
-        //alert(saddle+": "+ x +"-"+ tipoSaddle+"="+ footFt);
-
 
 }
 
