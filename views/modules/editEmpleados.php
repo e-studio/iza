@@ -29,10 +29,10 @@ $usuario = $_REQUEST['idEditar'];
         </li>
         <li class="breadcrumb-item active">Editar Empleado</li>
       </ol>
-      
+
       <hr>
-      <div class="card card-register mx-auto mt-5">
-      <div class="card-header">Editar datos del Empleado</div>
+      <div class="card card-register mx-auto border-warning mt-5">
+      <div class="card-header bg-warning text-black">Editar datos del Empleado</div>
       <div class="card-body">
         <?php
           $respuesta = Datos::buscaEmpleadoModel($usuario, "usuarios");
@@ -78,7 +78,7 @@ $usuario = $_REQUEST['idEditar'];
                 </select>
               </div>
               <div class="col-md-6">
-                
+
               </div>
             </div>
           </div>
@@ -91,12 +91,12 @@ $usuario = $_REQUEST['idEditar'];
 
         $ingreso = new controller();
         $ingreso -> actualizaEmpleadoController();
-        
+
         ?>
-        
+
       </div>
     </div>
-      
+
       <!-- Blank div to give the page height to preview the fixed vs. static navbar-->
       <div style="height: 1000px;"></div>
     </div><!-- /.container-fluid-->
