@@ -39,13 +39,12 @@ class controller{
 
 			if($respuesta == "success"){
 
-				//header("location:index.php?action=ok");
-
+				
 			}
 
 			else{
 
-				//header("location:index.php");
+				
 			}
 
 		}
@@ -60,8 +59,6 @@ class controller{
 	public function vistaUsuariosController(){
 
 		$respuesta = Datos::vistaUsuariosModel("usuarios");
-
-		#El constructor foreach proporciona un modo sencillo de iterar sobre arrays. foreach funciona sólo sobre arrays y objetos, y emitirá un error al intentar usarlo con una variable de un tipo diferente de datos o una variable no inicializada.
 
 		foreach($respuesta as $row => $item){
 		echo'<tr>
@@ -89,18 +86,6 @@ class controller{
         else {
             echo "si se encontro";
         }
-
-      /*  foreach ($res as $row => $val) {
-
-            echo $val['precio'];
-            echo " || ";
-            echo $val['horas'];
-            echo " || ";
-            echo $val['weight'];
-
-        }*/
-
-
 
     }
 
@@ -634,6 +619,7 @@ class controller{
                                     "TotalHoras" => $_POST["TotalHoras"],
                                     "Total" => $_POST["Total"],
                                     "ops" => $ops,
+                                    "totOpciones" => $_POST["TotalOpciones"],
                                     "specifications" => $specifications);
 
             $respuesta = Datos::registroOrden($datosController, "orders");
@@ -641,18 +627,176 @@ class controller{
             if ($respuesta=="success"){
 
                 $mensaje = "Order Registered";
-                echo "<script type='text/javascript'>alert('$mensaje'); window.location.href='index.php?action=cotizador'</script>";
+                echo '<script type="text/javascript">alert("'.$mensaje.'"); window.open("extensions/tcpdf/pdf/orden.php?codigo='.$_POST["tbd"].'", "Imprimir Orden","toolbar=no,location=0,directories=no, status=0,menubar=0,scrollbars=0,resizable=0,width=1024,height=800,top=0,left=0" )</script>';
             }
-
-
-            //echo $respuesta;
-
-
-
 
         } // if
 
     }
 
 
-}
+
+#ACTUALIZACION DE ORDENES DE TRAILERS
+    #------------------------------------
+    public function actualizaOrdenes(){
+
+        if(isset($_POST["actualiza"])){
+
+            // ------------------------------------   OPTIONS --------------------------------------------------
+            $specs = new stdClass();
+            $std = new stdClass();
+            $std-> codigo1 = $_POST["codigo1"];
+            $std-> descEnglish1 = $_POST["descEnglish1"];
+            $std-> descEspanol1 = $_POST["descEspanol1"];
+            $std-> horas1 = $_POST["horas1"];
+            $std-> precio1 = $_POST["precio1"];
+            $std-> codigo2 = $_POST["codigo2"];
+            $std-> descEnglish2 = $_POST["descEnglish2"];
+            $std-> descEspanol2 = $_POST["descEspanol2"];
+            $std-> horas2 = $_POST["horas2"];
+            $std-> precio2 = $_POST["precio2"];
+            $std-> codigo3 = $_POST["codigo3"];
+            $std-> descEnglish3 = $_POST["descEnglish3"];
+            $std-> descEspanol3 = $_POST["descEspanol3"];
+            $std-> horas3 = $_POST["horas3"];
+            $std-> precio3 = $_POST["precio3"];
+            $std-> codigo4 = $_POST["codigo4"];
+            $std-> descEnglish4 = $_POST["descEnglish4"];
+            $std-> descEspanol4 = $_POST["descEspanol4"];
+            $std-> horas4 = $_POST["horas4"];
+            $std-> precio4 = $_POST["precio4"];
+            $std-> codigo5 = $_POST["codigo5"];
+            $std-> descEnglish5 = $_POST["descEnglish5"];
+            $std-> descEspanol5 = $_POST["descEspanol5"];
+            $std-> horas5 = $_POST["horas5"];
+            $std-> precio5 = $_POST["precio5"];
+            $std-> codigo6 = $_POST["codigo6"];
+            $std-> descEnglish6 = $_POST["descEnglish6"];
+            $std-> descEspanol6 = $_POST["descEspanol6"];
+            $std-> horas6 = $_POST["horas6"];
+            $std-> precio6 = $_POST["precio6"];
+            $std-> codigo7 = $_POST["codigo7"];
+            $std-> descEnglish7 = $_POST["descEnglish7"];
+            $std-> descEspanol7 = $_POST["descEspanol7"];
+            $std-> horas7 = $_POST["horas7"];
+            $std-> precio7 = $_POST["precio7"];
+            $std-> codigo8 = $_POST["codigo8"];
+            $std-> descEnglish8 = $_POST["descEnglish8"];
+            $std-> descEspanol8 = $_POST["descEspanol8"];
+            $std-> horas8 = $_POST["horas8"];
+            $std-> precio8 = $_POST["precio8"];
+            $std-> codigo9 = $_POST["codigo9"];
+            $std-> descEnglish9 = $_POST["descEnglish9"];
+            $std-> descEspanol9 = $_POST["descEspanol9"];
+            $std-> horas9 = $_POST["horas9"];
+            $std-> precio9 = $_POST["precio9"];
+            $std-> codigo10 = $_POST["codigo10"];
+            $std-> descEnglish10 = $_POST["descEnglish10"];
+            $std-> descEspanol10 = $_POST["descEspanol10"];
+            $std-> horas10 = $_POST["horas10"];
+            $std-> precio10 = $_POST["precio10"];
+            $std-> codigo11 = $_POST["codigo11"];
+            $std-> descEnglish11 = $_POST["descEnglish11"];
+            $std-> descEspanol11 = $_POST["descEspanol11"];
+            $std-> horas11 = $_POST["horas11"];
+            $std-> precio11 = $_POST["precio11"];
+            $std-> codigo12 = $_POST["codigo12"];
+            $std-> descEnglish12 = $_POST["descEnglish12"];
+            $std-> descEspanol12 = $_POST["descEspanol12"];
+            $std-> horas12 = $_POST["horas12"];
+            $std-> precio12 = $_POST["precio12"];
+            $std-> codigo13 = $_POST["codigo13"];
+            $std-> descEnglish13 = $_POST["descEnglish13"];
+            $std-> descEspanol13 = $_POST["descEspanol13"];
+            $std-> horas13 = $_POST["horas13"];
+            $std-> precio13 = $_POST["precio13"];
+            $std-> codigo14 = $_POST["codigo14"];
+            $std-> descEnglish14 = $_POST["descEnglish14"];
+            $std-> descEspanol14 = $_POST["descEspanol14"];
+            $std-> horas14 = $_POST["horas14"];
+            $std-> precio14 = $_POST["precio14"];
+            $std-> codigo15 = $_POST["codigo15"];
+            $std-> descEnglish15 = $_POST["descEnglish15"];
+            $std-> descEspanol15 = $_POST["descEspanol15"];
+            $std-> horas15 = $_POST["horas15"];
+            $std-> precio15 = $_POST["precio15"];
+            $std-> codigo16 = $_POST["codigo16"];
+            $std-> descEnglish16 = $_POST["descEnglish16"];
+            $std-> descEspanol16 = $_POST["descEspanol16"];
+            $std-> horas16 = $_POST["horas16"];
+            $std-> precio16 = $_POST["precio16"];
+            $ops = json_encode($std);
+            //echo $ops;
+
+
+            // ------------------------------------   ESPECS --------------------------------------------------
+            $specs = new stdClass();
+             $specs -> Modelos = $_POST["Modelos"];
+             $specs -> tLength = $_POST["tLength"];
+             $specs -> tWidth = $_POST["tWidth"];
+             $specs -> tAxles = $_POST["tAxles"];
+             $specs -> tSides = $_POST["tSides"];
+             $specs -> tTop = $_POST["tTop"];
+             $specs -> tRearGate = $_POST["tRearGate"];
+             $specs -> tCompartments = $_POST["tCompartments"];
+             $specs -> tEscapeGate = $_POST["tEscapeGate"];
+             $specs -> horasMdl = $_POST["horasMdl"];
+             $specs -> precioMdl = $_POST["precioMdl"];
+             $specs -> tToolBox = $_POST["tToolBox"];
+             $specs -> tSaddleRack = $_POST["tSaddleRack"];
+             $specs -> tBlanketBars = $_POST["tBlanketBars"];
+             $specs -> tFloorType = $_POST["tFloorType"];
+             $specs -> tFloorSpacing = $_POST["tFloorSpacing"];
+             $specs -> tRollers = $_POST["tRollers"];
+             $specs -> tHinch = $_POST["tHinch"];
+             $specs -> tHSLength = $_POST["tHSLength"];
+             $specs -> tMatting = $_POST["tMatting"];
+             $specs -> tCalf = $_POST["tCalf"];
+             $specs -> tRod = $_POST["tRod"];
+             $specs -> tVents = $_POST["tVents"];
+             $specs -> tRhino = $_POST["tRhino"];
+             $specs -> tSideRails  = $_POST["tSideRails"];
+             $specs -> tSaddleBox = $_POST["tSaddleBox"];
+             $specs -> tTires = $_POST["tTires"];
+             $specs -> tExtraTire = $_POST["tExtraTire"];
+             $specs -> tColor = $_POST["tColor"];
+             $specs -> tFrontPlug = $_POST["tFrontPlug"];
+             $specs -> tRearPlug = $_POST["tRearPlug"];
+             $specs -> tTireCover = $_POST["tTireCover"];
+             $specs -> tTarp = $_POST["tTarp"];
+             $specs -> totWeight = $_POST["totWeight"];
+             $specs -> floorFt = $_POST["floorFt"];
+
+             $specifications = json_encode($specs);
+            //echo $specifications;
+
+
+
+            $datosController = array("order"=> $_POST["tbd"],
+                                    "trailerNo" => $_POST["trailerNo"],
+                                    "trailerVin" => $_POST["trailerVin"],
+                                    "dueDate" => $_POST["dueDate"],
+                                    "orderDate" => date('Y-m-d H:i:s'),
+                                    "notes" => $_POST["notes"],
+                                    "subTotal" => $_POST["subTotal"],
+                                    "descuento" => $_POST["descuento"],
+                                    "TotalHoras" => $_POST["TotalHoras"],
+                                    "Total" => $_POST["Total"],
+                                    "ops" => $ops,
+                                    "totOpciones" => $_POST["TotalOpciones"],
+                                    "specifications" => $specifications);
+
+            $respuesta = Datos::actualizaOrden($datosController, "orders");
+
+            if ($respuesta=="success"){
+
+                $mensaje = "Order Updated";
+                echo "<script type='text/javascript'>alert('$mensaje'); window.location.href='index.php?action=ordenes'</script>";
+            }
+
+        } // if
+
+    }
+
+
+} // class controller

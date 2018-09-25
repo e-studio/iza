@@ -42,7 +42,6 @@ $lista = new controller();
 
                 <p style="text-align: center; font-size: 105px;" class="card-text">TBD</p>
                 <textarea rows="3" cols="75" name="notes" id="notes" placeholder="Notes..."></textarea>
-                <input type="submit" class="btn btn-primary" name="envia" value="Save Order">
 
               </div>
             </div>
@@ -668,8 +667,25 @@ $lista = new controller();
         <!--   ******************************************     Totales     ****************************************-->
       <div class="row">
 
-        <div class="col-md-8">
+        <div class="col-md-3">
         </div>
+        <div class="col-md-3">
+            <table id="tablaTotales" class="table table-bordered table-sm">
+                <tbody>
+                    <tr>
+                        <br>
+                    </tr>
+                    
+                    <tr>
+
+                        <input class="btn btn-primary btn-block" type="submit" name="envia" value="Save Order">
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-2">
+        </div>
+         
         <div class="col-md-4">
             <table id="tablaTotales" class="table table-bordered table-sm">
                 <tbody>

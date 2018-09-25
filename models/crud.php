@@ -70,7 +70,7 @@ class Datos extends Conexion{
 	#-------------------------------------
 	public function registroOrden($datosModel, $tabla){
 
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (orderNo, trailerNo, trailerVin, dueDate, orderDate, notes, trailerHrs, trailerPrice, subTotal, discount, totHrs, totPrice, options, trailerSpecs) VALUES (:orderNo, :trailerNo, :trailerVin, :dueDate, :orderDate, :notes, :horasMdl, :precioMdl, :subTotal, :discount, :TotalHoras, :Total, :ops, :specifications)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (orderNo, trailerNo, trailerVin, dueDate, orderDate,notes, trailerHrs, totOpciones, trailerPrice, subTotal, discount, totHrs, totPrice, options, trailerSpecs) VALUES (:orderNo, :trailerNo, :trailerVin, :dueDate,:orderDate, :notes, :horasMdl, :totOpciones, :precioMdl, :subTotal, :discount, :TotalHoras, :Total, :ops, :specifications)");
 
 				$stmt->bindParam(":orderNo", $datosModel["order"], PDO::PARAM_INT);
 				$stmt->bindParam(":trailerNo", $datosModel["trailerNo"], PDO::PARAM_INT);
@@ -82,6 +82,48 @@ class Datos extends Conexion{
 				$stmt->bindParam(":precioMdl", $datosModel["precioMdl"], PDO::PARAM_STR);
 				$stmt->bindParam(":subTotal", $datosModel["subTotal"], PDO::PARAM_STR);
 				$stmt->bindParam(":discount", $datosModel["descuento"], PDO::PARAM_STR);
+				$stmt->bindParam(":totOpciones", $datosModel["totOpciones"], PDO::PARAM_STR);
+				$stmt->bindParam(":TotalHoras", $datosModel["TotalHoras"], PDO::PARAM_STR);
+				$stmt->bindParam(":Total", $datosModel["Total"], PDO::PARAM_STR);
+				$stmt->bindParam(":ops", $datosModel["ops"], PDO::PARAM_STR);
+				$stmt->bindParam(":specifications", $datosModel["specifications"], PDO::PARAM_STR);
+
+
+			if($stmt->execute()){
+
+					return "success";
+
+				}
+
+			else{
+
+					return "error";
+
+				}
+
+			$stmt->close();
+
+		}
+
+
+
+	#ACTUALIZACION DE ORDENES
+	#-------------------------------------
+	public function actualizaOrden($datosModel, $tabla){
+
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET orderNo=:orderNo, trailerNo=:trailerNo, trailerVin=:trailerVin, dueDate=:dueDate, orderDate=:orderDate, notes=:notes, trailerHrs=:horasMdl, trailerPrice=:precioMdl, subTotal=:subTotal, discount=:discount, totHrs=:TotalHoras, totOpciones=:totOpciones, totPrice=:Total, options=:ops, trailerSpecs=:specifications WHERE orderNo = :orderNo");
+
+				$stmt->bindParam(":orderNo", $datosModel["order"], PDO::PARAM_INT);
+				$stmt->bindParam(":trailerNo", $datosModel["trailerNo"], PDO::PARAM_INT);
+				$stmt->bindParam(":trailerVin", $datosModel["trailerVin"], PDO::PARAM_STR);
+				$stmt->bindParam(":dueDate", $datosModel["dueDate"], PDO::PARAM_STR);
+				$stmt->bindParam(":orderDate", $datosModel["orderDate"], PDO::PARAM_STR);
+				$stmt->bindParam(":notes", $datosModel["notes"], PDO::PARAM_STR);
+				$stmt->bindParam(":horasMdl", $datosModel["horasMdl"], PDO::PARAM_STR);
+				$stmt->bindParam(":precioMdl", $datosModel["precioMdl"], PDO::PARAM_STR);
+				$stmt->bindParam(":subTotal", $datosModel["subTotal"], PDO::PARAM_STR);
+				$stmt->bindParam(":discount", $datosModel["descuento"], PDO::PARAM_STR);
+				$stmt->bindParam(":totOpciones", $datosModel["totOpciones"], PDO::PARAM_STR);
 				$stmt->bindParam(":TotalHoras", $datosModel["TotalHoras"], PDO::PARAM_STR);
 				$stmt->bindParam(":Total", $datosModel["Total"], PDO::PARAM_STR);
 				$stmt->bindParam(":ops", $datosModel["ops"], PDO::PARAM_STR);

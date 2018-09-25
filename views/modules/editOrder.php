@@ -59,8 +59,6 @@ $options = json_decode($respuesta["options"], true);
 
                 <p style="text-align: center; font-size: 105px;" class="card-text"><?php echo $respuesta["orderNo"];?></p>
                 <textarea rows="3" cols="75" name="notes" id="notes" placeholder="Notes..."><?php echo $respuesta["notes"];?></textarea>
-                <input type="submit" class="btn btn-primary" name="envia" value="Prueba">
-
               </div>
             </div>
           </div>
@@ -563,117 +561,124 @@ $options = json_decode($respuesta["options"], true);
 
                  <tr>
                     <td>8</td>
-                    <td><input readonly="readonly" value="-" class="ancho150" id="codigo8" name="codigo8"> </td>
+                    <td><input readonly="readonly" value="<?php echo $options["codigo8"]?>" class="ancho150" id="codigo8" name="codigo8"> </td>
                     <td colspan="4">
-                        <select id="descEnglish8" name="descEnglish8" onchange="buscaOpcion2('opciones','codigo8','descEspanol8','horas8', 'precio8', this.value)" onblur="sumaTotales()">
+                        <select id="descEnglish8" name="descEnglish8" value="<?php echo $options["descEnglish8"]?>" onchange="buscaOpcion2('opciones','codigo8','descEspanol8','horas8', 'precio8', this.value)" onblur="sumaTotales()">
+                            <?php echo '<option value="'.$options["descEnglish8"].'" selected>'.$options["descEnglish8"].'</option>'; ?>
                             <?php $lista ->llenaOpciones(); ?>
                         </select>
                     </td>
-                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol8" name="descEspanol8" value="-"></td>
-                    <td><input readonly="readonly" class="ancho50" id="horas8" name="horas8" value="0" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio8" name="precio8" value="0" ></td>
+                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol8" name="descEspanol8" value="<?php echo $options["descEspanol8"]?>"></td>
+                    <td><input readonly="readonly" class="ancho50" id="horas8" name="horas8" value="<?php echo $options["horas8"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho100" id="precio8" name="precio8" value="<?php echo $options["precio8"]?>" ></td>
                  </tr>
 
 
                  <tr>
                     <td>9</td>
-                    <td><input readonly="readonly" value="-" class="ancho150" id="codigo9" name="codigo9"> </td>
+                    <td><input readonly="readonly" value="<?php echo $options["codigo9"]?>" class="ancho150" id="codigo9" name="codigo9"> </td>
                     <td colspan="4">
-                        <select id="descEnglish9" name="descEnglish9" onchange="buscaOpcion2('opciones','codigo9','descEspanol9','horas9', 'precio9', this.value)" onblur="sumaTotales()">
+                        <select id="descEnglish9" name="descEnglish9" value="<?php echo $options["descEnglish9"]?>" onchange="buscaOpcion2('opciones','codigo9','descEspanol9','horas9', 'precio9', this.value)" onblur="sumaTotales()">
+                            <?php echo '<option value="'.$options["descEnglish9"].'" selected>'.$options["descEnglish9"].'</option>'; ?>
                             <?php $lista ->llenaOpciones(); ?>
                         </select>
                     </td>
-                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol9" name="descEspanol9" value="-"></td>
-                    <td><input readonly="readonly" class="ancho50" id="horas9" name="horas9" value="0" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio9" name="precio9" value="0" ></td>
+                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol9" name="descEspanol9" value="<?php echo $options["descEspanol9"]?>"></td>
+                    <td><input readonly="readonly" class="ancho50" id="horas9" name="horas9" value="<?php echo $options["horas9"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho100" id="precio9" name="precio9" value="<?php echo $options["precio9"]?>" ></td>
                  </tr>
 
 
                  <tr>
                     <td>10</td>
-                    <td><input readonly="readonly" value="-" class="ancho150" id="codigo10" name="codigo10"> </td>
+                    <td><input readonly="readonly" value="<?php echo $options["codigo10"]?>" value="-" class="ancho150" id="codigo10" name="codigo10"> </td>
                     <td colspan="4">
                         <select id="descEnglish10" name="descEnglish10" onchange="buscaOpcion2('opciones','codigo10','descEspanol10','horas10', 'precio10', this.value)" onblur="sumaTotales()">
+                            <?php echo '<option value="'.$options["descEnglish10"].'" selected>'.$options["descEnglish10"].'</option>'; ?>
                             <?php $lista ->llenaOpciones(); ?>
                         </select>
                     </td>
-                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol10" name="descEspanol10" value="-" ></td>
-                    <td><input readonly="readonly" class="ancho50" id="horas10" name="horas10" value="0" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio10" name="precio10" value="0" ></td>
+                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol10" name="descEspanol10" value="<?php echo $options["descEspanol10"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho50" id="horas10" name="horas10" value="<?php echo $options["horas10"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho100" id="precio10" name="precio10" value="<?php echo $options["precio10"]?>" ></td>
                  </tr>
 
 
                  <tr>
                     <td>11</td>
-                    <td><input readonly="readonly" value="-" class="ancho150" id="codigo11" name="codigo11"> </td>
+                    <td><input readonly="readonly" value="<?php echo $options["codigo11"]?>" class="ancho150" id="codigo11" name="codigo11"> </td>
                     <td colspan="4">
                         <select id="descEnglish11" name="descEnglish11" onchange="buscaOpcion2('opciones','codigo11','descEspanol11','horas11', 'precio11', this.value)" onblur="sumaTotales()">
+                            <?php echo '<option value="'.$options["descEnglish11"].'" selected>'.$options["descEnglish11"].'</option>'; ?>
                             <?php $lista ->llenaOpciones(); ?>
                         </select>
                     </td>
-                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol11" name="descEspanol11" value="-" ></td>
-                    <td><input readonly="readonly" class="ancho50" id="horas11" name="horas11" value="0" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio11" name="precio11" value="0" ></td>
+                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol11" name="descEspanol11" value="<?php echo $options["descEspanol11"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho50" id="horas11" name="horas11" value="<?php echo $options["horas11"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho100" id="precio11" name="precio11" value="<?php echo $options["precio11"]?>" ></td>
                  </tr>
 
 
                  <tr>
                     <td>12</td>
-                    <td><input readonly="readonly" value="-" class="ancho150" id="codigo12" name="codigo12"> </td>
+                    <td><input readonly="readonly" value="<?php echo $options["codigo12"]?>" class="ancho150" id="codigo12" name="codigo12"> </td>
                     <td colspan="4">
                         <select id="descEnglish12" name="descEnglish12" onchange="buscaOpcion2('opciones','codigo12','descEspanol12','horas12', 'precio12', this.value)" onblur="sumaTotales()">
+                            <?php echo '<option value="'.$options["descEnglish12"].'" selected>'.$options["descEnglish12"].'</option>'; ?>
                             <?php $lista ->llenaOpciones(); ?>
                         </select>
                     </td>
-                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol12" name="descEspanol12" value="-" ></td>
-                    <td><input readonly="readonly" class="ancho50" id="horas12" name="horas12" value="0" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio12" name="precio12" value="0" ></td>
+                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol12" name="descEspanol12" value="<?php echo $options["descEspanol12"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho50" id="horas12" name="horas12" value="<?php echo $options["horas12"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho100" id="precio12" name="precio12" value="<?php echo $options["precio12"]?>" ></td>
                  </tr>
 
 
                  <tr>
                     <td>13</td>
-                    <td><input readonly="readonly" value="-" class="ancho150" id="codigo13" name="codigo13"> </td>
+                    <td><input readonly="readonly" value="<?php echo $options["codigo13"]?>" class="ancho150" id="codigo13" name="codigo13"> </td>
                     <td colspan="4">
                         <select id="descEnglish13" name="descEnglish13" onchange="buscaOpcion2('opciones','codigo13','descEspanol13','horas13', 'precio13', this.value)" onblur="sumaTotales()">
+                            <?php echo '<option value="'.$options["descEnglish13"].'" selected>'.$options["descEnglish13"].'</option>'; ?>
                             <?php $lista ->llenaOpciones(); ?>
                         </select>
                     </td>
-                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol13" name="descEspanol13" value="-" ></td>
-                    <td><input readonly="readonly" class="ancho50" id="horas13" name="horas13" value="0" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio13" name="precio13" value="0" ></td>
+                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol13" name="descEspanol13" value="<?php echo $options["descEspanol13"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho50" id="horas13" name="horas13" value="<?php echo $options["horas13"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho100" id="precio13" name="precio13" value="<?php echo $options["precio13"]?>" ></td>
                  </tr>
 
 
                  <tr>
                     <td>14</td>
-                    <td><input readonly="readonly" value="-" class="ancho150" id="codigo14" name="codigo14"> </td>
+                    <td><input readonly="readonly" value="<?php echo $options["codigo14"]?>" class="ancho150" id="codigo14" name="codigo14"> </td>
                     <td colspan="4">
                         <select id="descEnglish14" name="descEnglish14" onchange="buscaOpcion2('opciones','codigo14','descEspanol14','horas14', 'precio14', this.value)" onblur="sumaTotales()">
+                            <?php echo '<option value="'.$options["descEnglish14"].'" selected>'.$options["descEnglish14"].'</option>'; ?>
                             <?php $lista ->llenaOpciones(); ?>
                         </select>
                     </td>
-                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol14" name="descEspanol14" value="-" ></td>
-                    <td><input readonly="readonly" class="ancho50" id="horas14" name="horas14" value="0" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio14" name="precio14" value="0" ></td>
+                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol14" name="descEspanol14" value="<?php echo $options["descEspanol14"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho50" id="horas14" name="horas14" value="<?php echo $options["horas14"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho100" id="precio14" name="precio14" value="<?php echo $options["precio14"]?>" ></td>
                  </tr>
 
 
                  <tr>
                     <td>15</td>
-                    <td><input readonly="readonly" value="-" class="ancho150" id="codigo15" name="codigo15" class="ancho120"></td>
-                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish15" name="descEnglish15" value="Select Tarp"></td>
-                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol15" name="descEspanol15" value="-" ></td>
-                    <td><input readonly="readonly" class="ancho50" id="horas15" name="horas15" value="0"  class="ancho120"></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio15" name="precio15" value="0"  class="ancho120"></td>
+                    <td><input readonly="readonly" value="<?php echo $options["codigo15"]?>" class="ancho150" id="codigo15" name="codigo15" class="ancho120"></td>
+                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish15" name="descEnglish15" value="<?php echo $options["descEnglish15"]?>"></td>
+                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol15" name="descEspanol15" value="<?php echo $options["descEspanol15"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho50" id="horas15" name="horas15" value="<?php echo $options["horas15"]?>"  class="ancho120"></td>
+                    <td><input readonly="readonly" class="ancho100" id="precio15" name="precio15" value="<?php echo $options["precio15"]?>"  class="ancho120"></td>
                  </tr>
                  <tr>
                     <td>16</td>
-                    <td><input readonly="readonly" value="-" class="ancho150" id="codigo16" name="codigo16"> </td>
-                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish16" name="descEnglish16" value="Select Vents"></td>
-                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol16" name="descEspanol16" value="-" ></td>
-                    <td><input readonly="readonly" class="ancho50" id="horas16" name="horas16" value="0" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio16" name="precio16" value="0" ></td>
+                    <td><input readonly="readonly" value="<?php echo $options["codigo16"]?>" class="ancho150" id="codigo16" name="codigo16"> </td>
+                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish16" name="descEnglish16" value="<?php echo $options["descEnglish16"]?>"></td>
+                    <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol16" name="descEspanol16" value="<?php echo $options["descEspanol16"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho50" id="horas16" name="horas16" value="<?php echo $options["horas16"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho100" id="precio16" name="precio16" value="<?php echo $options["precio16"]?>" ></td>
                  </tr>
 
                 </tbody>
@@ -686,8 +691,25 @@ $options = json_decode($respuesta["options"], true);
         <!--   ******************************************     Totales     ****************************************-->
       <div class="row">
 
-        <div class="col-md-8">
+        <div class="col-md-3">
         </div>
+        <div class="col-md-3">
+            <table id="tablaTotales" class="table table-bordered table-sm">
+                <tbody>
+                    <tr>
+                        <br>
+                    </tr>
+                    
+                    <tr>
+
+                        <input class="btn btn-warning btn-block" type="submit" name="actualiza" value="Update Order">
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-2">
+        </div>
+
         <div class="col-md-4">
             <table id="tablaTotales" class="table table-bordered table-sm">
                 <tbody>
@@ -698,27 +720,27 @@ $options = json_decode($respuesta["options"], true);
                 <tr>
 
                     <td>Total Horas</td>
-                    <td><input readonly="readonly" type="text" size="10" id="TotalHoras" name="TotalHoras" value="0" ></td>
+                    <td><input readonly="readonly" type="text" size="10" id="TotalHoras" name="TotalHoras" value="<?php echo $respuesta["totHrs"];?>" ></td>
                     <td>Total Options</td>
-                    <td><input readonly="readonly" type="text" size="10" id="TotalOpciones" name="TotalOpciones" value="0" ></td>
+                    <td><input readonly="readonly" type="text" size="10" id="TotalOpciones" name="TotalOpciones" value="<?php echo $respuesta["totOpciones"];?>" ></td>
 
                  </tr>
                  <tr>
                     <td colspan="2">&nbsp;</td>
                     <td>Sub-Total</td>
-                    <td><input value="<?php echo $respuesta["subTotal"];?>" readonly="readonly" type="text" size="10" id="subTotal" name="subTotal" value="0" ></td>
+                    <td><input value="<?php echo $respuesta["subTotal"];?>" readonly="readonly" type="text" size="10" id="subTotal" name="subTotal"></td>
 
                  </tr>
                  <tr>
                     <td colspan="2">&nbsp;</td>
                     <td>2% Discount</td>
-                    <td><input value="<?php echo $respuesta["discount"];?>" readonly="readonly" type="text" size="10" id="descuento" name="descuento" value="0" ></td>
+                    <td><input value="<?php echo $respuesta["discount"];?>" readonly="readonly" type="text" size="10" id="descuento" name="descuento"></td>
 
                  </tr>
                  <tr>
                     <td colspan="2">&nbsp;</td>
                     <td>Total</td>
-                    <td><input value="<?php echo $respuesta["totPrice"];?>" readonly="readonly" class="ancho120" type="number" min="1" step="any" size="10" id="Total" name="Total" value="0" ></td>
+                    <td><input value="<?php echo $respuesta["totPrice"];?>" readonly="readonly" class="ancho120" type="number" min="1" step="any" size="10" id="Total" name="Total"></td>
 
                  </tr>
                     </tbody>
@@ -736,7 +758,7 @@ $options = json_decode($respuesta["options"], true);
   <?php
 
         $registro = new controller();
-        $registro -> registroOrdenes();
+        $registro -> actualizaOrdenes();
 
         ?>
   <?php include "views/modules/footer.php"; ?>
