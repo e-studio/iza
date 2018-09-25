@@ -29,10 +29,10 @@ $lista = new controller();
             <div class="card">
                 <div class="card-header">Order</div>
                 <div class="card-body">
-                    <p class="card-text">ORDER # : <input class="ancho170" type="text" name="tbd" id="tbd"></p>
-                    <p class="card-text">Trailer # : <input class="ancho120" type="text" name="trailerNo" id="trailerNo"></p>
-                    <p class="card-text">Trailer Vin # : <input class="ancho120" type="text" name="trailerVin" id="trailerVin"></p>
-                    <p class="card-text">Due Date : <input class="ancho170" type="date" name="dueDate" id="dueDate"></p>
+                    <p class="card-text">ORDER # : <input class="ancho170" type="text" name="tbd" id="tbd" required></p>
+                    <p class="card-text">Trailer # : <input class="ancho120" type="text" name="trailerNo" id="trailerNo" required></p>
+                    <p class="card-text">Trailer Vin # : <input class="ancho120" type="text" name="trailerVin" id="trailerVin" required></p>
+                    <p class="card-text">Due Date : <input class="ancho170" type="date" name="dueDate" id="dueDate" required></p>
                 </div>
             </div>
           </div>
@@ -42,7 +42,7 @@ $lista = new controller();
 
                 <p style="text-align: center; font-size: 105px;" class="card-text">TBD</p>
                 <textarea rows="3" cols="75" name="notes" id="notes" placeholder="Notes..."></textarea>
-                <input type="submit" class="btn btn-primary" name="envia" value="Prueba">
+                <input type="submit" class="btn btn-primary" name="envia" value="Save Order">
 
               </div>
             </div>
@@ -74,7 +74,9 @@ $lista = new controller();
                          <tr>
                             <td colspan="2">
                                 <select id="modelos" name="Modelos" onchange="buscaPrecio('trailers','precioMdl','horasMdl', this.value)" onblur="sumaTotales()">
-                                    <?php $lista ->llenaModelos();?>
+                                    <?php 
+                                    echo '<option value="">Seleccione:</option>';
+                                    $lista ->llenaModelos();?>
                                 </select>
                             </td>
                             <td>
@@ -428,6 +430,7 @@ $lista = new controller();
                             </td>
                             <td>
                                 <select id="tarp" name="tTarp" onchange="buscaOpcion('lonas','codigo15','descEnglish15','descEspanol15','horas15', 'precio15', this.value)" onblur="sumaTotales()">
+                                    <option value="">Seleccione:</option>
                                     <?php $lista ->llenaLonas(); ?>
                                 </select>
                             </td>
@@ -435,7 +438,7 @@ $lista = new controller();
                             <td colspan="2">&nbsp;</td>
                             <td><input class="ancho120" name="totWeight" id="totWeight" value="0" readonly="readonly"></td>
                             <td><input class="ancho120" name="floorFt" id="floorFt" value="0" readonly="readonly">
-                                <input id="pesoTrailer" value="999" hidden>
+                                <input id="pesoTrailer" value="0" hidden>
                                 <input id="precioAxle" value="0" hidden>
 
                             </td>
@@ -526,6 +529,7 @@ $lista = new controller();
                     <td><input readonly="readonly" value="-" class="ancho150" id="codigo7" name="codigo7"></td>
                     <td colspan="4">
                         <select id="descEnglish7" name="descEnglish7" onchange="buscaOpcion2('saddles','codigo7','descEspanol7','horas7', 'precio7', this.value)" onblur="calculaPeso()">
+                            <option value="">Select Tack Room or Saddle box</option>
                             <?php $lista ->llenaSaddles(); ?>
                         </select>
                         <script>

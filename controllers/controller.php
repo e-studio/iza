@@ -77,6 +77,33 @@ class controller{
 	}
 
 
+
+// BUSCA EL NUMERO DE ORDEN EN LA TABLA ORDERS PARA EVITAR DUPLICIDAD
+    public function buscaOrden($tabla, $codigo){
+
+        $res = Datos::buscaOrden($tabla, $codigo);
+
+        if ($res==""){
+            echo "no se encontro nada";
+        }
+        else {
+            echo "si se encontro";
+        }
+
+      /*  foreach ($res as $row => $val) {
+
+            echo $val['precio'];
+            echo " || ";
+            echo $val['horas'];
+            echo " || ";
+            echo $val['weight'];
+
+        }*/
+
+
+
+    }
+
 // BUSCA EL PRECIO Y HORAS DE UN PRODUCTO EN LA TABLA TRAILERS
     public function buscaPrecio($tabla, $codigo){
 
@@ -138,8 +165,6 @@ class controller{
 
         $respuesta = Datos::llenaLista("trailers");
 
-			  echo '<option value="">Seleccione:</option>';
-
         foreach ($respuesta as $row => $valor) {
             echo '<option value="'.$valor["codigo"].'">'.$valor["codigo"].'</option>';
         }
@@ -162,8 +187,6 @@ class controller{
 
         $respuesta = Datos::llenaSaddles("saddles");
 
-              echo '<option value="">Select Tack Room or Saddle box</option>';
-
         foreach ($respuesta as $row => $valor) {
             echo '<option value="'.$valor["codigo"].'">'.$valor["descEnglish"].'</option>';
         }
@@ -185,8 +208,6 @@ class controller{
     public function llenaLonas(){
 
         $respuesta = Datos::llenaLista("lonas");
-
-			  echo '<option value="">Seleccione:</option>';
 
         foreach ($respuesta as $row => $valor) {
             echo '<option value="'.$valor["codigo"].'">'.$valor["lnTrailerSize"].'</option>';
@@ -293,7 +314,7 @@ class controller{
                 <td>'.$item["dueDate"].'</td>
                 <td>
                     <button class="btn btn-info btnImprimirOrden" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-print"></i></buttn>
-                    <a href="index.php?action=editEmpleados&idEditar='.$item["orderNo"].'"><button class="btn btn-warning">Edit</button></a>
+                    <a href="index.php?action=editOrder&idEditar='.$item["orderNo"].'"><button class="btn btn-warning">Edit</button></a>
                     <a href="index.php?action=ordenes&idBorrar='.$item["orderNo"].'" onclick="return Confirmation()"><button class="btn btn-danger">Delete</button></a>
                 </td>
             </tr>';
@@ -617,7 +638,17 @@ class controller{
 
             $respuesta = Datos::registroOrden($datosController, "orders");
 
-            echo $respuesta;
+            if ($respuesta=="success"){
+
+                $mensaje = "Order Registered";
+                echo "<script type='text/javascript'>alert('$mensaje'); window.location.href='index.php?action=cotizador'</script>";
+            }
+
+
+            //echo $respuesta;
+
+
+
 
         } // if
 

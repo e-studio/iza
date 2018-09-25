@@ -12,6 +12,7 @@ class EnlacesModels{
 		   $enlaces == "empleados" ||
 		   $enlaces == "ordenes" ||
 		   $enlaces == "editOpciones" ||
+		   $enlaces == "editOrder" ||
 		   $enlaces == "editSaddles" ||
 		   $enlaces == "editVents" ||
 		   $enlaces == "addEmpleado" ||

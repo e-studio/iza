@@ -151,6 +151,23 @@ public function llenaLista($tabla){
     }
 
 
+    //busca si existe registrada una orden en la tabla ordenes para evitar duplicar los numeros
+
+    public function buscaOrden($tabla, $codigo){
+
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE orderNo=:codigo");
+
+        $stmt->bindParam(":codigo", $codigo, PDO::PARAM_STR);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt->close();
+
+    }
+
+
    //Consulta codigo, descripcion ingles-espanol horas y precio de la tabla de opciones
    public function buscaOpcion($tabla, $codigo){
 
