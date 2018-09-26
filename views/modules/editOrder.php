@@ -65,7 +65,7 @@ $options = json_decode($respuesta["options"], true);
         </div><!-- row -->
         <br>
 
-          <div class="row">
+          <div class="row table-responsive">
             <div class="col-md-12">
                 <table class="table table-bordered table-sm">
                         <tbody>
@@ -377,7 +377,7 @@ $options = json_decode($respuesta["options"], true);
                             </td>
                             <td>
                                 <select id="eTires" name="tExtraTire" onchange="buscaOpcion('opciones','codigo6','descEnglish6','descEspanol6','horas6', 'precio6', this.value)" onblur="sumaTotales()">
-                                    <?php echo '<option value="'.$specs["eTires"].'" selected>'.$specs["eTires"].'</option>'; ?>
+                                    <?php echo '<option value="'.$specs["tExtraTire"].'" selected>'.$specs["tExtraTire"].'</option>'; ?>
                                     <option value="10PLY16SRE">10PLY16SRE</option>
                                     <option value="12PLY16SRE">12PLY16SRE</option>
                                     <option value="14PLY16SRE">14PLY16SRE</option>
@@ -477,7 +477,7 @@ $options = json_decode($respuesta["options"], true);
 
     <div class="container-fluid">
         <!-- ***********************************   opciones    *********************************************************-->
-      <div class="row">
+      <div class="row table-responsive">
 
         <div class="col-md-12">
             <table class="table table-bordered table-sm">
@@ -707,9 +707,7 @@ $options = json_decode($respuesta["options"], true);
                 </tbody>
             </table>
         </div>
-        <div class="col-md-2">
-        </div>
-
+        
         <div class="col-md-4">
             <table id="tablaTotales" class="table table-bordered table-sm">
                 <tbody>
@@ -746,6 +744,9 @@ $options = json_decode($respuesta["options"], true);
                     </tbody>
             </table>
         </div>  <!-- col -->
+        <div class="col-md-2">
+        </div>
+
       </div> <!--  row -->
       <!-- *************************************************************************************************************-->
 

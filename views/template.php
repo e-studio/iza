@@ -52,7 +52,6 @@
 
 		$modulos = new Enlaces();
 		$modulos -> enlacesController();
-		//include "views/modules/footer.php"
 	?>
 
     <a class="scroll-to-top rounded" href="#page-top">
@@ -86,9 +85,16 @@
     <script src="views/vendor/datatables/dataTables.bootstrap4.js"></script>
     <script src="views/js/sb-admin.min.js"></script>
     <script src="views/js/sb-admin-datatables.min.js"></script>
-    <script src="views/js/sb-admin-charts.min.js"></script>
+    <!--<script src="views/js/sb-admin-charts.js"></script>-->
     <script src="views/js/validarIngreso.js"></script>
     <script src="views/js/tablas.js"></script>
+    <?php 
+      $grafica = new controller();
+      $grafica -> grafica1Controller();
+      $grafica -> grafica2Controller();
+
+      //include "graficas.php";
+    ?>
 
 
 	</div>

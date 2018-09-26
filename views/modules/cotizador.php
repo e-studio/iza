@@ -50,7 +50,7 @@ $lista = new controller();
         <br>
 
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 table-responsive">
                 <table class="table table-bordered table-sm">
                         <tbody>
                             <tr class="table-secondary">
@@ -458,7 +458,7 @@ $lista = new controller();
         <!-- ***********************************   opciones    *********************************************************-->
       <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 table-responsive">
             <table class="table table-bordered table-sm">
                 <tbody>
                 <tr class="table-secondary">
@@ -683,9 +683,7 @@ $lista = new controller();
                 </tbody>
             </table>
         </div>
-        <div class="col-md-2">
-        </div>
-         
+
         <div class="col-md-4">
             <table id="tablaTotales" class="table table-bordered table-sm">
                 <tbody>
@@ -721,6 +719,9 @@ $lista = new controller();
                  </tr>
                     </tbody>
             </table>
+        </div>
+
+        <div class="col-md-2">
         </div>  <!-- col -->
       </div> <!--  row -->
       <!-- *************************************************************************************************************-->

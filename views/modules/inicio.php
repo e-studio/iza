@@ -43,33 +43,32 @@ else {
 
   <div class="content-wrapper">
     <div class="container-fluid">
-      <!-- Breadcrumbs
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item active">Inicio</li>
-      </ol>-->
-      <!-- end Breadcrumbs-->
-
 
       <!-- Area Chart Example-->
       <div class="row">
         <div class="col-sm-2">
         </div>
-        <div class="col-sm-8">
-          <div class="card mb-8">
-            <div class="card-header"><i class="fa fa-area-chart"></i> Area Chart Example</div>
+        <div class="col-sm-6">
+          <div class="card mb-6">
+            <div class="card-header"><i class="fa fa-area-chart"></i> Orders Per Month</div>
             <div class="card-body">
               <canvas id="myAreaChart" width="100%" height="30"></canvas>
+
+
             </div>
-            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            <div class="card-footer small text-muted">Just Updated</div>
           </div>
         </div><!-- col-sm-4-->
         <div class="col-sm-2">
         </div>
-      </div><!-- row -->
 
+      </div><!-- row -->
+<br>
       <div class="row">
+        <div class="col-sm-2">
+        </div>
         
-        <div class="col-lg-8">
+        <div class="col-lg-6">
           <!-- Example Bar Chart Card-->
           <div class="card mb-3">
             <div class="card-header">
@@ -95,8 +94,11 @@ else {
           </div>
         </div>
 
-        <div class="col-lg-4">
-          <!-- Example Pie Chart Card-->
+       
+      </div><!-- row -->
+    <div class="row">
+      <!--<div class="col-lg-4">
+          Example Pie Chart Card
           <div class="card mb-3">
             <div class="card-header">
               <i class="fa fa-pie-chart"></i> Pie Chart Example</div>
@@ -105,9 +107,10 @@ else {
             </div>
             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
           </div>
-          <!-- Example Notifications Card-->
+          
         </div>
-      </div><!-- row -->
+    </div>--><!-- row -->
+
     </div><!-- /.container-fluid-->
   </div><!-- /.content-wrapper-->
 

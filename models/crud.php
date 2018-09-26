@@ -29,6 +29,31 @@ class Datos extends Conexion{
 	}
 
 
+	#DATOS PARA GRAFICA 1
+	#-------------------------------------
+
+	public function grafica1Model($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT COUNT( * ) AS cantidad , MONTHNAME(orderDate) AS mes FROM $tabla WHERE YEAR(orderDate)='2018' GROUP BY MONTH(orderDate) ORDER BY orderDate");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
+	#DATOS PARA GRAFICA 2
+	#-------------------------------------
+
+	public function grafica2Model($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT SUM(totPrice) AS total , MONTHNAME(orderDate) AS mes FROM $tabla WHERE YEAR(orderDate)='2018' GROUP BY MONTH(orderDate) ORDER BY orderDate");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
+
 
 
 	#REGISTRO DE USUARIOS

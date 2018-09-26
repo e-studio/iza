@@ -2,6 +2,99 @@
 
 class controller{
 
+#DATOS PARA GRAFICA 1
+    #------------------------------------
+    public function grafica1Controller(){
+
+        $respuesta = Datos::grafica1Model("orders");
+        $meses = array();
+        $cant = array();
+        foreach ($respuesta as $row => $item){
+            array_push($meses, $item["mes"]);
+            array_push($cant, $item["cantidad"]);
+
+        }
+
+        echo '<script type="text/javascript">'
+            .'Chart.defaults.global.defaultFontFamily ='."'-apple-system,system-ui,BlinkMacSystemFont,".'"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif'."';"
+            ."Chart.defaults.global.defaultFontColor = '#292b2c';"
+            .'var ctx = document.getElementById("myAreaChart");'
+            .'var myLineChart = new Chart(ctx, {'
+            ." type: 'line',"
+            .'data: {'
+            .' labels:'.json_encode($meses).','
+            .'datasets: [{'
+            .'label: "Orders",'
+            .'lineTension: 0.3,'
+            .'backgroundColor: "rgba(2,117,216,0.2)",'
+            .'borderColor: "rgba(2,117,216,1)",'
+            .'pointRadius: 5,'
+            .'pointBackgroundColor: "rgba(2,117,216,1)",'
+            .'pointBorderColor: "rgba(255,255,255,0.8)",'
+            .'pointHoverRadius: 5,'
+            .'pointHoverBackgroundColor: "rgba(2,117,216,1)",'
+            .'pointHitRadius: 20,'
+            .'pointBorderWidth: 2,'
+            .'data:'. json_encode($cant,JSON_NUMERIC_CHECK).','
+            .'}],'
+            .'},'
+            .'options: {'
+            .'legend: {'
+            .'display: false'
+            .'}'
+            .'}'
+            .'});'
+            .'</script>';
+    }
+
+    #DATOS PARA GRAFICA 2
+    #------------------------------------
+    public function grafica2Controller(){
+
+        $respuesta = Datos::grafica2Model("orders");
+        $meses = array();
+        $cant = array();
+        foreach ($respuesta as $row => $item){
+            array_push($meses, $item["mes"]);
+            $num = number_format($item["total"], 2, '.', '');
+            array_push($cant, $num);
+
+        }
+
+        echo '<script type="text/javascript">'
+            .'var ctx = document.getElementById("myBarChart");'
+            .'var myLineChart = new Chart(ctx, {'
+            ." type: 'bar',"
+            .'data: {'
+            .' labels:'.json_encode($meses).','
+            .'datasets: [{'
+            .'label: "$",'
+            .'lineTension: 0.3,'
+            .'backgroundColor: "rgba(2,117,216,0.2)",'
+            .'borderColor: "rgba(2,117,216,1)",'
+            .'pointRadius: 5,'
+            .'pointBackgroundColor: "rgba(2,117,216,1)",'
+            .'pointBorderColor: "rgba(255,255,255,0.8)",'
+            .'pointHoverRadius: 5,'
+            .'pointHoverBackgroundColor: "rgba(2,117,216,1)",'
+            .'pointHitRadius: 20,'
+            .'pointBorderWidth: 2,'
+            .'data:'. json_encode($cant,JSON_NUMERIC_CHECK).','
+            .'}],'
+            .'},'
+            .'options: {'
+            .'legend: {'
+            .'display: false'
+            .'}'
+            .'}'
+            .'});'
+            .'</script>';
+    }
+
+
+
+
+
     /*=============================================
     MOSTRAR ORDENES PARA IMPRESION
     =============================================*/
