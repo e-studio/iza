@@ -56,7 +56,7 @@ else {
               <tbody>
                 <?php
                   $ingreso = new controller();
-                  $ingreso -> listaOrdenesController();
+                  $ingreso -> listaOrdenesController($_SESSION["rol"]);
                   $ingreso -> borrarOrdenController();
                 ?>
               </tbody>

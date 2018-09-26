@@ -22,12 +22,7 @@ if ($_SESSION["rol"] > 0){
       <ol class="breadcrumb">
         <li class="breadcrumb-item active">Inicio</li>
       </ol>
-      <!-- end Breadcrumbs-->
-      
-      <!-- <p>Aqui va el contenido de inicio para Usuarios.</p> -->
-      contenido
-      
-      <!-- Blank div to give the page height to preview the fixed vs. static navbar-->
+
       <div style="height: 1000px;"></div>
     </div><!-- /.container-fluid-->
   </div>
@@ -72,25 +67,20 @@ else {
           <!-- Example Bar Chart Card-->
           <div class="card mb-3">
             <div class="card-header">
-              <i class="fa fa-bar-chart"></i> Bar Chart Example</div>
+              <i class="fa fa-bar-chart"></i> Total Sales Per Month</div>
             <div class="card-body">
               <div class="row">
                 <div class="col-sm-8 my-auto">
                   <canvas id="myBarChart" width="100" height="50"></canvas>
                 </div>
                 <div class="col-sm-4 text-center my-auto">
-                  <div class="h4 mb-0 text-primary">$34,693</div>
-                  <div class="small text-muted">YTD Revenue</div>
-                  <hr>
-                  <div class="h4 mb-0 text-warning">$18,474</div>
-                  <div class="small text-muted">YTD Expenses</div>
-                  <hr>
-                  <div class="h4 mb-0 text-success">$16,219</div>
-                  <div class="small text-muted">YTD Margin</div>
+                  <div class="h4 mb-0 text-primary">$##,###.##</div>
+                  <div class="small text-muted">Best Month</div>
+                  
                 </div>
               </div>
             </div>
-            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            <div class="card-footer small text-muted">-</div>
           </div>
         </div>
 
@@ -116,7 +106,5 @@ else {
 
 <?php include "views/modules/footer.php";} ?>
 
-<!-- Blank div to give the page height to preview the fixed vs. static navbar-->
-      <!--<div style="height: 1000px;"></div>-->
     </div><!-- /.container-fluid-->
   </div>

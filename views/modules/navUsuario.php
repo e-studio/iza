@@ -26,7 +26,7 @@
 
 
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="productos">
+        <!--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="productos">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseProductos" data-parent="#exampleAccordion">
             <i class="fa fa-cubes"></i>
             <span class="nav-link-text">Products</span>
@@ -47,7 +47,7 @@
             <i class="fa fa-hourglass-start"></i>
             <span class="nav-link-text">Empty</span>
           </a>
-        </li>
+        </li>-->
         
         </ul>
 

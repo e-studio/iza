@@ -70,7 +70,7 @@ class controller{
             .'datasets: [{'
             .'label: "$",'
             .'lineTension: 0.3,'
-            .'backgroundColor: "rgba(2,117,216,0.2)",'
+            .'backgroundColor: "rgba(2,117,216,1)",'
             .'borderColor: "rgba(2,117,216,1)",'
             .'pointRadius: 5,'
             .'pointBackgroundColor: "rgba(2,117,216,1)",'
@@ -379,7 +379,7 @@ class controller{
 
     #LISTADO DE TODAS LAS ORDENES
     #------------------------------------
-    public function listaOrdenesController(){
+    public function listaOrdenesController($nivel){
 
         $respuesta = Datos::listaOrdenesModel("orders");
 
@@ -389,13 +389,20 @@ class controller{
                 <td>'.$item["trailerNo"].'</td>
                 <td>'.$item["trailerVin"].'</td>
                 <td>'.$item["orderDate"].'</td>
-                <td>'.$item["dueDate"].'</td>
-                <td>
+                <td>'.$item["dueDate"].'</td>';
+                if ($nivel == 0){
+                echo '<td>
                     <button class="btn btn-info btnImprimirOrden" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-print"></i></buttn>
                     <a href="index.php?action=editOrder&idEditar='.$item["orderNo"].'"><button class="btn btn-warning">Edit</button></a>
                     <a href="index.php?action=ordenes&idBorrar='.$item["orderNo"].'" onclick="return Confirmation()"><button class="btn btn-danger">Delete</button></a>
-                </td>
-            </tr>';
+                </td>';
+                }
+                else {
+                 echo '<td>
+                    <button class="btn btn-info btnImprimirOrden" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-print"></i></buttn>
+                   </td>';   
+                }
+            echo '</tr>';
         }
 
     }
