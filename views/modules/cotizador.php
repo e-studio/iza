@@ -41,7 +41,7 @@ $lista = new controller();
               <div class="card-body">
 
                 <p style="text-align: center; font-size: 105px;" class="card-text">TBD</p>
-                <textarea rows="3" cols="75" name="notes" id="notes" placeholder="Notes..."></textarea>
+                <textarea rows="3" cols="50" name="notes" id="notes" placeholder="Notes..."></textarea>
 
               </div>
             </div>
@@ -51,7 +51,7 @@ $lista = new controller();
 
           <div class="row">
             <div class="col-md-12 table-responsive">
-                <table class="table table-bordered table-sm">
+                <table class="table table-bordered table-sm" style="width: 80%;">
                         <tbody>
                             <tr class="table-secondary">
                                 <td colspan="12" style="text-align: center;"><strong><h3>Trailer Model & Size</h3></strong></td>
@@ -71,7 +71,7 @@ $lista = new controller();
                             <td>Trailer Price</td>
                         </tr>
                          <tr>
-                            <td colspan="2">
+                            <td colspan="2" class="ancho50" >
                                 <select id="modelos" name="Modelos" onchange="buscaPrecio('trailers','precioMdl','horasMdl', this.value)" onblur="sumaTotales()">
                                     <?php 
                                     echo '<option value="">Seleccione:</option>';
@@ -79,8 +79,8 @@ $lista = new controller();
                                 </select>
                             </td>
                             <td>
-                                <select name="tLength" id="tLenght">
-                                    <option value="">Select Length</option>
+                                <select class="ancho70" name="tLength" id="tLenght">
+                                    <option value="">Length</option>
                                     <option value="12">12</option>
                                     <option value="14">14</option>
                                     <option value="16">16</option>
@@ -94,11 +94,14 @@ $lista = new controller();
                                     <option value="36">36</option>
                                     <option value="40">40</option>
                                 </select>
+                                <script>
+                                    document.getElementById("tLength").addEventListener("change", calculaPeso);
+                                </script>
 
                             </td>
                             <td>
-                                <select name="tWidth" id="tWidth">
-                                    <option value="">Select Width</option>
+                                <select class="ancho70" name="tWidth" id="tWidth">
+                                    <option value="">Width</option>
                                     <option value="5">5</option>
                                     <option value="6">6</option>
                                     <option value="6.8">6.8</option>
@@ -111,8 +114,8 @@ $lista = new controller();
 
                             </td>
                             <td>
-                                <select name="tAxles" id="tAxles">
-                                    <option value="0">Select Axles</option>
+                                <select class="ancho70" name="tAxles" id="tAxles">
+                                    <option value="0">Axles</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -138,7 +141,7 @@ $lista = new controller();
 
                             </td>
                             <td>
-                                <select id="tSides" name="tSides" onchange="buscaOpcion('opciones','codigo2','descEnglish2','descEspanol2','horas2', 'precio2', this.value)" onblur="sumaTotales()">
+                                <select class="ancho100" id="tSides" name="tSides" onchange="buscaOpcion('opciones','codigo2','descEnglish2','descEspanol2','horas2', 'precio2', this.value)" onblur="sumaTotales()">
                                     <option value="">Select Sides</option>
                                     <option value="STANDARDSIDES">Standard</option>
                                     <option value="4HIGHSIDE">4' High</option>
@@ -166,9 +169,9 @@ $lista = new controller();
                                 </select>
 
                             </td>
-                            <td><input class="ancho120" type="text" name="tCompartments" id="tCompartments"></td>
+                            <td><input class="ancho100" type="text" name="tCompartments" id="tCompartments"></td>
                             <td>
-                                <select name="tEscapeGate">
+                                <select class="ancho100" name="tEscapeGate">
                                     <option value="">None</option>
                                     <option value="Driver Side">Driver Side</option>
                                     <option value="Passenger Side">Passenger Side</option>
@@ -221,7 +224,7 @@ $lista = new controller();
                             <td><input style="width: 100px !important;" type="text" name="tBlanketBars" id="blanketBars"></td>
 
                             <td>
-                               <select id="tFloorType" name="tFloorType" onchange="buscaOpcion('opciones','codigo1','descEnglish1','descEspanol1','horas1', 'precio1', this.value)" onblur="sumaTotales()">
+                               <select class="ancho100" id="tFloorType" name="tFloorType" onchange="buscaOpcion('opciones','codigo1','descEnglish1','descEspanol1','horas1', 'precio1', this.value)" onblur="sumaTotales()">
                                     <option value="">Select Floor</option>
                                     <option value="WOODFLOOR">Wood Floor</option>
                                     <option value="CRUBBERBOARD">C Rubber Boards</option>
@@ -260,8 +263,8 @@ $lista = new controller();
 
                             </td>
                             <td>
-                                <select name="tHSLength">
-                                    <option value="">Select length</option>
+                                <select class="ancho100" name="tHSLength">
+                                    <option value="">length</option>
 
                                     <?php
                                     for ($i=1; $i<=36; $i++){
@@ -274,8 +277,8 @@ $lista = new controller();
 
                             </td>
                             <td>
-                                <select name="tMatting">
-                                    <option value="">Select length</option>
+                                <select class="ancho100" name="tMatting">
+                                    <option value="">length</option>
 
                                     <?php
                                     for ($i=1; $i<=72; $i++){
@@ -300,7 +303,7 @@ $lista = new controller();
                          </tr>
                          <tr>
                             <td colspan="2">
-                                <select name="tCalf">
+                                <select class="ancho100" name="tCalf">
                                     <option value="Normal">Normal</option>
                                     <option value="Move to Back">Move to Back</option>
                                 </select>
@@ -314,7 +317,7 @@ $lista = new controller();
 
                             </td>
                             <td>
-                                <select id="tVents" name="tVents" onchange="buscaOpcion('vents','codigo16','descEnglish16','descEspanol16','horas16', 'precio16', this.value)" onblur="sumaTotales()">
+                                <select class="ancho100" id="tVents" name="tVents" onchange="buscaOpcion('vents','codigo16','descEnglish16','descEspanol16','horas16', 'precio16', this.value)" onblur="sumaTotales()">
                                     <?php $lista ->llenaVents(); ?>
                                     </select>
                                 </td>
@@ -333,7 +336,7 @@ $lista = new controller();
 
                             </td>
 
-                            <td><input class="ancho120" type="text" name="tSideRails" id="tSideRails"></td>
+                            <td><input class="ancho100" type="text" name="tSideRails" id="tSideRails"></td>
                             <td colspan="2">
                                 <select name="tSaddleBox">
                                     <option value="With Divider Wall">With Divider Wall</option>
@@ -381,8 +384,8 @@ $lista = new controller();
                             <td>Floor/ft</td>
                          </tr>
                          <tr>
-                            <td colspan="2">
-                                <select name="tColor" id="tColor">
+                            <td colspan="2" >
+                                <select class="ancho100" name="tColor" id="tColor" onchange="calculaPeso()" onblur="sumaTotales()">
                                     <option value="">Select Paint</option>
                                     <option value="White">White</option>
                                     <option value="Off White">Off White</option>
@@ -399,13 +402,10 @@ $lista = new controller();
                                     <option value="Café 311-09">Brown 311-09</option>
                                     <option value="White 311-05 SD">White 311-05 SD</option>
                                 </select>
-                                <script>
-                                    document.getElementById("tColor").addEventListener("change", sumaTotales);
-                                </script>
 
                             </td>
                             <td>
-                                <select name="tFrontPlug">
+                                <select name="tFrontPlug" onchange="calculaPeso()" onblur="sumaTotales()">
                                     <option value="">Select</option>
                                     <option value="6 Way">6 Way</option>
                                     <option value="7 Way">7 Way</option>
@@ -413,7 +413,7 @@ $lista = new controller();
 
                             </td>
                             <td>
-                                <select name="tRearPlug">
+                                <select name="tRearPlug"onchange="calculaPeso()" onblur="sumaTotales()">
                                     <option value="">Select</option>
                                     <option value="6 Way">6 Way</option>
                                     <option value="7 Way">7 Way</option>
@@ -421,7 +421,7 @@ $lista = new controller();
 
                             </td>
                             <td>
-                                <select name="tTireCover">
+                                <select name="tTireCover" onchange="calculaPeso()" onblur="sumaTotales()">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
                                 </select>
@@ -459,7 +459,7 @@ $lista = new controller();
       <div class="row">
 
         <div class="col-md-12 table-responsive">
-            <table class="table table-bordered table-sm">
+            <table class="table table-bordered table-sm" style="width: 80%;">
                 <tbody>
                 <tr class="table-secondary">
                     <td colspan="12" style="text-align: center;"><strong><h3>Options</h3></strong></td>
@@ -478,7 +478,7 @@ $lista = new controller();
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish1" name="descEnglish1" value="Select Wood Type"></td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol1" name="descEspanol1" value="-"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas1" name="horas1" value="0"></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio1" name="precio1" value="0"></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio1" name="precio1" value="0"></td>
                  </tr>
                  <tr>
                     <td>2</td>
@@ -486,7 +486,7 @@ $lista = new controller();
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish2" name="descEnglish2" value="Select Side"></td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol2" name="descEspanol2" value="-"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas2" name="horas2" value="0"></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio2" name="precio2" value="0"></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio2" name="precio2" value="0"></td>
                  </tr>
                  <tr>
                     <td>3</td>
@@ -494,7 +494,7 @@ $lista = new controller();
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish3" name="descEnglish3" value="Select Rear Gate"></td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol3" name="descEspanol3" value="-"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas3" name="horas3" value="0"></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio3" name="precio3" value="0"></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio3" name="precio3" value="0"></td>
                  </tr>
                  <tr>
                     <td>4</td>
@@ -502,7 +502,7 @@ $lista = new controller();
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish4" name="descEnglish4" value="Select Roller"></td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol4" name="descEspanol4" value="-"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas4" name="horas4" value="0"></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio4" name="precio4" value="0"></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio4" name="precio4" value="0"></td>
                  </tr>
                  <tr>
                     <td>5</td>
@@ -510,7 +510,7 @@ $lista = new controller();
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish5" name="descEnglish5" value="Select Tire"></td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol5" name="descEspanol5" value="-"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas5" name="horas5" value="0"></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio5" name="precio5" value="0"></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio5" name="precio5" value="0"></td>
                  </tr>
 
                  <tr>
@@ -519,7 +519,7 @@ $lista = new controller();
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish6" name="descEnglish6" value="Select Spare Tire"></td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol6" name="descEspanol6" value="-"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas6" name="horas6" value="0"></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio6" name="precio6" value="0"></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio6" name="precio6" value="0"></td>
                  </tr>
 
 
@@ -538,7 +538,7 @@ $lista = new controller();
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol7" name="descEspanol7" value="-"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas7" name="horas7" value="0" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio7" name="precio7" value="0" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio7" name="precio7" value="0" ></td>
                 </tr>
 
 
@@ -552,7 +552,7 @@ $lista = new controller();
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol8" name="descEspanol8" value="-"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas8" name="horas8" value="0" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio8" name="precio8" value="0" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio8" name="precio8" value="0" ></td>
                  </tr>
 
 
@@ -566,7 +566,7 @@ $lista = new controller();
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol9" name="descEspanol9" value="-"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas9" name="horas9" value="0" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio9" name="precio9" value="0" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio9" name="precio9" value="0" ></td>
                  </tr>
 
 
@@ -580,7 +580,7 @@ $lista = new controller();
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol10" name="descEspanol10" value="-" ></td>
                     <td><input readonly="readonly" class="ancho50" id="horas10" name="horas10" value="0" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio10" name="precio10" value="0" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio10" name="precio10" value="0" ></td>
                  </tr>
 
 
@@ -594,7 +594,7 @@ $lista = new controller();
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol11" name="descEspanol11" value="-" ></td>
                     <td><input readonly="readonly" class="ancho50" id="horas11" name="horas11" value="0" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio11" name="precio11" value="0" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio11" name="precio11" value="0" ></td>
                  </tr>
 
 
@@ -608,7 +608,7 @@ $lista = new controller();
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol12" name="descEspanol12" value="-" ></td>
                     <td><input readonly="readonly" class="ancho50" id="horas12" name="horas12" value="0" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio12" name="precio12" value="0" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio12" name="precio12" value="0" ></td>
                  </tr>
 
 
@@ -622,7 +622,7 @@ $lista = new controller();
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol13" name="descEspanol13" value="-" ></td>
                     <td><input readonly="readonly" class="ancho50" id="horas13" name="horas13" value="0" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio13" name="precio13" value="0" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio13" name="precio13" value="0" ></td>
                  </tr>
 
 
@@ -636,7 +636,7 @@ $lista = new controller();
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol14" name="descEspanol14" value="-" ></td>
                     <td><input readonly="readonly" class="ancho50" id="horas14" name="horas14" value="0" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio14" name="precio14" value="0" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio14" name="precio14" value="0" ></td>
                  </tr>
 
 
@@ -646,7 +646,7 @@ $lista = new controller();
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish15" name="descEnglish15" value="Select Tarp"></td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol15" name="descEspanol15" value="-" ></td>
                     <td><input readonly="readonly" class="ancho50" id="horas15" name="horas15" value="0"  class="ancho120"></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio15" name="precio15" value="0"  class="ancho120"></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio15" name="precio15" value="0"  class="ancho120"></td>
                  </tr>
                  <tr>
                     <td>16</td>
@@ -654,7 +654,7 @@ $lista = new controller();
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish16" name="descEnglish16" value="Select Vents"></td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol16" name="descEspanol16" value="-" ></td>
                     <td><input readonly="readonly" class="ancho50" id="horas16" name="horas16" value="0" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio16" name="precio16" value="0" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio16" name="precio16" value="0" ></td>
                  </tr>
 
                 </tbody>
@@ -696,25 +696,25 @@ $lista = new controller();
                     <td>Total Horas</td>
                     <td><input readonly="readonly" type="text" size="10" id="TotalHoras" name="TotalHoras" value="0" ></td>
                     <td>Total Options</td>
-                    <td><input readonly="readonly" type="text" size="10" id="TotalOpciones" name="TotalOpciones" value="0" ></td>
+                    <td><input class="ancho100" readonly="readonly" type="text" size="10" id="TotalOpciones" name="TotalOpciones" value="0" ></td>
 
                  </tr>
                  <tr>
                     <td colspan="2">&nbsp;</td>
                     <td>Sub-Total</td>
-                    <td><input readonly="readonly" type="text" size="10" id="subTotal" name="subTotal" value="0" ></td>
+                    <td><input class="ancho100" readonly="readonly" type="text" size="10" id="subTotal" name="subTotal" value="0" ></td>
 
                  </tr>
                  <tr>
                     <td colspan="2">&nbsp;</td>
                     <td>2% Discount</td>
-                    <td><input readonly="readonly" type="text" size="10" id="descuento" name="descuento" value="0" ></td>
+                    <td><input class="ancho100" readonly="readonly" type="text" size="10" id="descuento" name="descuento" value="0" ></td>
 
                  </tr>
                  <tr>
                     <td colspan="2">&nbsp;</td>
                     <td>Total</td>
-                    <td><input readonly="readonly" class="ancho120" type="number" min="1" step="any" size="10" id="Total" name="Total" value="0" ></td>
+                    <td><input class="ancho100" readonly="readonly" class="ancho120" type="text" min="1" step="any" size="10" id="Total" name="Total" value="0" ></td>
 
                  </tr>
                     </tbody>

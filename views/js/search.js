@@ -92,7 +92,7 @@ function buscaPrecio(table,obj,obj2,mdl) {
                 document.getElementById(obj).value=responseArray[0];
                 document.getElementById(obj2).value=responseArray[1];
                 document.getElementById("pesoTrailer").value=responseArray[2];
-                alert (responseArray[0]);
+               // alert (responseArray[0]);
 
             }
         }

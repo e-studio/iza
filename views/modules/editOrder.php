@@ -47,9 +47,9 @@ $options = json_decode($respuesta["options"], true);
                 <div class="card-header">Order Datails</div>
                 <div class="card-body">
                     <p class="card-text">ORDER # : <input value="<?php echo $respuesta["orderNo"];?>" class="ancho170" type="text" name="tbd" id="tbd" readonly></p>
-                    <p class="card-text">Trailer # : <input value="<?php echo $respuesta["trailerNo"];?>" class="ancho120" type="text" name="trailerNo" id="trailerNo" readonly></p>
-                    <p class="card-text">Trailer Vin # : <input value="<?php echo $respuesta["trailerVin"];?>" class="ancho120" type="text" name="trailerVin" id="trailerVin" readonly></p>
-                    <p class="card-text">Due Date : <input value="<?php echo $respuesta["dueDate"];?>" class="ancho170" type="date" name="dueDate" id="dueDate" readonly></p>
+                    <p class="card-text">Trailer # : <input value="<?php echo $respuesta["trailerNo"];?>" class="ancho120" type="text" name="trailerNo" id="trailerNo"></p>
+                    <p class="card-text">Trailer Vin # : <input value="<?php echo $respuesta["trailerVin"];?>" class="ancho120" type="text" name="trailerVin" id="trailerVin"></p>
+                    <p class="card-text">Due Date : <input value="<?php echo $respuesta["dueDate"];?>" class="ancho170" type="date" name="dueDate" id="dueDate"></p>
                 </div>
             </div>
           </div>
@@ -58,7 +58,7 @@ $options = json_decode($respuesta["options"], true);
               <div class="card-body">
 
                 <p style="text-align: center; font-size: 105px;" class="card-text"><?php echo $respuesta["orderNo"];?></p>
-                <textarea rows="3" cols="75" name="notes" id="notes" placeholder="Notes..."><?php echo $respuesta["notes"];?></textarea>
+                <textarea rows="3" cols="55" name="notes" id="notes" placeholder="Notes..."><?php echo $respuesta["notes"];?></textarea>
               </div>
             </div>
           </div>
@@ -67,7 +67,7 @@ $options = json_decode($respuesta["options"], true);
 
           <div class="row table-responsive">
             <div class="col-md-12">
-                <table class="table table-bordered table-sm">
+                <table class="table table-bordered table-sm" style="width: 80%;">
                         <tbody>
                             <tr class="table-secondary">
                                 <td colspan="12" style="text-align: center;"><strong><h3>Trailer Model & Size</h3></strong></td>
@@ -129,7 +129,7 @@ $options = json_decode($respuesta["options"], true);
 
                             </td>
                             <td>
-                                <select name="tAxles" id="tAxles">
+                                <select class="ancho50" name="tAxles" id="tAxles">
                                     <?php echo '<option value="'.$specs["tAxles"].'" selected>'.$specs["tAxles"].'</option>'; ?>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -195,7 +195,7 @@ $options = json_decode($respuesta["options"], true);
 
                             </td>
                             <td rowspan="7"><input readonly="readonly"  value="<?php echo $specs["horasMdl"]?>" name="horasMdl" id="horasMdl" class="ancho50"></td>
-                            <td rowspan="7"><input readonly="readonly" value="<?php echo $specs["precioMdl"]?>" name="precioMdl" id="precioMdl" class="ancho100"></td>
+                            <td rowspan="7"><input readonly="readonly" value="<?php echo $specs["precioMdl"]?>" name="precioMdl" id="precioMdl" class="ancho70"></td>
                          </tr>
                          <tr class="table-secondary">
                             <td colspan="2">ToolBox Option</td>
@@ -236,10 +236,10 @@ $options = json_decode($respuesta["options"], true);
                                 </select>
 
                             </td>
-                            <td><input style="width: 100px !important;" type="text" name="tBlanketBars" id="blanketBars"></td>
+                            <td><input class="ancho100" type="text" name="tBlanketBars" id="blanketBars"></td>
 
                             <td>
-                               <select id="tFloorType" name="tFloorType" onchange="buscaOpcion('opciones','codigo1','descEnglish1','descEspanol1','horas1', 'precio1', this.value)" onblur="sumaTotales()">
+                               <select class="ancho120" id="tFloorType" name="tFloorType" onchange="buscaOpcion('opciones','codigo1','descEnglish1','descEspanol1','horas1', 'precio1', this.value)" onblur="sumaTotales()">
                                     <?php echo '<option value="'.$specs["tFloorType"].'" selected>'.$specs["tFloorType"].'</option>'; ?>
                                     <option value="WOODFLOOR">Wood Floor</option>
                                     <option value="CRUBBERBOARD">C Rubber Boards</option>
@@ -318,7 +318,7 @@ $options = json_decode($respuesta["options"], true);
                          </tr>
                          <tr>
                             <td colspan="2">
-                                <select name="tCalf">
+                                <select class="ancho100" name="tCalf">
                                     <option value="Normal">Normal</option>
                                     <option value="Move to Back">Move to Back</option>
                                 </select>
@@ -332,7 +332,7 @@ $options = json_decode($respuesta["options"], true);
 
                             </td>
                             <td>
-                                <select id="tVents" name="tVents" onchange="buscaOpcion('vents','codigo16','descEnglish16','descEspanol16','horas16', 'precio16', this.value)" onblur="sumaTotales()">
+                                <select class="ancho100" id="tVents" name="tVents" onchange="buscaOpcion('vents','codigo16','descEnglish16','descEspanol16','horas16', 'precio16', this.value)" onblur="sumaTotales()">
                                     <?php echo '<option value="'.$specs["tVents"].'" selected>'.$specs["tMatVentstting"].'</option>'; ?>
                                     <?php $lista ->llenaVents(); ?>
                                     </select>
@@ -354,7 +354,7 @@ $options = json_decode($respuesta["options"], true);
 
                             <td><input value="<?php echo $specs["tSideRails"]?>" class="ancho120" type="text" name="tSideRails" id="tSideRails"></td>
                             <td colspan="2">
-                                <select name="tSaddleBox">
+                                <select class="ancho150" name="tSaddleBox">
                                     <?php echo '<option value="'.$specs["tSaddleBox"].'" selected>'.$specs["tSaddleBox"].'</option>'; ?>
                                     <option value="With Divider Wall">With Divider Wall</option>
                                     <option value="Only HSS for Racks">Only HSS for Racks</option>
@@ -402,7 +402,7 @@ $options = json_decode($respuesta["options"], true);
                          </tr>
                          <tr>
                             <td colspan="2">
-                                <select name="tColor" id="tColor">
+                                <select class="ancho120" name="tColor" id="tColor">
                                     <?php echo '<option value="'.$specs["tColor"].'" selected>'.$specs["tColor"].'</option>'; ?>
                                     <option value="White">White</option>
                                     <option value="Off White">Off White</option>
@@ -456,8 +456,8 @@ $options = json_decode($respuesta["options"], true);
                             </td>
 
                             <td colspan="2">&nbsp;</td>
-                            <td><input class="ancho120" name="totWeight" id="totWeight" value="<?php echo $specs["totWeight"]?>" readonly="readonly"></td>
-                            <td><input class="ancho120" name="floorFt" id="floorFt" value="<?php echo $specs["floorFt"]?>" readonly="readonly">
+                            <td><input class="ancho70" name="totWeight" id="totWeight" value="<?php echo $specs["totWeight"]?>" readonly="readonly"></td>
+                            <td><input class="ancho70" name="floorFt" id="floorFt" value="<?php echo $specs["floorFt"]?>" readonly="readonly">
                                 <input id="pesoTrailer" value="0" hidden>
                                 <input id="precioAxle" value="0" hidden>
 
@@ -480,7 +480,7 @@ $options = json_decode($respuesta["options"], true);
       <div class="row table-responsive">
 
         <div class="col-md-12">
-            <table class="table table-bordered table-sm">
+            <table class="table table-bordered table-sm" style="width: 80%;">
                 <tbody>
                 <tr class="table-secondary">
                     <td colspan="12" style="text-align: center;"><strong><h3>Options</h3></strong></td>
@@ -499,7 +499,7 @@ $options = json_decode($respuesta["options"], true);
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish1" name="descEnglish1" value="<?php echo $options["descEnglish1"]?>"></td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol1" name="descEspanol1" value="<?php echo $options["descEspanol1"]?>"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas1" name="horas1" value="<?php echo $options["horas1"]?>"></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio1" name="precio1" value="<?php echo $options["precio1"]?>"></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio1" name="precio1" value="<?php echo $options["precio1"]?>"></td>
                  </tr>
                  <tr>
                     <td>2</td>
@@ -507,7 +507,7 @@ $options = json_decode($respuesta["options"], true);
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish2" name="descEnglish2" value="<?php echo $options["descEnglish2"]?>"></td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol2" name="descEspanol2" value="<?php echo $options["descEspanol2"]?>"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas2" name="horas2" value="<?php echo $options["horas2"]?>"></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio2" name="precio2" value="<?php echo $options["precio2"]?>"></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio2" name="precio2" value="<?php echo $options["precio2"]?>"></td>
                  </tr>
                  <tr>
                     <td>3</td>
@@ -515,7 +515,7 @@ $options = json_decode($respuesta["options"], true);
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish3" name="descEnglish3" value="<?php echo $options["descEnglish3"]?>"></td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol3" name="descEspanol3" value="<?php echo $options["descEspanol3"]?>"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas3" name="horas3" value="<?php echo $options["horas3"]?>"></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio3" name="precio3" value="<?php echo $options["precio3"]?>"></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio3" name="precio3" value="<?php echo $options["precio3"]?>"></td>
                  </tr>
                  <tr>
                     <td>4</td>
@@ -523,7 +523,7 @@ $options = json_decode($respuesta["options"], true);
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish4" name="descEnglish4" value="<?php echo $options["descEnglish4"]?>"></td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol4" name="descEspanol4" value="<?php echo $options["descEspanol4"]?>"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas4" name="horas4" value="<?php echo $options["horas4"]?>"></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio4" name="precio4" value="<?php echo $options["precio4"]?>"></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio4" name="precio4" value="<?php echo $options["precio4"]?>"></td>
                  </tr>
                  <tr>
                     <td>5</td>
@@ -531,7 +531,7 @@ $options = json_decode($respuesta["options"], true);
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish5" name="descEnglish5" value="<?php echo $options["descEnglish5"]?>"></td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol5" name="descEspanol5" value="<?php echo $options["descEspanol5"]?>"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas5" name="horas5" value="<?php echo $options["horas5"]?>"></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio5" name="precio5" value="<?php echo $options["precio5"]?>"></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio5" name="precio5" value="<?php echo $options["precio5"]?>"></td>
                  </tr>
 
                  <tr>
@@ -540,7 +540,7 @@ $options = json_decode($respuesta["options"], true);
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish6" name="descEnglish6" value="<?php echo $options["descEnglish6"]?>"></td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol6" name="descEspanol6" value="<?php echo $options["descEspanol6"]?>"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas6" name="horas6" value="<?php echo $options["horas6"]?>"></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio6" name="precio6" value="<?php echo $options["precio6"]?>"></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio6" name="precio6" value="<?php echo $options["precio6"]?>"></td>
                  </tr>
 
                  <tr>
@@ -555,7 +555,7 @@ $options = json_decode($respuesta["options"], true);
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol7" name="descEspanol7" value="<?php echo $options["descEspanol7"]?>"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas7" name="horas7" value="<?php echo $options["horas7"]?>" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio7" name="precio7" value="<?php echo $options["precio7"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio7" name="precio7" value="<?php echo $options["precio7"]?>" ></td>
                 </tr>
 
 
@@ -570,7 +570,7 @@ $options = json_decode($respuesta["options"], true);
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol8" name="descEspanol8" value="<?php echo $options["descEspanol8"]?>"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas8" name="horas8" value="<?php echo $options["horas8"]?>" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio8" name="precio8" value="<?php echo $options["precio8"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio8" name="precio8" value="<?php echo $options["precio8"]?>" ></td>
                  </tr>
 
 
@@ -585,7 +585,7 @@ $options = json_decode($respuesta["options"], true);
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol9" name="descEspanol9" value="<?php echo $options["descEspanol9"]?>"></td>
                     <td><input readonly="readonly" class="ancho50" id="horas9" name="horas9" value="<?php echo $options["horas9"]?>" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio9" name="precio9" value="<?php echo $options["precio9"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio9" name="precio9" value="<?php echo $options["precio9"]?>" ></td>
                  </tr>
 
 
@@ -600,7 +600,7 @@ $options = json_decode($respuesta["options"], true);
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol10" name="descEspanol10" value="<?php echo $options["descEspanol10"]?>" ></td>
                     <td><input readonly="readonly" class="ancho50" id="horas10" name="horas10" value="<?php echo $options["horas10"]?>" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio10" name="precio10" value="<?php echo $options["precio10"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio10" name="precio10" value="<?php echo $options["precio10"]?>" ></td>
                  </tr>
 
 
@@ -615,7 +615,7 @@ $options = json_decode($respuesta["options"], true);
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol11" name="descEspanol11" value="<?php echo $options["descEspanol11"]?>" ></td>
                     <td><input readonly="readonly" class="ancho50" id="horas11" name="horas11" value="<?php echo $options["horas11"]?>" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio11" name="precio11" value="<?php echo $options["precio11"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio11" name="precio11" value="<?php echo $options["precio11"]?>" ></td>
                  </tr>
 
 
@@ -630,7 +630,7 @@ $options = json_decode($respuesta["options"], true);
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol12" name="descEspanol12" value="<?php echo $options["descEspanol12"]?>" ></td>
                     <td><input readonly="readonly" class="ancho50" id="horas12" name="horas12" value="<?php echo $options["horas12"]?>" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio12" name="precio12" value="<?php echo $options["precio12"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio12" name="precio12" value="<?php echo $options["precio12"]?>" ></td>
                  </tr>
 
 
@@ -645,7 +645,7 @@ $options = json_decode($respuesta["options"], true);
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol13" name="descEspanol13" value="<?php echo $options["descEspanol13"]?>" ></td>
                     <td><input readonly="readonly" class="ancho50" id="horas13" name="horas13" value="<?php echo $options["horas13"]?>" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio13" name="precio13" value="<?php echo $options["precio13"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio13" name="precio13" value="<?php echo $options["precio13"]?>" ></td>
                  </tr>
 
 
@@ -660,7 +660,7 @@ $options = json_decode($respuesta["options"], true);
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol14" name="descEspanol14" value="<?php echo $options["descEspanol14"]?>" ></td>
                     <td><input readonly="readonly" class="ancho50" id="horas14" name="horas14" value="<?php echo $options["horas14"]?>" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio14" name="precio14" value="<?php echo $options["precio14"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio14" name="precio14" value="<?php echo $options["precio14"]?>" ></td>
                  </tr>
 
 
@@ -670,7 +670,7 @@ $options = json_decode($respuesta["options"], true);
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish15" name="descEnglish15" value="<?php echo $options["descEnglish15"]?>"></td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol15" name="descEspanol15" value="<?php echo $options["descEspanol15"]?>" ></td>
                     <td><input readonly="readonly" class="ancho50" id="horas15" name="horas15" value="<?php echo $options["horas15"]?>"  class="ancho120"></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio15" name="precio15" value="<?php echo $options["precio15"]?>"  class="ancho120"></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio15" name="precio15" value="<?php echo $options["precio15"]?>"  class="ancho120"></td>
                  </tr>
                  <tr>
                     <td>16</td>
@@ -678,7 +678,7 @@ $options = json_decode($respuesta["options"], true);
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEnglish16" name="descEnglish16" value="<?php echo $options["descEnglish16"]?>"></td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol16" name="descEspanol16" value="<?php echo $options["descEspanol16"]?>" ></td>
                     <td><input readonly="readonly" class="ancho50" id="horas16" name="horas16" value="<?php echo $options["horas16"]?>" ></td>
-                    <td><input readonly="readonly" class="ancho100" id="precio16" name="precio16" value="<?php echo $options["precio16"]?>" ></td>
+                    <td><input readonly="readonly" class="ancho70" id="precio16" name="precio16" value="<?php echo $options["precio16"]?>" ></td>
                  </tr>
 
                 </tbody>

@@ -30,6 +30,8 @@
   <style>
     .ancho50 {
         width:50px !important;}
+    .ancho70 {
+        width:70px !important;}
     .ancho100 {
         width:100px !important;}
     .ancho120 {
