@@ -37,7 +37,7 @@ else {
                 <tr>
                   <th>Nombre</th>
                   <th>Usuario</th>
-                  <th>Password</th>
+                  <th>Access Type</th>
                   <th>Email</th>
                   <th>Celular</th>
                   <th></th>
@@ -48,7 +48,7 @@ else {
                 <tr>
                   <th>Nombre</th>
                   <th>Usuario</th>
-                  <th>Password</th>
+                  <th>Access Type</th>
                   <th>Email</th>
                   <th>Celular</th>
                   <th></th>

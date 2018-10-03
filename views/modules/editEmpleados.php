@@ -73,8 +73,10 @@ $usuario = $_REQUEST['idEditar'];
                 <label for="rol">Permisos :</label>
                 <select name="rol" id="rol">
                   <option selected="selected" value="<?php echo $respuesta['rol'];?>"></option>
-                  <option value="0">Administrador</option>
-                  <option value="1">Usuario</option>
+                  <option value="0">Administrator</option>
+                  <option value="1">Orders Admin</option>
+                  <option value="2">Engineering</option>
+                  <option value="3">Accountants</option>
                 </select>
               </div>
               <div class="col-md-6">

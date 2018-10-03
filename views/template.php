@@ -19,13 +19,12 @@
             window.location.href='index.php?action=inicio';
             return true;
         }else{
-            //alert('Cancelo la eliminacion');
             return false;
         }
       }
     </script>
 
-	<title>IZA - Panel de Control</title>
+	<title>IZA - Control Panel</title>
 
   <style>
     .ancho50 {
@@ -49,9 +48,7 @@
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 
-
  	<?php
-
 		$modulos = new Enlaces();
 		$modulos -> enlacesController();
 	?>
@@ -87,15 +84,15 @@
     <script src="views/vendor/datatables/dataTables.bootstrap4.js"></script>
     <script src="views/js/sb-admin.min.js"></script>
     <script src="views/js/sb-admin-datatables.min.js"></script>
-    <!--<script src="views/js/sb-admin-charts.js"></script>-->
     <script src="views/js/validarIngreso.js"></script>
     <script src="views/js/tablas.js"></script>
     <?php 
+    if ($_SESSION["rol"] == 0){
       $grafica = new controller();
       $grafica -> grafica1Controller();
       $grafica -> grafica2Controller();
+    }
 
-      //include "graficas.php";
     ?>
 
 

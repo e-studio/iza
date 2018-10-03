@@ -6,10 +6,13 @@ if(!$_SESSION["validar"]){
     exit();
 
 }
-if ($_SESSION["rol"] > 0){
+if ($_SESSION["rol"] == 3 || $_SESSION["rol"] == 2 ){
  include "navUsuario.php";
 }
-else {
+elseif ($_SESSION["rol"]== 1) {
+  include "navCreador.php";
+}
+elseif ($_SESSION["rol"]==0){
   include "navAdmin.php";
 }
 

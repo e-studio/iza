@@ -7,14 +7,25 @@ if(!$_SESSION["validar"]){
     exit();
 
 }
-if ($_SESSION["rol"] > 0){
+if ($_SESSION["rol"] == 3 || $_SESSION["rol"] == 2 ){
  include "navUsuario.php";
 }
-else {
+elseif ($_SESSION["rol"]== 1) {
+  include "navCreador.php";
+}
+elseif ($_SESSION["rol"]==0){
   include "navAdmin.php";
 }
-//$histo = $_REQUEST['idHis'];
 $lista = new controller();
+
+function toMoney($val,$symbol='',$r=2)
+{
+    $n = $val;
+    $sign = ($n < 0) ? '-' : '';
+    $i = number_format(abs($n),$r);
+
+    return  $symbol.$sign.$i;
+}
 
 ?>
 
@@ -693,7 +704,7 @@ $lista = new controller();
                     </tr>
                 <tr>
 
-                    <td>Total Horas</td>
+                    <td>Total Hours</td>
                     <td><input readonly="readonly" type="text" size="10" id="TotalHoras" name="TotalHoras" value="0" ></td>
                     <td>Total Options</td>
                     <td><input class="ancho100" readonly="readonly" type="text" size="10" id="TotalOpciones" name="TotalOpciones" value="0" ></td>

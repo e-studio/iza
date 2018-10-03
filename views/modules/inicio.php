@@ -1,18 +1,31 @@
 <?php
-
 session_start();
-
 if(!$_SESSION["validar"]){
-
 	header("location:index.php");
-
 	exit();
-
-
 }
 
-if ($_SESSION["rol"] > 0){
-//  ==========================             Pantalla de usuario normal =======================================
+
+if ($_SESSION["rol"] == 3){
+//  ==========================             Pantalla de usuario de Conta  =======================================
+  include "navUsuario.php"; ?>
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Inicio</li>
+      </ol>
+
+      <div style="height: 1000px;"></div>
+    </div><!-- /.container-fluid-->
+  </div>
+
+<?php 
+include "views/modules/footer.php";
+}
+elseif ($_SESSION["rol"] == 2){
+
+//  ==========================             Pantalla de usuario Ingenieria =======================================
   include "navUsuario.php"; ?>
 
 
@@ -30,12 +43,30 @@ if ($_SESSION["rol"] > 0){
 <?php 
 include "views/modules/footer.php";
 }
-else { 
+elseif ($_SESSION["rol"] == 1){
+
+
+//  ==========================             Pantalla de usuario que crea Ordenes      =======================================
+  include "navCreador.php"; ?>
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Inicio</li>
+      </ol>
+
+      <div style="height: 1000px;"></div>
+    </div><!-- /.container-fluid-->
+  </div>
+
+<?php 
+include "views/modules/footer.php";
+}
+elseif($_SESSION["rol"] == 0){ 
+
 //  ==========================             Pantalla de Administrador =======================================
 
  include "navAdmin.php"; ?>
-  
-
   <div class="content-wrapper">
     <div class="container-fluid">
 

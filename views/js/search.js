@@ -35,11 +35,11 @@ function calculaPeso() {
         // Parametros de los saddle box para el calculo del floor/ft
 
         if (saddle=='2FTSADDLEBOX2D ' || saddle=='2FTSADDLEBOX3D ' || saddle == '2FTSADDLEBOX4D ') tipoSaddle =2;
-        if (saddle=='3FTSADDLEBOX2D' || saddle=='3FTSADDLEBOX3D' || saddle == '3FTSADDLEBOX4D' || saddle=='2X4FTTACKROOM' || saddle=='3FTSADDLEBOX3D' || saddle == '3.5FTTACKROOM') tipoSaddle =3;
-        if (saddle=='4FTTACKROOM' || saddle=='DELUXETACKROOM') tipoSaddle =4;
+        if (saddle=='3FTSADDLEBOX2D ' || saddle=='3FTSADDLEBOX3D ' || saddle == '3FTSADDLEBOX4D ' || saddle=='2X4FTTACKROOM ' || saddle=='3FTSADDLEBOX3D ' || saddle == '3.5FTTACKROOM ') tipoSaddle =3;
+        if (saddle=='4FTTACKROOM ' || saddle=='DELUXETACKROOM ') tipoSaddle =4;
 
         // calculo del peso del piso segun el tipo de material
-        if (tFloorType=='WOODFLOOR') {pesoTabla=2.2; precioPiso=0;}
+        if (tFloorType=='WOODFLOOR')    {pesoTabla=2.2; precioPiso=0;}
         if (tFloorType=='SRUBBERBOARD') {pesoTabla = 7; precioPiso=3.75;}
         if (tFloorType=='CRUBBERBOARD') {pesoTabla = 7; precioPiso=4.22;}
 
@@ -100,6 +100,8 @@ function buscaPrecio(table,obj,obj2,mdl) {
         xmlhttp.send();
     }
 
+    calculaPeso();
+
     }
 
 
@@ -131,18 +133,13 @@ function buscaOpcion(table,codigo,ingles,espanol,horas,precio,mdl) {
                 document.getElementById(ingles).value = responseArray[1]
                 document.getElementById(espanol).value=responseArray[2];
                 document.getElementById(horas).value=responseArray[3];
-                // procedimiento para multiplicar el valor de los axles segun se haya eleccion 1,2 o 3 axles
-                /*var axlesNo = document.getElementById("tAxles").value;
-                var llantas = parseInt(axlesNo.substr(0,1));
-                if (llantas==0 || llantas=='') llantas=1;*/
-                //------------------------------------------------------------------------------------------
-
                 document.getElementById(precio).value=responseArray[4];
             }
         }
         xmlhttp.open("GET","buscaOpcion.php?t="+table+"&q="+mdl,true);
         xmlhttp.send();
     }
+    precioPiso();
 
     }
 
@@ -244,5 +241,5 @@ function sumaTotales(){
     document.getElementById('Total').value = total;
     document.getElementById('TotalHoras').value = totalHoras;
 
-    //alert(horasMdl);
+    calculaPeso();
 }

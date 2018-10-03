@@ -8,7 +8,6 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
 
-
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Orders">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseOrders" data-parent="#exampleAccordion">
             <i class="fa fa-window-restore"></i>
@@ -16,20 +15,23 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseOrders">
             <li>
+              <a href="index.php?action=cotizador">Add Order</a>
+            </li>
+            <li>
               <a href="index.php?action=ordenes">Orders List</a>
             </li>
           </ul>
         </li>
-        
-        </ul>
+      </ul>
 
-        <ul class="navbar-nav sidenav-toggler">
+      <ul class="navbar-nav sidenav-toggler">
         <li class="nav-item">
           <a class="nav-link text-center" id="sidenavToggler">
             <i class="fa fa-fw fa-angle-left"></i>
           </a>
         </li>
       </ul>
+
 
       <ul class="navbar-nav ml-auto">
 
@@ -43,8 +45,6 @@
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>
         </li>
       </ul>
-
-
     </div>
   </nav>
 

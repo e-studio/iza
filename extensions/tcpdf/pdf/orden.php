@@ -32,9 +32,8 @@ $pdf->startPageGroup();
 $pdf->AddPage();
 
 // ---------------------------------------------------------
+
 $bloque1 = <<<EOF
-
-
 
   <table width="540" border="1" cellspacing="0" cellpadding="10">
   <tbody>

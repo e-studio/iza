@@ -390,16 +390,21 @@ class controller{
                 <td>'.$item["trailerVin"].'</td>
                 <td>'.$item["orderDate"].'</td>
                 <td>'.$item["dueDate"].'</td>';
-                if ($nivel == 0){
+                if ($nivel == 0 || $nivel == 1){
                 echo '<td>
-                    <button class="btn btn-info btnImprimirOrden" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-print"></i></buttn>
+                    <button class="btn btn-info btnImprimirOrden" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-print"></i></button>
                     <a href="index.php?action=editOrder&idEditar='.$item["orderNo"].'"><button class="btn btn-warning">Edit</button></a>
                     <a href="index.php?action=ordenes&idBorrar='.$item["orderNo"].'" onclick="return Confirmation()"><button class="btn btn-danger">Delete</button></a>
                 </td>';
                 }
-                else {
+                elseif($nivel == 2) {
                  echo '<td>
-                    <button class="btn btn-info btnImprimirOrden" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-print"></i></buttn>
+                    <button class="btn btn-info btnImprimirOrden" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-print"></i></button>
+                   </td>';   
+                }
+                elseif ($nivel == 3) {
+                 echo '<td>
+                    <button class="btn btn-info btnImprimirOrdenP" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-print"></i></button>
                    </td>';   
                 }
             echo '</tr>';
@@ -447,10 +452,14 @@ class controller{
         $respuesta = Datos::listaEmpleadosModel("usuarios");
 
         foreach ($respuesta as $row => $item){
+            if ($item["rol"] == 0) $tipoAcceso = "Administrator";
+            if ($item["rol"] == 1 ) $tipoAcceso = "Order Admin";
+            if ($item["rol"] == 2 ) $tipoAcceso = "Engineer";
+            if ($item["rol"] == 3 ) $tipoAcceso = "Accountant";
         echo'<tr>
                 <td>'.$item["nombre"].'</td>
                 <td>'.$item["usuario"].'</td>
-                <td>'.$item["password"].'</td>
+                <td>'.$tipoAcceso.'</td>
                 <td>'.$item["email"].'</td>
                 <td>'.$item["celular"].'</td>
                 <td>
