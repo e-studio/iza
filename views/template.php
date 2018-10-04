@@ -10,39 +10,11 @@
 	  <link href="views/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	  <link href="views/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 	  <link href="views/css/sb-admin.css" rel="stylesheet">
+    <link href="views/css/misEstilos.css" rel="stylesheet">
     <script src="views/js/search.js"></script>;
-    <script type="text/javascript">
-      function Confirmation() {
-
-        if (confirm('Are you shure you want to delete?')==true) {
-            alert('Deleted');
-            window.location.href='index.php?action=inicio';
-            return true;
-        }else{
-            return false;
-        }
-      }
-    </script>
+    <script src="views/js/confirmacion.js"></script>;
 
 	<title>IZA - Control Panel</title>
-
-  <style>
-    .ancho50 {
-        width:50px !important;}
-    .ancho70 {
-        width:70px !important;}
-    .ancho100 {
-        width:100px !important;}
-    .ancho120 {
-        width:120px !important;}
-    .ancho150 {
-        width:150px !important;}
-    .ancho170 {
-        width:170px !important;}
-    .ancho450 {
-        width:450px !important;}
-
-</style>
 
 </head>
 
@@ -87,7 +59,7 @@
     <script src="views/js/validarIngreso.js"></script>
     <script src="views/js/tablas.js"></script>
     <?php 
-    if ($_SESSION["rol"] == 0){
+    if (session_status() == 2 && $_SESSION["rol"] == 0){
       $grafica = new controller();
       $grafica -> grafica1Controller();
       $grafica -> grafica2Controller();

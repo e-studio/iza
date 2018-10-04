@@ -105,9 +105,7 @@ function toMoney($val,$symbol='',$r=2)
                                     <option value="36">36</option>
                                     <option value="40">40</option>
                                 </select>
-                                <script>
-                                    document.getElementById("tLength").addEventListener("change", calculaPeso);
-                                </script>
+                               
 
                             </td>
                             <td>
@@ -119,9 +117,7 @@ function toMoney($val,$symbol='',$r=2)
                                     <option value="7">7</option>
                                     <option value="7.5">7.5</option>
                                 </select>
-                                <script>
-                                    document.getElementById("tWidth").addEventListener("change", calculaPeso);
-                                </script>
+                                
 
                             </td>
                             <td>
@@ -146,9 +142,7 @@ function toMoney($val,$symbol='',$r=2)
                                     <option value="3 - 6.5' T Axle">3 - 6.5' T Axle</option>
                                     <option value="2 7.2K axles">2 7.2K axles</option>
                                 </select>
-                                <script>
-                                    document.getElementById("tAxles").addEventListener("change", calculaPeso);
-                                </script>
+                                
 
                             </td>
                             <td>
@@ -241,11 +235,6 @@ function toMoney($val,$symbol='',$r=2)
                                     <option value="CRUBBERBOARD">C Rubber Boards</option>
                                     <option value="SRUBBERBOARD">S Rubber Boards</option>
                                 </select>
-
-                                <script>
-                                    document.getElementById("tFloorType").addEventListener("change", calculaPeso);
-                                </script>
-
 
                             </td>
                             <td>
@@ -364,9 +353,7 @@ function toMoney($val,$symbol='',$r=2)
                                     <option value="14PLY16AR">14PLY16AR</option>
                                     <option value="18PLY17.5SR">18PLY16SR</option>
                                 </select>
-                                <script>
-                                    document.getElementById("tires").addEventListener("change", calculaPeso);
-                                </script>
+                                
 
                             </td>
                             <td>
@@ -378,9 +365,7 @@ function toMoney($val,$symbol='',$r=2)
                                     <option value="14PLY16ARE">14PLY16ARE</option>
                                     <option value="18PLY16SRE">18PLY16SRE</option>
                                 </select>
-                                <script>
-                                    document.getElementById("eTires").addEventListener("change", calculaPeso);
-                                </script>
+                                
 
                             </td>
                          </tr>
@@ -542,9 +527,7 @@ function toMoney($val,$symbol='',$r=2)
                             <option value="">Select Tack Room or Saddle box</option>
                             <?php $lista ->llenaSaddles(); ?>
                         </select>
-                        <script>
-                            //document.getElementById("codigo7").addEventListener("change", calculaPeso);
-                        </script>
+                     
 
                     </td>
                     <td colspan="4"><input readonly="readonly" class="ancho450" id="descEspanol7" name="descEspanol7" value="-"></td>
