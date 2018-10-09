@@ -15,3 +15,11 @@ function validarIngreso(){
 	return true;
 
 }
+
+function actualizaOrden(){
+
+var comentario = document.getElementById("modalComment").value
+document.querySelector('#changeNotes').value = comentario;
+document.getElementById("actualiza").click();
+
+}

@@ -47,6 +47,30 @@
       </div>
     </div>
 
+    <!-- Update Modal-->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="updateModalLabel">Why was this change made?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+            <div class="form-group">
+              <textarea class="form-control" rows="4" cols="20" id="modalComment"></textarea>
+            </div>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-warning" onclick="actualizaOrden()"> Save</button>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 
     <script src="views/vendor/jquery/jquery.min.js"></script>
     <script src="views/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

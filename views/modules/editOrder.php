@@ -30,7 +30,7 @@ $options = json_decode($respuesta["options"], true);
 
 
 <div class="content-wrapper">
-  <form action="" name="cotizador" method="post">
+  <form action="" name="cotizador" id='cotizador' method="post">
 
     <div class="container-fluid">
 
@@ -701,8 +701,9 @@ $options = json_decode($respuesta["options"], true);
                     </tr>
                     
                     <tr>
-
-                        <input class="btn btn-warning btn-block" type="submit" name="actualiza" value="Update Order">
+                        <input class="btn btn-warning btn-block" type="submit" id="actualiza" name="actualiza" value="" hidden>
+                        <input id="myBtn" class="btn btn-warning btn-block" data-toggle="modal" data-target="#updateModal" value="Update Order">
+                        <textarea class="form-control" rows="4" cols="20" name="changeNotes" id="changeNotes" hidden></textarea>
                     </tr>
                 </tbody>
             </table>
@@ -759,7 +760,7 @@ $options = json_decode($respuesta["options"], true);
   <?php
 
         $registro = new controller();
-        $registro -> actualizaOrdenes();
+        $registro -> actualizaOrdenes($respuesta);
 
         ?>
   <?php include "views/modules/footer.php"; ?>

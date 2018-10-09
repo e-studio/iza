@@ -22,23 +22,6 @@
             </li>
           </ul>
         </li>
-
-        <!--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Clients">
-          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseClientes" data-parent="#exampleAccordion">
-            <i class="fa fa-address-card-o"></i>
-            <span class="nav-link-text">Clients</span>
-          </a>
-          <ul class="sidenav-second-level collapse" id="collapseClientes">
-
-            <li>
-              <a href="">Add Client</a>
-            </li>
-            <li>
-              <a href="">Client List</a>
-            </li>
-
-          </ul>
-        </li>-->
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Products">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseProductos" data-parent="#exampleAccordion">
             <i class="fa fa-cubes"></i>

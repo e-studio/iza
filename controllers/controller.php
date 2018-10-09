@@ -747,13 +747,102 @@ class controller{
 
 #ACTUALIZACION DE ORDENES DE TRAILERS
     #------------------------------------
-    public function actualizaOrdenes(){
+    public function actualizaOrdenes($oldValues){
+
+        date_default_timezone_set("America/Chihuahua");
+        date_default_timezone_get();
+        $cambios=0;
+
+        // recibo los datos antiguos en $oldValues para compararlos, saber cuales cambiaron y grabarlos en el log de cambios
+        $oldSpecs = json_decode($oldValues["trailerSpecs"], true);
+        $oldOps = json_decode($oldValues["options"], true);
+
+        $old = new stdClass();
+        $new = new stdClass();
 
         if(isset($_POST["actualiza"])){
 
+            // ------------------------------------   checa cambios --------------------------------------------------
+            if ($oldSpecs["Modelos"] !=  $_POST["Modelos"])     {$new-> Modelos = $_POST["Modelos"]; $old-> Modelos = $oldSpecs["Modelos"]; $cambios+=1;}
+            if ($oldSpecs["tLength"] !=  $_POST["tLength"])     {$new-> tLength = $_POST["tLength"]; $old-> tLength = $oldSpecs["tLength"]; $cambios+=1;}
+            if ($oldSpecs["tWidth"] !=  $_POST["tWidth"])       {$new-> tWidth = $_POST["tWidth"]; $old-> tWidth = $oldSpecs["tWidth"]; $cambios+=1;}
+            if ($oldSpecs["tAxles"] !=  $_POST["tAxles"])       {$new-> tAxles = $_POST["tAxles"]; $old-> tAxles = $oldSpecs["tAxles"]; $cambios+=1;}
+            if ($oldSpecs["tSides"] !=  $_POST["tSides"])       {$new-> tSides = $_POST["Modelos"]; $old-> tSides = $oldSpecs["tSides"]; $cambios+=1;}
+            if ($oldSpecs["tTop"] !=  $_POST["tTop"])           {$new-> tTop = $_POST["tTop"]; $old-> tTop = $oldSpecs["tTop"]; $cambios+=1;}
+            if ($oldSpecs["tRearGate"] !=  $_POST["tRearGate"]) {$new-> tRearGate = $_POST["tRearGate"]; $old-> tRearGate = $oldSpecs["tRearGate"]; $cambios+=1;}
+            if ($oldSpecs["tCompartments"] !=  $_POST["tCompartments"]) {$new-> tCompartments = $_POST["tCompartments"]; $old-> tCompartments = $oldSpecs["tCompartments"]; $cambios+=1;}
+            if ($oldSpecs["tEscapeGate"] !=  $_POST["tEscapeGate"]) {$new-> tEscapeGate = $_POST["tEscapeGate"]; $old-> tEscapeGate = $oldSpecs["tEscapeGate"]; $cambios+=1;}
+            if ($oldSpecs["horasMdl"] !=  $_POST["horasMdl"])   {$new-> horasMdl = $_POST["horasMdl"]; $old-> horasMdl = $oldSpecs["horasMdl"]; $cambios+=1;}
+            if ($oldSpecs["precioMdl"] !=  $_POST["precioMdl"]) {$new-> precioMdl = $_POST["precioMdl"]; $old-> precioMdl = $oldSpecs["precioMdl"]; $cambios+=1;}
+            if ($oldSpecs["tToolBox"] !=  $_POST["tToolBox"])   {$new-> tToolBox = $_POST["tToolBox"]; $old-> tToolBox = $oldSpecs["tToolBox"]; $cambios+=1;}
+            if ($oldSpecs["tSaddleRack"] !=  $_POST["tSaddleRack"]) {$new-> tSaddleRack = $_POST["tSaddleRack"]; $old-> tSaddleRack = $oldSpecs["tSaddleRack"]; $cambios+=1;}
+            if ($oldSpecs["tBlanketBars"] !=  $_POST["tBlanketBars"]) {$new-> tBlanketBars = $_POST["tBlanketBars"]; $old-> tBlanketBars = $oldSpecs["tBlanketBars"]; $cambios+=1;}
+            if ($oldSpecs["tFloorType"] !=  $_POST["tFloorType"]) {$new-> tFloorType = $_POST["tFloorType"]; $old-> tFloorType = $oldSpecs["tFloorType"]; $cambios+=1;}
+            if ($oldSpecs["tFloorSpacing"] !=  $_POST["tFloorSpacing"]) {$new-> tFloorSpacing = $_POST["tFloorSpacing"]; $old-> tFloorSpacing = $oldSpecs["tFloorSpacing"]; $cambios+=1;}
+            if ($oldSpecs["tRollers"] !=  $_POST["tRollers"]) {$new-> tRollers = $_POST["tRollers"]; $old-> tRollers = $oldSpecs["tRollers"]; $cambios+=1;}
+            if ($oldSpecs["tHinch"] !=  $_POST["tHinch"]) {$new-> tHinch = $_POST["tHinch"]; $old-> tHinch = $oldSpecs["tHinch"]; $cambios+=1;}
+            if ($oldSpecs["tHSLength"] !=  $_POST["tHSLength"]) {$new-> tHSLength = $_POST["tHSLength"]; $old-> tHSLength = $oldSpecs["tHSLength"]; $cambios+=1;}
+            if ($oldSpecs["tMatting"] !=  $_POST["tMatting"]) {$new-> tMatting = $_POST["tMatting"]; $old-> tMatting = $oldSpecs["tMatting"]; $cambios+=1;}
+            if ($oldSpecs["tCalf"] !=  $_POST["tCalf"]) {$new-> tCalf = $_POST["tCalf"]; $old-> tCalf = $oldSpecs["tCalf"]; $cambios+=1;}
+            if ($oldSpecs["tRod"] !=  $_POST["tRod"]) {$new-> tRod = $_POST["tRod"]; $old-> tRod = $oldSpecs["tRod"]; $cambios+=1;}
+            if ($oldSpecs["tVents"] !=  $_POST["tVents"]) {$new-> tVents = $_POST["tVents"]; $old-> tVents = $oldSpecs["tVents"]; $cambios+=1;}
+            if ($oldSpecs["tRhino"] !=  $_POST["tRhino"]) {$new-> tRhino = $_POST["tRhino"]; $old-> tRhino = $oldSpecs["tRhino"]; $cambios+=1;}
+            if ($oldSpecs["tSideRails"] !=  $_POST["tSideRails"]) {$new-> tSideRails = $_POST["tSideRails"]; $old-> tSideRails = $oldSpecs["tSideRails"]; $cambios+=1;}
+            if ($oldSpecs["tSaddleBox"] !=  $_POST["tSaddleBox"]) {$new-> tSaddleBox = $_POST["tSaddleBox"]; $old-> tSaddleBox = $oldSpecs["tSaddleBox"]; $cambios+=1;}
+            if ($oldSpecs["tTires"] !=  $_POST["tTires"]) {$new-> tTires = $_POST["tTires"]; $old-> tTires = $oldSpecs["tTires"]; $cambios+=1;}
+            if ($oldSpecs["tExtraTire"] !=  $_POST["tExtraTire"]) {$new-> tExtraTire = $_POST["tExtraTire"]; $old-> tExtraTire = $oldSpecs["tExtraTire"]; $cambios+=1;}
+            if ($oldSpecs["tColor"] !=  $_POST["tColor"]) {$new-> tColor = $_POST["tColor"]; $old-> tColor = $oldSpecs["tColor"]; $cambios+=1;}
+            if ($oldSpecs["tFrontPlug"] !=  $_POST["tFrontPlug"]) {$new-> tFrontPlug = $_POST["tFrontPlug"]; $old-> tFrontPlug = $oldSpecs["tFrontPlug"]; $cambios+=1;}
+            if ($oldSpecs["tRearPlug"] !=  $_POST["tRearPlug"]) {$new-> tRearPlug = $_POST["tRearPlug"]; $old-> tRearPlug = $oldSpecs["tRearPlug"]; $cambios+=1;}
+            if ($oldSpecs["tTireCover"] !=  $_POST["tTireCover"]) {$new-> tTireCover = $_POST["tTireCover"]; $old-> tTireCover = $oldSpecs["tTireCover"]; $cambios+=1;}
+            if ($oldSpecs["tTarp"] !=  $_POST["tTarp"]) {$new-> tTarp = $_POST["tTarp"]; $old-> tTarp = $oldSpecs["tTarp"]; $cambios+=1;}
+            if ($oldSpecs["totWeight"] !=  $_POST["totWeight"]) {$new-> totWeight = $_POST["totWeight"]; $old-> totWeight = $oldSpecs["totWeight"]; $cambios+=1;}
+            if ($oldSpecs["floorFt"] !=  $_POST["floorFt"]) {$new-> floorFt = $_POST["floorFt"]; $old-> floorFt = $oldSpecs["floorFt"]; $cambios+=1;}
+
+
+
+            if ($oldValues["dueDate"] != $_POST["dueDate"]) {$new-> dueDate = $_POST["dueDate"]; $old-> dueDate = $oldSpecs["dueDate"]; $cambios+=1;}
+           // if ($oldValues["orderDate"] != date('Y-m-d H:i:s')) {$new-> Modelos = $_POST["Modelos"]; $old-> Modelos = $oldSpecs["Modelos"]; $cambios+=1;}
+            if ($oldValues["notes"] != $_POST["notes"]) {$new-> notes = $_POST["notes"]; $old-> notes = $oldSpecs["notes"]; $cambios+=1;}
+            if ($oldValues["subTotal"] != $_POST["subTotal"]) {$new-> subTotal = $_POST["subTotal"]; $old-> subTotal = $oldSpecs["subTotal"]; $cambios+=1;}
+            if ($oldValues["discount"] != $_POST["descuento"]) {$new-> descuento = $_POST["descuento"]; $old-> descuento = $oldValues["discount"]; $cambios+=1;}
+            if ($oldValues["totHrs"] != $_POST["TotalHoras"]) {$new-> TotalHoras = $_POST["TotalHoras"]; $old-> TotalHoras = $oldValues["totHrs"]; $cambios+=1;}
+            if ($oldValues["totPrice"] != $_POST["Total"]) {$new-> Total = $_POST["Total"]; $old-> Total = $oldValues["totPrice"]; $cambios+=1;}
+            if ($oldValues["totOpciones"] != $_POST["TotalOpciones"]) {$new-> TotalOpciones = $_POST["TotalOpciones"]; $old-> TotalOpciones = $oldValues["totOpciones"]; $cambios+=1;}
+
+
+
+            if ($oldOps["codigo1"] != $_POST["codigo1"]) {$new-> codigo1 = $_POST["codigo1"]; $old-> codigo1 = $oldOps["codigo1"]; $cambios+=1;}
+            if ($oldOps["codigo2"] != $_POST["codigo2"]) {$new-> codigo2 = $_POST["codigo2"]; $old-> codigo2 = $oldOps["codigo2"]; $cambios+=1;}
+            if ($oldOps["codigo3"] != $_POST["codigo3"]) {$new-> codigo3 = $_POST["codigo3"]; $old-> codigo3 = $oldOps["codigo3"]; $cambios+=1;}
+            if ($oldOps["codigo4"] != $_POST["codigo4"]) {$new-> codigo4 = $_POST["codigo4"]; $old-> codigo4 = $oldOps["codigo4"]; $cambios+=1;}
+            if ($oldOps["codigo5"] != $_POST["codigo5"]) {$new-> codigo5 = $_POST["codigo5"]; $old-> codigo5 = $oldOps["codigo5"]; $cambios+=1;}
+            if ($oldOps["codigo6"] != $_POST["codigo6"]) {$new-> codigo6 = $_POST["codigo6"]; $old-> codigo6 = $oldOps["codigo6"]; $cambios+=1;}
+            if ($oldOps["codigo7"] != $_POST["codigo7"]) {$new-> codigo7 = $_POST["codigo7"]; $old-> codigo7 = $oldOps["codigo7"]; $cambios+=1;}
+            if ($oldOps["codigo8"] != $_POST["codigo8"]) {$new-> codigo8 = $_POST["codigo8"]; $old-> codigo8 = $oldOps["codigo8"]; $cambios+=1;}
+            if ($oldOps["codigo9"] != $_POST["codigo9"]) {$new-> codigo9 = $_POST["codigo9"]; $old-> codigo9 = $oldOps["codigo9"]; $cambios+=1;}
+            if ($oldOps["codigo10"] != $_POST["codigo10"]) {$new-> codigo10 = $_POST["codigo10"]; $old-> codigo10 = $oldOps["codigo10"]; $cambios+=1;}
+            if ($oldOps["codigo11"] != $_POST["codigo11"]) {$new-> codigo11 = $_POST["codigo11"]; $old-> codigo11 = $oldOps["codigo11"]; $cambios+=1;}
+            if ($oldOps["codigo12"] != $_POST["codigo12"]) {$new-> codigo12 = $_POST["codigo12"]; $old-> codigo12 = $oldOps["codigo12"]; $cambios+=1;}
+            if ($oldOps["codigo13"] != $_POST["codigo13"]) {$new-> codigo13 = $_POST["codigo13"]; $old-> codigo13 = $oldOps["codigo13"]; $cambios+=1;}
+            if ($oldOps["codigo14"] != $_POST["codigo14"]) {$new-> codigo14 = $_POST["codigo14"]; $old-> codigo14 = $oldOps["codigo14"]; $cambios+=1;}
+            if ($oldOps["codigo15"] != $_POST["codigo15"]) {$new-> codigo15 = $_POST["codigo15"]; $old-> codigo15 = $oldOps["codigo15"]; $cambios+=1;}
+            if ($oldOps["codigo16"] != $_POST["codigo16"]) {$new-> codigo16 = $_POST["codigo16"]; $old-> codigo16 = $oldOps["codigo16"]; $cambios+=1;}
+
+            $oldData = json_encode($old);
+            $newData = json_encode($new);
+
+            if ($cambios>0){
+                $datosLog = array(  "orderNo"=> $_POST["tbd"],"fecha" => date('Y-m-d H:i:s'), "usuario" => $_SESSION["nombre"],"oldData" => $oldData,"newData" => $newData, "notes" => $_POST["changeNotes"]);
+
+                $respuestaLog = Datos::actualizaCambios($datosLog, "cambios");
+            }
+
+
             // ------------------------------------   OPTIONS --------------------------------------------------
-            $specs = new stdClass();
+            //$specs = new stdClass();
             $std = new stdClass();
+
             $std-> codigo1 = $_POST["codigo1"];
             $std-> descEnglish1 = $_POST["descEnglish1"];
             $std-> descEspanol1 = $_POST["descEspanol1"];
@@ -877,8 +966,6 @@ class controller{
              $specs -> floorFt = $_POST["floorFt"];
 
              $specifications = json_encode($specs);
-            //echo $specifications;
-
 
 
             $datosController = array("order"=> $_POST["tbd"],
@@ -895,11 +982,12 @@ class controller{
                                     "totOpciones" => $_POST["TotalOpciones"],
                                     "specifications" => $specifications);
 
+
+
             $respuesta = Datos::actualizaOrden($datosController, "orders");
 
             if ($respuesta=="success"){
-
-                $mensaje = "Order Updated";
+                $mensaje = "Order Updated ";
                 echo "<script type='text/javascript'>alert('$mensaje'); window.location.href='index.php?action=ordenes'</script>";
             }
 

@@ -174,6 +174,40 @@ class Datos extends Conexion{
 
 
 
+		#GUARDA LOS CAMBIOS DE ORDENES EN UNA TABLA CAMBIOS
+	#-------------------------------------
+	public function actualizaCambios($datosLog, $tabla){
+
+
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idCambio, orderNo, fecha, usuario, oldData, newData, notes) VALUES (NULL, :orderNo, :fecha, :usuario, :oldData, :newData, :notes)");
+			
+			$stmt->bindParam(":orderNo", $datosLog["orderNo"], PDO::PARAM_INT);
+            $stmt->bindParam(":fecha", $datosLog["fecha"], PDO::PARAM_STR);
+            $stmt->bindParam(":usuario", $datosLog["usuario"], PDO::PARAM_STR);
+            $stmt->bindParam(":oldData", $datosLog["oldData"], PDO::PARAM_STR);
+            $stmt->bindParam(":newData", $datosLog["newData"], PDO::PARAM_STR);
+            $stmt->bindParam(":notes", $datosLog["notes"], PDO::PARAM_STR);
+
+
+			if($stmt->execute()){
+
+					return "success";
+
+				}
+
+			else{
+
+					return "error";
+
+				}
+
+			$stmt->close();
+
+		}
+
+
+
+
 	#VISTA USUARIOS
 	#-------------------------------------
 
