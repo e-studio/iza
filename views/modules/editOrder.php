@@ -455,7 +455,7 @@ $options = json_decode($respuesta["options"], true);
                             <td><input class="ancho70" name="totWeight" id="totWeight" value="<?php echo $specs["totWeight"]?>" readonly="readonly"></td>
                             <td><input class="ancho70" name="floorFt" id="floorFt" value="<?php echo $specs["floorFt"]?>" readonly="readonly">
                                 <input id="pesoTrailer" value="0" hidden>
-                                <input id="precioAxle" value="<?php echo $options["precio5"]?>">Precio Axle
+                                <input id="precioAxle" value="<?php echo $options["precio5"]?>" hidden>
 
                             </td>
 
