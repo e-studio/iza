@@ -18,6 +18,9 @@
               <a href="index.php?action=cotizador">Add Order</a>
             </li>
             <li>
+              <a href="index.php?action=cambiosOrdenes">Order Alerts</a>
+            </li>
+            <li>
               <a href="index.php?action=ordenes">Orders List</a>
             </li>
           </ul>

@@ -96,7 +96,7 @@ $options = json_decode($respuesta["options"], true);
                                 </select>
                             </td>
                             <td>
-                                <select name="tLength" id="tLenght">
+                                <select name="tLength" id="tLenght" onchange="sumaTotales()">
                                     <?php echo '<option value="'.$specs["tLength"].'" selected>'.$specs["tLength"].'</option>'; ?>
                                     
                                     <option value="12">12</option>
@@ -115,7 +115,7 @@ $options = json_decode($respuesta["options"], true);
 
                             </td>
                             <td>
-                                <select name="tWidth" id="tWidth">
+                                <select name="tWidth" id="tWidth" onchange="sumaTotales()">
                                     <?php echo '<option value="'.$specs["tWidth"].'" selected>'.$specs["tWidth"].'</option>'; ?>
                                     <option value="5">5</option>
                                     <option value="6">6</option>
@@ -123,13 +123,11 @@ $options = json_decode($respuesta["options"], true);
                                     <option value="7">7</option>
                                     <option value="7.5">7.5</option>
                                 </select>
-                                <script>
-                                    document.getElementById("tWidth").addEventListener("change", calculaPeso);
-                                </script>
+                                
 
                             </td>
                             <td>
-                                <select class="ancho50" name="tAxles" id="tAxles">
+                                <select class="ancho50" name="tAxles" id="tAxles" onchange="sumaTotales()">
                                     <?php echo '<option value="'.$specs["tAxles"].'" selected>'.$specs["tAxles"].'</option>'; ?>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -150,9 +148,7 @@ $options = json_decode($respuesta["options"], true);
                                     <option value="3 - 6.5' T Axle">3 - 6.5' T Axle</option>
                                     <option value="2 7.2K axles">2 7.2K axles</option>
                                 </select>
-                                <script>
-                                    document.getElementById("tAxles").addEventListener("change", calculaPeso);
-                                </script>
+                                
 
                             </td>
                             <td>
@@ -246,9 +242,9 @@ $options = json_decode($respuesta["options"], true);
                                     <option value="SRUBBERBOARD">S Rubber Boards</option>
                                 </select>
 
-                                <script>
+                            <!--    <script>
                                     document.getElementById("tFloorType").addEventListener("change", calculaPeso);
-                                </script>
+                                </script>-->
 
 
                             </td>
@@ -370,9 +366,9 @@ $options = json_decode($respuesta["options"], true);
                                     <option value="14PLY16AR">14PLY16AR</option>
                                     <option value="18PLY17.5SR">18PLY16SR</option>
                                 </select>
-                                <script>
+                               <!-- <script>
                                     document.getElementById("tires").addEventListener("change", calculaPeso);
-                                </script>
+                                </script>-->
 
                             </td>
                             <td>
@@ -384,9 +380,9 @@ $options = json_decode($respuesta["options"], true);
                                     <option value="14PLY16ARE">14PLY16ARE</option>
                                     <option value="18PLY16SRE">18PLY16SRE</option>
                                 </select>
-                                <script>
+                              <!--  <script>
                                     document.getElementById("eTires").addEventListener("change", calculaPeso);
-                                </script>
+                                </script>-->
 
                             </td>
                          </tr>
@@ -459,7 +455,7 @@ $options = json_decode($respuesta["options"], true);
                             <td><input class="ancho70" name="totWeight" id="totWeight" value="<?php echo $specs["totWeight"]?>" readonly="readonly"></td>
                             <td><input class="ancho70" name="floorFt" id="floorFt" value="<?php echo $specs["floorFt"]?>" readonly="readonly">
                                 <input id="pesoTrailer" value="0" hidden>
-                                <input id="precioAxle" value="0" hidden>
+                                <input id="precioAxle" value="<?php echo $options["precio5"]?>">Precio Axle
 
                             </td>
 
@@ -547,7 +543,7 @@ $options = json_decode($respuesta["options"], true);
                     <td>7</td>
                     <td><input readonly="readonly" value="<?php echo $options["codigo7"]?>" class="ancho150" id="codigo7" name="codigo7"></td>
                     <td colspan="4">
-                        <select id="descEnglish7" name="descEnglish7" onchange="buscaOpcion2('saddles','codigo7','descEspanol7','horas7', 'precio7', this.value)" onblur="calculaPeso()">
+                        <select id="descEnglish7" name="descEnglish7" onchange="buscaOpcion2('saddles','codigo7','descEspanol7','horas7', 'precio7', this.value)" onblur="sumaTotales()">
                             <?php echo '<option value="'.$options["descEnglish7"].'" selected>'.$options["descEnglish7"].'</option>'; ?>
                             <?php $lista ->llenaSaddles(); ?>
                         </select>

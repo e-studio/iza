@@ -40,10 +40,10 @@ function toMoney($val,$symbol='',$r=2)
             <div class="card">
                 <div class="card-header">Order</div>
                 <div class="card-body">
-                    <p class="card-text">ORDER # : <input class="ancho170" type="text" name="tbd" id="tbd" required></p>
+                    <p class="card-text">ORDER # : <input class="ancho170" type="text" name="tbd" id="tbd" required onchange="buscaOrden(this.value)"></p>
                     <p class="card-text">Trailer # : <input class="ancho120" type="text" name="trailerNo" id="trailerNo" required></p>
                     <p class="card-text">Trailer Vin # : <input class="ancho120" type="text" name="trailerVin" id="trailerVin" required></p>
-                    <p class="card-text">Due Date : <input class="ancho170" type="date" name="dueDate" id="dueDate" required></p>
+                    <p class="card-text">Due Date : <input class="ancho170" type="date" name="dueDate" id="dueDate"></p>
                 </div>
             </div>
           </div>
@@ -105,6 +105,9 @@ function toMoney($val,$symbol='',$r=2)
                                     <option value="36">36</option>
                                     <option value="40">40</option>
                                 </select>
+                                <script>
+                                    document.getElementById("tLength").addEventListener("change", calculaPeso);
+                                </script>
                                
 
                             </td>
@@ -117,6 +120,10 @@ function toMoney($val,$symbol='',$r=2)
                                     <option value="7">7</option>
                                     <option value="7.5">7.5</option>
                                 </select>
+                                 <script>
+                                    document.getElementById("tWidth").addEventListener("change", calculaPeso);
+                                </script>
+
                                 
 
                             </td>
@@ -142,7 +149,9 @@ function toMoney($val,$symbol='',$r=2)
                                     <option value="3 - 6.5' T Axle">3 - 6.5' T Axle</option>
                                     <option value="2 7.2K axles">2 7.2K axles</option>
                                 </select>
-                                
+                                <script>
+                                    document.getElementById("tAxles").addEventListener("change", calculaPeso);
+                                </script>
 
                             </td>
                             <td>
@@ -523,7 +532,7 @@ function toMoney($val,$symbol='',$r=2)
                     <td>7</td>
                     <td><input readonly="readonly" value="-" class="ancho150" id="codigo7" name="codigo7"></td>
                     <td colspan="4">
-                        <select id="descEnglish7" name="descEnglish7" onchange="buscaOpcion2('saddles','codigo7','descEspanol7','horas7', 'precio7', this.value)" onblur="calculaPeso()">
+                        <select id="descEnglish7" name="descEnglish7" onchange="buscaOpcion2('saddles','codigo7','descEspanol7','horas7', 'precio7', this.value)" onblur="sumaTotales()">
                             <option value="">Select Tack Room or Saddle box</option>
                             <?php $lista ->llenaSaddles(); ?>
                         </select>

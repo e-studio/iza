@@ -68,6 +68,46 @@ function calculaPeso() {
 
 /**
  *
+ * Esta funcion revisa al capturar una nueva orden, si existe en la tabla orders
+ * si es asi manda un mensaje y borra el numero de orden escrito
+ */
+
+function buscaOrden(order) {
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            var xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+
+              var responseArray = xmlhttp.responseText;
+                if (responseArray == 'si'){
+                    alert ('Order number already exists!');
+                    document.getElementById("tbd").focus();
+                    document.getElementById("tbd").value="";
+
+                }
+                
+                
+
+            }
+        }
+        xmlhttp.open("GET","buscaOrden.php?order="+order,true);
+        xmlhttp.send();
+    
+
+    sumaTotales();
+
+    }
+
+
+
+
+/**
+ *
  * Esta funcion busca el codigo del trailer y devuelve las horas y el precio
  *
  */
@@ -100,7 +140,7 @@ function buscaPrecio(table,obj,obj2,mdl) {
         xmlhttp.send();
     }
 
-    calculaPeso();
+    sumaTotales();
 
     }
 
@@ -139,7 +179,7 @@ function buscaOpcion(table,codigo,ingles,espanol,horas,precio,mdl) {
         xmlhttp.open("GET","buscaOpcion.php?t="+table+"&q="+mdl,true);
         xmlhttp.send();
     }
-    precioPiso();
+    sumaTotales();
 
     }
 
@@ -185,6 +225,7 @@ function buscaOpcion2(table,codigo,espanol,horas,precio,mdl) {
 
 
 function sumaTotales(){
+    calculaPeso();
 
     //Carga de precios
     var precioMdl= document.getElementById('precioMdl').value;
@@ -241,5 +282,5 @@ function sumaTotales(){
     document.getElementById('Total').value = total;
     document.getElementById('TotalHoras').value = totalHoras;
 
-    calculaPeso();
+    
 }

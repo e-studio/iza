@@ -2,7 +2,7 @@
 session_start();
 if(!$_SESSION["validar"]){
     header("location:index.php");
-   // echo $_SESSION["validar"];
+    echo $_SESSION["validar"];
     exit();
 
 }
@@ -22,43 +22,41 @@ else {
         <li class="breadcrumb-item">
           <a href="index.php?action=inicio">Home</a>
         </li>
-        <li class="breadcrumb-item active">User List</li>
+        <li class="breadcrumb-item active">Orders Updated </li>
       </ol>
       
       <hr>
       <!-- Example DataTables Card-->
-      <div class="card border-info">
+      <div class="card border-info" width="70%" >
         <div class="card-header bg-info text-white">
-          <i class="fa fa-user-o"></i> Users</div>
+          <i class="fa fa-user-o"></i> Orders</div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>User</th>
-                  <th>Access Type</th>
-                  <th>Email</th>
-                  <th>Phone</th>
+                  <th class="ancho50">Order</th>
+                  <th class="ancho150">User</th>
+                  <th class="ancho150">Date</th>
+                  <th class="ancho450">Notes</th>
                   <th></th>
-                  <th></th>
+
                 </tr>
               </thead>
               <tfoot>
                 <tr>
-                  <th>Name</th>
+                  <th>Order</th>
                   <th>User</th>
-                  <th>Access Type</th>
-                  <th>Email</th>
-                  <th>Phone</th>
+                  <th>Date</th>
+                  <th>Notes</th>
                   <th></th>
-                  <th></th>
+
                 </tr>
               </tfoot>
               <tbody>
                 <?php
                   $ingreso = new controller();
-                  $ingreso -> listaEmpleadosController();
+                  $ingreso -> ordenesCambiadasController();
                   $ingreso -> borrarEmpleadoController();                  
                 ?>
               </tbody>

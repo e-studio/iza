@@ -428,6 +428,18 @@ public function llenaLista($tabla){
 		$stmt->close();
 	}
 
+	#DEVUELVE UN LISTADO DE TODOS LAS ORDENES MODIFICADAS EN EL ULTIMO MES
+	#-------------------------------------
+
+	public function ordenesCambiadasModel($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE MONTH(`fecha`) = MONTH(CURDATE()) ORDER BY fecha DESC");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
 
 
 	#BORRAR ORDEN
@@ -485,6 +497,27 @@ public function llenaLista($tabla){
 
 		$stmt->close();
 	}
+
+
+	#BUSCA UNA ORDEN EDITADA EN LA TABLA CAMBIOS
+	#-------------------------------------
+
+	public function cambioOrdenModel($orden, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE idCambio = :orden");
+
+		$stmt->bindParam(":orden", $orden, PDO::PARAM_INT);
+
+		$stmt -> execute();
+		return $stmt -> fetch();
+
+		$stmt->close();
+	}
+
+
+
+
+
 
 	#BUSCA UN CODIGO EN LA TABLA QUE RECIBA COMO PARAMETRO
 	#-------------------------------------
