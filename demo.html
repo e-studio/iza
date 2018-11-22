@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>politespace Test Suite</title>
+	
+	<link rel="stylesheet" href="views/formato/politespace.css">
+	<link rel="stylesheet" href="views/formato/libs.css">
+	<script src="views/formato/libs.js"></script>
+	<script src="views/formato/politespace.js"></script>
+	<script src="views/formato/politespace-init.js"></script>
+	<script>
+	jQuery( function(){
+		jQuery( document ).trigger( "enhance" );
+	});
+	</script>
+</head>
+<body>
+	
+	<form >
+		
+			<label>
+				<input type="text" data-politespace data-politespace-grouplength="3" data-politespace-delimiter="," data-politespace-decimal-mark="." data-politespace-reverse value="123456.123">
+			</label>
+
+	</form>
+</body>
+</html>

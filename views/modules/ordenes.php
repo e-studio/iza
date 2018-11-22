@@ -39,21 +39,21 @@ elseif ($_SESSION["rol"]==0){
               <thead>
                 <tr>
                   <th>Order #</th>
-                  <th>Trailer #</th>
+                  <th>Author</th>
                   <th>Trailer Vin</th>
                   <th>Date</th>
                   <th>Due Date</th>
-                  <th class="ancho170"></th>
+                  <th class="ancho250"></th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
                   <th>Order #</th>
-                  <th>Trailer #</th>
+                  <th>Author</th>
                   <th>Trailer Vin</th>
                   <th>Date</th>
                   <th>Due Date</th>
-                  <th class="ancho170"></th>
+                  <th class="ancho250"></th>
                 </tr>
               </tfoot>
               <tbody>

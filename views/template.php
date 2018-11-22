@@ -14,6 +14,26 @@
     <script src="views/js/search.js"></script>;
     <script src="views/js/confirmacion.js"></script>;
 
+    <!-- Sweet Alert 2-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.29.1/dist/sweetalert2.all.min.js"></script>
+
+
+    <!-- Formateo de moneda para numeros en las ordenes  -->
+    <script src="views/formato/numeral.js"></script>
+
+
+<!-- JS dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!-- bootbox code -->
+    <script src="views/js/bootbox.min.js"></script>
+
+
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    
+
 	<title>IZA - Control Panel</title>
 
 </head>
@@ -70,7 +90,7 @@
       </div>
     </div>
 
-
+   
 
     <script src="views/vendor/jquery/jquery.min.js"></script>
     <script src="views/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -82,6 +102,8 @@
     <script src="views/js/sb-admin-datatables.min.js"></script>
     <script src="views/js/validarIngreso.js"></script>
     <script src="views/js/tablas.js"></script>
+
+    
     <?php 
     if (session_status() == 2 && $_SESSION["rol"] == 0){
       $grafica = new controller();

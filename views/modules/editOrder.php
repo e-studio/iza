@@ -50,6 +50,7 @@ $options = json_decode($respuesta["options"], true);
                     <p class="card-text">Trailer # : <input value="<?php echo $respuesta["trailerNo"];?>" class="ancho120" type="text" name="trailerNo" id="trailerNo"></p>
                     <p class="card-text">Trailer Vin # : <input value="<?php echo $respuesta["trailerVin"];?>" class="ancho120" type="text" name="trailerVin" id="trailerVin"></p>
                     <p class="card-text">Due Date : <input value="<?php echo $respuesta["dueDate"];?>" class="ancho170" type="date" name="dueDate" id="dueDate"></p>
+                    <input hidden class="ancho170" type="text" name="author" id="author" value="<?php echo $respuesta["author"]; ?>">
                 </div>
             </div>
           </div>
@@ -687,9 +688,9 @@ $options = json_decode($respuesta["options"], true);
         <!--   ******************************************     Totales     ****************************************-->
       <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-md-2">
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <table id="tablaTotales" class="table table-bordered table-sm">
                 <tbody>
                     <tr>
@@ -697,8 +698,9 @@ $options = json_decode($respuesta["options"], true);
                     </tr>
                     
                     <tr>
+                        <input class="btn btn-secondary" name="Cancel" value="Cancel" onClick="location.href='index.php?action=ordenes'">
                         <input class="btn btn-warning btn-block" type="submit" id="actualiza" name="actualiza" value="" hidden>
-                        <input id="myBtn" class="btn btn-warning btn-block" data-toggle="modal" data-target="#updateModal" value="Update Order">
+                        <input id="myBtn" class="btn btn-warning" data-toggle="modal" data-target="#updateModal" value="Update Order">
                         <textarea class="form-control" rows="4" cols="20" name="changeNotes" id="changeNotes" hidden></textarea>
                     </tr>
                 </tbody>
@@ -706,7 +708,7 @@ $options = json_decode($respuesta["options"], true);
         </div>
         
         <div class="col-md-4">
-            <table id="tablaTotales" class="table table-bordered table-sm">
+            <table id="tablaTotales" class="table table-bordered table-sm" style="text-align: right;">
                 <tbody>
                     <tr class="table-secondary">
                         <td colspan="4" style="text-align: center;"><strong>Totals</strong></td>
@@ -717,25 +719,45 @@ $options = json_decode($respuesta["options"], true);
                     <td>Total Horas</td>
                     <td><input readonly="readonly" type="text" size="10" id="TotalHoras" name="TotalHoras" value="<?php echo $respuesta["totHrs"];?>" ></td>
                     <td>Total Options</td>
-                    <td><input readonly="readonly" type="text" size="10" id="TotalOpciones" name="TotalOpciones" value="<?php echo $respuesta["totOpciones"];?>" ></td>
+                    <td>
+                        <label id="labelTotalOpciones">
+                            $ <?php echo "<script>document.querySelector('#labelTotalOpciones').innerText = numeral(". $respuesta["totOpciones"] .").format('0,0.00'); </script>";  ?>
+                        </label>
+                        <input  hidden readonly="readonly" type="text" size="10" id="TotalOpciones" name="TotalOpciones" value="<?php echo $respuesta["totOpciones"];?>" ></td>
 
                  </tr>
                  <tr>
                     <td colspan="2">&nbsp;</td>
                     <td>Sub-Total</td>
-                    <td><input value="<?php echo $respuesta["subTotal"];?>" readonly="readonly" type="text" size="10" id="subTotal" name="subTotal"></td>
+                    <td>
+                        <label id="labelsubTotal">
+                            $ <?php echo "<script>document.querySelector('#labelsubTotal').innerText = numeral(". $respuesta["subTotal"] .").format('0,0.00'); </script>";  ?>
+                        </label>
+                        <input  hidden value="<?php echo $respuesta["subTotal"];?>" readonly="readonly" type="text" size="10" id="subTotal" name="subTotal">
+                    </td>
 
                  </tr>
                  <tr>
                     <td colspan="2">&nbsp;</td>
                     <td>2% Discount</td>
-                    <td><input value="<?php echo $respuesta["discount"];?>" readonly="readonly" type="text" size="10" id="descuento" name="descuento"></td>
+                    <td>
+                        <label id="labelDescuento">
+                            $ <?php echo "<script>document.querySelector('#labelDescuento').innerText = numeral(". $respuesta["discount"] .").format('0,0.00'); </script>";  ?>
+                        </label>
+                        <input hidden value="<?php echo $respuesta["discount"];?>" readonly="readonly" type="text" size="10" id="descuento" name="descuento">
+                    </td>
 
                  </tr>
                  <tr>
                     <td colspan="2">&nbsp;</td>
                     <td>Total</td>
-                    <td><input value="<?php echo $respuesta["totPrice"];?>" readonly="readonly" class="ancho120" type="number" min="1" step="any" size="10" id="Total" name="Total"></td>
+                    <td>
+                        <strong>
+                        <label id="labelTotal">
+                            <?php echo "<script>document.querySelector('#labelTotal').innerText = '$ ' + numeral(". $respuesta["totPrice"] .").format('0,0.00'); </script>";  ?>
+                        </label>
+                        </strong>
+                        <input hidden value="<?php echo $respuesta["totPrice"];?>" readonly="readonly" class="ancho120" type="number" min="1" step="any" size="10" id="Total" name="Total"></td>
 
                  </tr>
                     </tbody>

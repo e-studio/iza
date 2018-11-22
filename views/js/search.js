@@ -283,4 +283,15 @@ function sumaTotales(){
     document.getElementById('TotalHoras').value = totalHoras;
 
     
+    var strtotalOpciones = numeral(totalOpciones).format('0,0.00');
+    var strsubTotal = numeral(subTotal).format('0,0.00');
+    var strdescuento = numeral(descuento).format('0,0.00');
+    var strTotal = numeral(total).format('0,0.00');
+
+    document.querySelector('#labelTotalOpciones').innerText = strtotalOpciones;
+    document.querySelector('#labelsubTotal').innerText = strsubTotal;
+    document.querySelector('#labelDescuento').innerText = strdescuento;
+    document.querySelector('#labelTotal').innerText = '$'+strTotal;
+
+    
 }

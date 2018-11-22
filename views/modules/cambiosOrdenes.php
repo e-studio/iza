@@ -37,6 +37,7 @@ else {
                 <tr>
                   <th class="ancho50">Order</th>
                   <th class="ancho150">User</th>
+                  <th class="ancho150">Updated by</th>
                   <th class="ancho150">Date</th>
                   <th class="ancho450">Notes</th>
                   <th></th>
@@ -47,6 +48,7 @@ else {
                 <tr>
                   <th>Order</th>
                   <th>User</th>
+                  <th class="ancho150">Updated by</th>
                   <th>Date</th>
                   <th>Notes</th>
                   <th></th>

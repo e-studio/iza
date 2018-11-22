@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>My page</title>
+
+    <!-- CSS dependencies -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+
+    <p>Content here. <a class="alert" href=#>Alert!</a></p>
+
+    <!-- JS dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!-- bootbox code -->
+    <script src="views/js/bootbox.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.29.1/dist/sweetalert2.all.min.js"></script>
+  
+
+
+
+
+  <a href="http://google.com">Visit Google!</a>
+  <a href="http://ludu.co">Visit Ludu!</a>
+  
+  <script>
+  $('a').click(function(e) {
+    e.preventDefault(); // Prevent the href from redirecting directly
+    var linkURL = $(this).attr("href");
+    warnBeforeRedirect(linkURL);
+  });
+
+  function warnBeforeRedirect(linkURL) {
+    swal({
+      title: "Leave this site?", 
+      text: "If you click 'OK', you will be redirected to " + linkURL, 
+      type: "warning",
+      showCancelButton: true
+    }, function() {
+      // Redirect the user
+      window.location.href="index.php?action=ordenes";
+    });
+  }
+  </script>
+
+</body>
+</html>

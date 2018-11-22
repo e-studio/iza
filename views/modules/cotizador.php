@@ -41,9 +41,10 @@ function toMoney($val,$symbol='',$r=2)
                 <div class="card-header">Order</div>
                 <div class="card-body">
                     <p class="card-text">ORDER # : <input class="ancho170" type="text" name="tbd" id="tbd" required onchange="buscaOrden(this.value)"></p>
-                    <p class="card-text">Trailer # : <input class="ancho120" type="text" name="trailerNo" id="trailerNo" required></p>
-                    <p class="card-text">Trailer Vin # : <input class="ancho120" type="text" name="trailerVin" id="trailerVin" required></p>
+                    <p class="card-text">Trailer # : <input class="ancho120" type="text" name="trailerNo" id="trailerNo" ></p>
+                    <p class="card-text">Trailer Vin # : <input class="ancho120" type="text" name="trailerVin" id="trailerVin" ></p>
                     <p class="card-text">Due Date : <input class="ancho170" type="date" name="dueDate" id="dueDate"></p>
+                    <input hidden class="ancho170" type="text" name="author" id="author" value="<?php echo $_SESSION["nombre"]; ?>">
                 </div>
             </div>
           </div>
@@ -106,7 +107,7 @@ function toMoney($val,$symbol='',$r=2)
                                     <option value="40">40</option>
                                 </select>
                                 <script>
-                                    document.getElementById("tLength").addEventListener("change", calculaPeso);
+                                   // document.getElementById("tLength").addEventListener("change", calculaPeso);
                                 </script>
                                
 
@@ -670,25 +671,29 @@ function toMoney($val,$symbol='',$r=2)
         <!--   ******************************************     Totales     ****************************************-->
       <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-md-1">
         </div>
-        <div class="col-md-3">
-            <table id="tablaTotales" class="table table-bordered table-sm">
+        <div class="col-md-4">
+            <table id="tablaTotales" class="table table-sm">
                 <tbody>
                     <tr>
                         <br>
                     </tr>
                     
                     <tr>
-
-                        <input class="btn btn-primary btn-block" type="submit" name="envia" value="Save Order">
+                        <td>
+                          <input class="btn btn-secondary" name="Cancel" value="Cancel" onClick="location.href='index.php?action=ordenes'">
+                        </td>
+                        <td>
+                          <input class="btn btn-primary" type="submit" name="envia" value="Save Order">
+                        </td>  
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="col-md-4">
-            <table id="tablaTotales" class="table table-bordered table-sm">
+        <div class="col-md-5">
+            <table id="tablaTotales" class="table table-bordered table-sm" style="text-align: right;">
                 <tbody>
                     <tr class="table-secondary">
                         <td colspan="4" style="text-align: center;"><strong>Totals</strong></td>
@@ -697,31 +702,45 @@ function toMoney($val,$symbol='',$r=2)
                 <tr>
 
                     <td>Total Hours</td>
-                    <td><input readonly="readonly" type="text" size="10" id="TotalHoras" name="TotalHoras" value="0" ></td>
+                    <td><input readonly="readonly" type="text" size="5" id="TotalHoras" name="TotalHoras" value="0" ></td>
                     <td>Total Options</td>
-                    <td><input class="ancho100" readonly="readonly" type="text" size="10" id="TotalOpciones" name="TotalOpciones" value="0" ></td>
+                    <td>
+                        <label id="labelTotalOpciones">$</label>
+                        <input hidden class="ancho100" readonly="readonly" type="text" size="10" id="TotalOpciones" name="TotalOpciones" value="0" >
+                    </td>
 
                  </tr>
                  <tr>
                     <td colspan="2">&nbsp;</td>
                     <td>Sub-Total</td>
-                    <td><input class="ancho100" readonly="readonly" type="text" size="10" id="subTotal" name="subTotal" value="0" ></td>
+                    <td>
+                        <label id="labelsubTotal">$</label>
+                        <input hidden class="ancho100" readonly="readonly" type="text" size="10" id="subTotal" name="subTotal" value="0" >
+                    </td>
 
                  </tr>
                  <tr>
                     <td colspan="2">&nbsp;</td>
                     <td>2% Discount</td>
-                    <td><input class="ancho100" readonly="readonly" type="text" size="10" id="descuento" name="descuento" value="0" ></td>
+                    <td>
+                        <label id="labelDescuento">$</label>
+                        <input hidden class="ancho100" readonly="readonly" type="text" size="10" id="descuento" name="descuento" value="0" >
+                    </td>
 
                  </tr>
                  <tr>
                     <td colspan="2">&nbsp;</td>
                     <td>Total</td>
-                    <td><input class="ancho100" readonly="readonly" class="ancho120" type="text" min="1" step="any" size="10" id="Total" name="Total" value="0" ></td>
+                    <td><strong>
+                            <label id="labelTotal">$</label>
+                        </strong>
+                        <input hidden class="ancho100" readonly="readonly" class="ancho120" type="text" min="1" step="any" size="10" id="Total" name="Total" value="0" >
+                    </td>
 
                  </tr>
                     </tbody>
             </table>
+
         </div>
 
         <div class="col-md-2">

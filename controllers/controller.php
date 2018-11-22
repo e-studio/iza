@@ -386,16 +386,20 @@ class controller{
         foreach ($respuesta as $row => $item){
         echo'<tr>
                 <td>'.$item["orderNo"].'</td>
-                <td>'.$item["trailerNo"].'</td>
+                <td>'.$item["author"].'</td>
                 <td>'.$item["trailerVin"].'</td>
                 <td>'.$item["orderDate"].'</td>
                 <td>'.$item["dueDate"].'</td>';
                 if ($nivel == 0 || $nivel == 1){
                 echo '<td>
+                    <button class="btn btn-info btnImprimirOrdenP" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-usd"></i></button>
                     <button class="btn btn-info btnImprimirOrden" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-print"></i></button>
                     <a href="index.php?action=editOrder&idEditar='.$item["orderNo"].'"><button class="btn btn-warning">Edit</button></a>
-                    <a href="index.php?action=ordenes&idBorrar='.$item["orderNo"].'" onclick="return Confirmation()"><button class="btn btn-danger">Delete</button></a>
+                  
+                    <button class="btn btn-danger btnBorrar" onclick="confirmOrder('.$item["orderNo"].')">Delete</button>
+                    
                 </td>';
+                //<a href="index.php?action=ordenes&idBorrar='.$item["orderNo"].'"></a>
                 }
                 elseif($nivel == 2) {
                  echo '<td>
@@ -410,6 +414,57 @@ class controller{
             echo '</tr>';
         }
 
+    }
+
+
+
+
+     #BORRAR ORDEN
+    #------------------------------------
+    public function borrarOrdenController(){
+        if (isset($_GET['idBorrar'])){
+            $datosController = $_GET['idBorrar'];
+          /*  echo '<script>
+                bootbox.confirm("Want to delete this order?", 
+                    function(result){  
+                        if (result) {
+                            bootbox.alert("Deleted");
+                            return true;
+                        }
+                       
+                    });
+            </script>';*/
+
+            $respuesta = Datos::borrarOrdenModel($datosController,"orders");
+            if ($respuesta == "success"){
+               
+
+                echo '<script type="text/javascript">swal({
+                          title: "Order deleted",
+                          type: "error",
+
+                          showCancelButton: false
+                        })
+                        .then((value) => {
+                          if (value) {
+                            window.location.href = "index.php?action=ordenes";
+                          } 
+                        });</script> ';
+
+
+             /*   echo '<script type="text/javascript">
+                        swal({
+                          title: "Order deleted", 
+                          text: "Please reload this page" , 
+                          type: "error",
+                          showCancelButton: false
+                        }, function() {
+                          // Redirect the user
+                          location.reload();
+                        });
+                    </script>';*/
+            }
+        }
     }
 
     #LISTADO DE TODAS LAS OPCIONES PARA TRAILERS
@@ -444,6 +499,74 @@ class controller{
         }
 
     }
+
+
+    #LISTADO DE TODAS LAS OPCIONES PARA TRAILERS
+    #------------------------------------
+    public function exportaOpciones($tabla){
+        $respuesta = Datos::listaTablaModel($tabla);
+        $data= array();
+        foreach ($respuesta as $row => $item){
+            $data[] = ["id" => $item["id"], "codigo" => $item["codigo"], "descEnglish" => $item["descEnglish"], "descEspanol" => $item["descEspanol"] , "precio" => $item["precio"], "horas" => $item["horas"]];
+
+           
+            }
+            $colnames = array(
+            'id' => "ID",
+            'codigo' => "Code",
+            'descEnglish' => "English",
+            'descEspanol' => "Espanol",
+            'precio' => "Price",
+            'horas' => "Hours"
+          );
+
+          function map_colnames($input)
+          {
+            global $colnames;
+            return isset($colnames[$input]) ? $colnames[$input] : $input;
+          }
+
+          function cleanData(&$str)
+          {
+            if($str == 't') $str = 'TRUE';
+            if($str == 'f') $str = 'FALSE';
+            if(preg_match("/^0/", $str) || preg_match("/^\+?\d{8,}$/", $str) || preg_match("/^\d{4}.\d{1,2}.\d{1,2}/", $str)) {
+              $str = "'$str";
+            }
+            if(strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"';
+          }
+
+          // filename for download
+          $filename = "website_data_" . date('Ymd') . ".csv";
+
+          header("Content-Disposition: attachment; filename=\"$filename\"");
+          header("Content-Type: text/csv");
+
+          $out = fopen("php://output", 'w');
+
+          $flag = false;
+          foreach($data as $row) {
+            if(!$flag) {
+              // display field/column names as first row
+              $firstline = array_map(__NAMESPACE__ . '\map_colnames', array_keys($row));
+              fputcsv($out, $firstline, ',', '"');
+              $flag = true;
+            }
+            array_walk($row, __NAMESPACE__ . '\cleanData');
+            fputcsv($out, array_values($row), ',', '"');
+          }
+
+          fclose($out);
+          exit;
+
+        
+    }
+
+
+
+
+
+
 
     #LISTADO DE TODOS LOS EMPLEADOS
     #------------------------------------
@@ -484,6 +607,7 @@ class controller{
         echo'<tr>
                 <td>'.$item["orderNo"].'</td>
                 <td>'.$item["usuario"].'</td>
+                <td>'.$item["changer"].'</td>
                 <td>'.$item["fecha"].'</td>
                 <td>'.$item["notes"].'</td>
                 <td class="ancho100">
@@ -493,20 +617,6 @@ class controller{
             </tr>';
         }
 
-    }
-
-
-
-    #BORRAR ORDEN
-    #------------------------------------
-    public function borrarOrdenController(){
-        if (isset($_GET['idBorrar'])){
-            $datosController = $_GET['idBorrar'];
-            $respuesta = Datos::borrarOrdenModel($datosController,"orders");
-            if ($respuesta == "success"){
-                echo "<script type='text/javascript'>window.location.href='index.php?action=ordenes'</script>";
-            }
-        }
     }
 
     #BORRAR OPCION
@@ -744,6 +854,7 @@ class controller{
                                     "trailerVin" => $_POST["trailerVin"],
                                     "dueDate" => $_POST["dueDate"],
                                     "orderDate" => date('Y-m-d H:i:s'),
+                                    "author" => $_POST["author"],
                                     "notes" => $_POST["notes"],
                                     "subTotal" => $_POST["subTotal"],
                                     "descuento" => $_POST["descuento"],
@@ -758,7 +869,19 @@ class controller{
             if ($respuesta=="success"){
 
                 $mensaje = "Order Registered";
-                echo '<script type="text/javascript">alert("'.$mensaje.'"); window.open("extensions/tcpdf/pdf/orden.php?codigo='.$_POST["tbd"].'", "Imprimir Orden","toolbar=no,location=0,directories=no, status=0,menubar=0,scrollbars=0,resizable=0,width=1024,height=800,top=0,left=0" )</script>';
+                //echo '<script type="text/javascript">alert("'.$mensaje.'"); window.open("extensions/tcpdf/pdf/orden.php?codigo='.$_POST["tbd"].'", "Imprimir Orden","toolbar=no,location=0,directories=no, status=0,menubar=0,scrollbars=0,resizable=0,width=1024,height=800,top=0,left=0" )</script>';
+
+                echo '<script type="text/javascript">swal({
+                                                      title: "Order Registered",
+                                                      text: "Working on order sheet!",
+                                                      showCancelButton: false
+                                                    })
+                                                    .then((print) => {
+                                                      if (print) {
+                                                        window.open("extensions/tcpdf/pdf/orden.php?codigo='.$_POST["tbd"].'", "Print Order","toolbar=no,location=0,directories=no, status=0,menubar=0,scrollbars=0,resizable=0,width=1024,height=800,top=0,left=0" )
+                                                      } 
+                                                    }); 
+                     </script>';
             }
             else{
                  $mensaje = "Error al registrar";
@@ -864,9 +987,19 @@ class controller{
             $newData = json_encode($new);
 
             if ($cambios>0){
-                $datosLog = array(  "orderNo"=> $_POST["tbd"],"fecha" => date('Y-m-d H:i:s'), "usuario" => $_SESSION["nombre"],"oldData" => $oldData,"newData" => $newData, "notes" => $_POST["changeNotes"]);
+                $datosLog = array(  
+                    "orderNo"=> $_POST["tbd"],
+                    "fecha" => date('Y-m-d H:i:s'), 
+                    "usuario" => $_POST["author"], 
+                    "changer"=> $_SESSION["nombre"], 
+                    "oldData" => $oldData,
+                    "newData" => $newData, 
+                    "notes" => $_POST["changeNotes"]
+                );
 
                 $respuestaLog = Datos::actualizaCambios($datosLog, "cambios");
+
+                echo "<script>console.log($respuestaLog);</script>";
             }
 
 
@@ -1018,8 +1151,17 @@ class controller{
             $respuesta = Datos::actualizaOrden($datosController, "orders");
 
             if ($respuesta=="success"){
-                $mensaje = "Order Updated ";
-                echo "<script type='text/javascript'>alert('$mensaje'); window.location.href='index.php?action=ordenes'</script>";
+                echo '<script type="text/javascript">swal({
+                          title: "Order Updated",
+                          type: "success",
+
+                          showCancelButton: false
+                        })
+                        .then((value) => {
+                          if (value) {
+                            window.location.href = "index.php?action=ordenes";
+                          } 
+                        });</script> ';
             }
 
         } // if

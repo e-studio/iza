@@ -95,13 +95,14 @@ class Datos extends Conexion{
 	#-------------------------------------
 	public function registroOrden($datosModel, $tabla){
 
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (orderNo, trailerNo, trailerVin, dueDate, orderDate,notes, trailerHrs, totOpciones, trailerPrice, subTotal, discount, totHrs, totPrice, options, trailerSpecs) VALUES (:orderNo, :trailerNo, :trailerVin, :dueDate,:orderDate, :notes, :horasMdl, :totOpciones, :precioMdl, :subTotal, :discount, :TotalHoras, :Total, :ops, :specifications)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (orderNo, trailerNo, trailerVin, dueDate, orderDate, author,notes, trailerHrs, totOpciones, trailerPrice, subTotal, discount, totHrs, totPrice, options, trailerSpecs) VALUES (:orderNo, :trailerNo, :trailerVin, :dueDate,:orderDate, :author, :notes, :horasMdl, :totOpciones, :precioMdl, :subTotal, :discount, :TotalHoras, :Total, :ops, :specifications)");
 
 				$stmt->bindParam(":orderNo", $datosModel["order"], PDO::PARAM_INT);
 				$stmt->bindParam(":trailerNo", $datosModel["trailerNo"], PDO::PARAM_INT);
 				$stmt->bindParam(":trailerVin", $datosModel["trailerVin"], PDO::PARAM_STR);
 				$stmt->bindParam(":dueDate", $datosModel["dueDate"], PDO::PARAM_STR);
 				$stmt->bindParam(":orderDate", $datosModel["orderDate"], PDO::PARAM_STR);
+				$stmt->bindParam(":author", $datosModel["author"], PDO::PARAM_STR);
 				$stmt->bindParam(":notes", $datosModel["notes"], PDO::PARAM_STR);
 				$stmt->bindParam(":horasMdl", $datosModel["horasMdl"], PDO::PARAM_STR);
 				$stmt->bindParam(":precioMdl", $datosModel["precioMdl"], PDO::PARAM_STR);
@@ -179,11 +180,12 @@ class Datos extends Conexion{
 	public function actualizaCambios($datosLog, $tabla){
 
 
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idCambio, orderNo, fecha, usuario, oldData, newData, notes) VALUES (NULL, :orderNo, :fecha, :usuario, :oldData, :newData, :notes)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idCambio, orderNo, fecha, usuario, changer, oldData, newData, notes) VALUES (NULL, :orderNo, :fecha, :usuario, :changer,  :oldData, :newData, :notes)");
 			
 			$stmt->bindParam(":orderNo", $datosLog["orderNo"], PDO::PARAM_INT);
             $stmt->bindParam(":fecha", $datosLog["fecha"], PDO::PARAM_STR);
             $stmt->bindParam(":usuario", $datosLog["usuario"], PDO::PARAM_STR);
+            $stmt->bindParam(":changer", $datosLog["changer"], PDO::PARAM_STR);
             $stmt->bindParam(":oldData", $datosLog["oldData"], PDO::PARAM_STR);
             $stmt->bindParam(":newData", $datosLog["newData"], PDO::PARAM_STR);
             $stmt->bindParam(":notes", $datosLog["notes"], PDO::PARAM_STR);
@@ -408,7 +410,7 @@ public function llenaLista($tabla){
 
 	public function listaOrdenesModel($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT orderNo, trailerNo, trailerVin, dueDate, orderDate FROM $tabla");
+		$stmt = Conexion::conectar()->prepare("SELECT orderNo, author, trailerVin, dueDate, orderDate FROM $tabla");
 		$stmt -> execute();
 		return $stmt -> fetchALL();
 

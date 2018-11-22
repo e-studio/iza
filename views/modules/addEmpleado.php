@@ -77,7 +77,8 @@ $lista = new controller();
               </div>
             </div>
           </div>
-          <input class="btn btn-primary btn-block" type="submit" value="Registrar">
+          <input class="btn btn-secondary" name="Cancel" value="Cancel" onClick="location.href='index.php?action=empleados'">
+          <input class="btn btn-primary " type="submit" value="Register">
        </form>
 
 

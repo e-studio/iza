@@ -84,8 +84,8 @@ switch ($tabla) {
               </div>
             </div>
           </div>
-
-          <input class="btn btn-primary btn-block"  type="submit" value="Update">
+             <input class="btn btn-secondary" name="Cancel" value="Cancel" onClick="location.href='index.php?action=opciones'">
+          <input class="btn btn-primary"  type="submit" value="Update">
           <input type="hidden" id="id" name="id" value="<?php echo $id; ?>">
        </form>
 
