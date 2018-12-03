@@ -24,9 +24,19 @@ $respuesta = controller::ctrMostrarVentas($orden);
 $specs = json_decode($respuesta["trailerSpecs"], true);
 $options = json_decode($respuesta["options"], true);
 
-
+$author = $respuesta["author"];
+$aEmail = Datos::mailUsuarioModel("usuarios", $author);
+$authorEmail = $aEmail[0];
+$myName = $_SESSION["nombre"];
+$myEmail = $_SESSION["email"];
 
 ?>
+
+
+
+
+
+
 
 
 <div class="content-wrapper">
@@ -778,7 +788,7 @@ $options = json_decode($respuesta["options"], true);
   <?php
 
         $registro = new controller();
-        $registro -> actualizaOrdenes($respuesta);
+        $registro -> actualizaOrdenes($respuesta,$orden, $author, $authorEmail, $myName,$myEmail);
 
         ?>
   <?php include "views/modules/footer.php"; ?>

@@ -66,9 +66,83 @@ elseif($_SESSION["rol"] == 0){
 
 //  ==========================             Pantalla de Administrador =======================================
 
- include "navAdmin.php"; ?>
+ include "navAdmin.php";
+//$author = $respuesta["author"];
+$author = "Ricardo Urbina N";
+$mail = "rickyurbina@gmail.com";
+//$mail = Datos::mailUsuarioModel("usuarios", $author);
+
+
+  ?>
   <div class="content-wrapper">
     <div class="container-fluid">
+
+
+
+
+
+<!--  ==========================             Prueba de envio de Mail ======================================= 
+      <div class="row" >
+      <form class="nobottommargin" id="template-contactform" name="template-contactform" action="controllers/sendemail.php" method="post">
+
+                                <div class="form-process"></div>
+
+                                <div class="col_one_third">
+                                    <label for="template-contactform-name">Name <small>*</small></label>
+                                    <input type="text" id="template-contactform-name" name="template-contactform-name" value="<?php //echo $_SESSION["nombre"]; ?>" class="sm-form-control required" />
+                                </div>
+
+                                <div class="col_one_third">
+                                    <label for="template-contactform-email">Email <small>*</small></label>
+                                    <input type="email" id="template-contactform-email" name="template-contactform-email" value="<?php //echo $_SESSION["email"]; ?>" class="required email sm-form-control" />
+                                </div>
+
+                                <div class="col_one_third col_last">
+                                    <label for="template-contactform-phone">Author</label>
+                                    <input type="text" id="author" name="author" value="<?php //echo $author; ?>" class="sm-form-control" />
+                                </div>
+
+                                <div class="col_one_third">
+                                    <label for="template-contactform-email">Email Author <small>*</small></label>
+                                    <input type="email" id="author-email" name="author-email" value="<?php //echo $mail; ?>" class="required email sm-form-control" />
+                                </div>
+
+                                <div class="clear"></div>
+
+                                <div class="col_two_third">
+                                    <label for="template-contactform-subject">Subject <small>*</small></label>
+                                    <input type="text" id="template-contactform-subject" name="template-contactform-subject" value="Modificacion de Orden" class="required sm-form-control" />
+                                </div>
+
+                                <div class="col_one_third col_last">
+                                    <label for="template-contactform-service">Services</label>
+                                    <select id="template-contactform-service" name="template-contactform-service" class="sm-form-control">
+                                        <option value="">-- Select One --</option>
+                                        <option value="Wordpress">Wordpress</option>
+                                        <option value="PHP / MySQL">PHP / MySQL</option>
+                                        <option value="HTML5 / CSS3">HTML5 / CSS3</option>
+                                        <option value="Graphic Design">Graphic Design</option>
+                                    </select>
+                                </div>
+
+                                <div class="clear"></div>
+
+                                <div class="col_full">
+                                    <label for="template-contactform-message">Message <small>*</small></label>
+                                    <textarea class="required sm-form-control" id="template-contactform-message" name="template-contactform-message" rows="6" cols="30"></textarea>
+                                </div>
+
+                                <div class="col_full hidden">
+                                    <input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value="" class="sm-form-control" />
+                                </div>
+
+                                <div class="col_full">
+                                    <button class="button button-3d nomargin" type="submit" id="template-contactform-submit" name="template-contactform-submit" value="submit">Send Message</button>
+                                </div>
+
+                            </form>
+
+      </div>-->
 
       <div class="row">
         <div class="col-xl-3 col-sm-6 mb-3">

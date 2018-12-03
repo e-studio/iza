@@ -37,6 +37,7 @@ class Ingreso{
 						$_SESSION["nombre"] = $respuesta["nombre"];
 						$_SESSION["rol"] = $respuesta["rol"];
 						$_SESSION["sistema"] = $respuesta["sistema"];
+						$_SESSION["email"] = $respuesta["email"];
 
 
 

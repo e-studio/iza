@@ -33,11 +33,12 @@ $respuesta = Datos::cambioOrdenModel($orden, "cambios");
       <div class="row">
         <div class="col-sm-1"><!-- espacio de isquierda -->
         </div>
-        <div class="card col-sm-7">
-          <div class="card-header bg-warning text-black">Datos</div>
+        <div class="card col-sm-4">
+          <div class="card-header bg-warning text-black">Details</div>
             <div class="card-body">
               <p>Date : <strong><?php echo $respuesta['fecha'];?></strong><br>
-                Responsible : <strong><?php echo $respuesta['usuario'];?></strong></p>
+                Author : <strong><?php echo $respuesta['usuario'];?></strong><br>
+                Person who made update : <strong><?php echo $respuesta['changer'];?></strong></p>
             </div>
           </div>
         </div>
@@ -62,66 +63,6 @@ $respuesta = Datos::cambioOrdenModel($orden, "cambios");
 
         ?>
         
-   <!--     <form method="post" >
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <label for="nombre">Date</label><br>
-                <label for="nombre">Responsible</label><br>
-                <input class="form-control" value ="<?php echo $respuesta['usuario'];?>" name ="usuario" id="usuario" type="text" aria-describedby="nameHelp" placeholder="Escriba el nombre de Usuario" required="true">
-              </div>
-              <div class="col-md-6">
-                <label for="apellidos">Contraseña</label>
-                <input class="form-control" value ="<?php echo $respuesta['password'];?>" name="password" id="password" type="text" aria-describedby="nameHelp" placeholder="Contraseña" required="true">
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="email">Nombre</label>
-            <input class="form-control" value ="<?php echo $respuesta['nombre'];?>" name="nombre" id="nombre" type="text" aria-describedby="emailHelp" placeholder="Nombre" >
-          </div>
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <label for="telLocal">E-mail</label>
-               <input class="form-control" value ="<?php echo $respuesta['email'];?>" name="email" id="email" type="email" name="email" placeholder="Correo Electronico" required="true">
-              </div>
-              <div class="col-md-6">
-                <label for="celular">Celular</label>
-               <input class="form-control" value="<?php echo $respuesta['celular'];?>" name="celular" id="celular" type="phone" required>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <label for="rol">Permisos :</label>
-                <select name="rol" id="rol">
-                  <option selected="selected" value="<?php echo $respuesta['rol'];?>"></option>
-                  <option value="0">Administrator</option>
-                  <option value="1">Orders Admin</option>
-                  <option value="2">Engineering</option>
-                  <option value="3">Accountants</option>
-                </select>
-              </div>
-              <div class="col-md-6">
-
-              </div>
-            </div>
-          </div>
-          <input class="btn btn-primary btn-block"  type="submit" value="Actualizar">
-          <input type="hidden" id="id" name="id" value="<?php echo $usuario; ?>">
-       </form>-->
-
-
-        <?php
-
-       // $ingreso = new controller();
-      //  $ingreso -> actualizaEmpleadoController();
-
-        ?>
-
       </div><!--  Card Body  -->
     </div><!--  Card Body  -->
 
@@ -146,64 +87,7 @@ $respuesta = Datos::cambioOrdenModel($orden, "cambios");
 
         ?>
 
-        <!--<form method="post" >
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <label for="nombre">Usuario</label>
-                <input class="form-control" value ="<?php echo $respuesta['usuario'];?>" name ="usuario" id="usuario" type="text" aria-describedby="nameHelp" placeholder="Escriba el nombre de Usuario" required="true">
-              </div>
-              <div class="col-md-6">
-                <label for="apellidos">Contraseña</label>
-                <input class="form-control" value ="<?php echo $respuesta['password'];?>" name="password" id="password" type="text" aria-describedby="nameHelp" placeholder="Contraseña" required="true">
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="email">Nombre</label>
-            <input class="form-control" value ="<?php echo $respuesta['nombre'];?>" name="nombre" id="nombre" type="text" aria-describedby="emailHelp" placeholder="Nombre" >
-          </div>
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <label for="telLocal">E-mail</label>
-               <input class="form-control" value ="<?php echo $respuesta['email'];?>" name="email" id="email" type="email" name="email" placeholder="Correo Electronico" required="true">
-              </div>
-              <div class="col-md-6">
-                <label for="celular">Celular</label>
-               <input class="form-control" value="<?php echo $respuesta['celular'];?>" name="celular" id="celular" type="phone" required>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <label for="rol">Permisos :</label>
-                <select name="rol" id="rol">
-                  <option selected="selected" value="<?php echo $respuesta['rol'];?>"></option>
-                  <option value="0">Administrator</option>
-                  <option value="1">Orders Admin</option>
-                  <option value="2">Engineering</option>
-                  <option value="3">Accountants</option>
-                </select>
-              </div>
-              <div class="col-md-6">
-
-              </div>
-            </div>
-          </div>
-          <input class="btn btn-primary btn-block"  type="submit" value="Actualizar">
-          <input type="hidden" id="id" name="id" value="<?php echo $usuario; ?>">
-       </form>-->
-
-
-        <?php
-
-      // $ingreso = new controller();
-      //  $ingreso -> actualizaEmpleadoController();
-
-        ?>
+        
 
       </div><!--  Card Body  -->
     </div><!--  Card Body  -->

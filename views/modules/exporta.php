@@ -4,8 +4,10 @@ Este codigo genera y descarga un archivo .xls a partir de una consulta a una bas
 
 */
 
-$conexion = mysqli_connect ("localhost", "root", "");
-mysqli_select_db ($conexion, "iza");
+//$conexion = mysqli_connect ("localhost", "root", ""); Local
+
+$conexion = mysqli_connect ("50.62.209.108:3306", "rick", "B4laj@06");
+mysqli_select_db ($conexion, "ph18408318088_"); // iza
 $sql = "SELECT * FROM opciones";
 $resultado = mysqli_query ($conexion, $sql) or die (mysql_error ());
 $libros = array();

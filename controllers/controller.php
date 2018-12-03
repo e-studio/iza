@@ -1,4 +1,9 @@
 <?php
+/*
+use PHPMailer\PHPMailer\PHPMailer;
+require 'extensions/phpmailer/src/PHPMailer.php';
+require 'extensions/phpmailer/src/SMTP.php';
+*/
 
 class controller{
 
@@ -396,10 +401,11 @@ class controller{
                     <button class="btn btn-info btnImprimirOrden" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-print"></i></button>
                     <a href="index.php?action=editOrder&idEditar='.$item["orderNo"].'"><button class="btn btn-warning">Edit</button></a>
                   
-                    <button class="btn btn-danger btnBorrar" onclick="confirmOrder('.$item["orderNo"].')">Delete</button>
+                    <button class="btn btn-danger btnBorrar" data-toggle="modal" data-target="#deleteModal" data-borrar="'.$item["orderNo"].'">Delete</button>
+                    <a href="index.php?action=ordenes&idBorrar='.$item["orderNo"].'"><button id="'.$item["orderNo"].'" name="'.$item["orderNo"].'" hidden>X</button></a>
+                    
                     
                 </td>';
-                //<a href="index.php?action=ordenes&idBorrar='.$item["orderNo"].'"></a>
                 }
                 elseif($nivel == 2) {
                  echo '<td>
@@ -424,45 +430,22 @@ class controller{
     public function borrarOrdenController(){
         if (isset($_GET['idBorrar'])){
             $datosController = $_GET['idBorrar'];
-          /*  echo '<script>
-                bootbox.confirm("Want to delete this order?", 
-                    function(result){  
-                        if (result) {
-                            bootbox.alert("Deleted");
-                            return true;
-                        }
-                       
-                    });
-            </script>';*/
 
             $respuesta = Datos::borrarOrdenModel($datosController,"orders");
             if ($respuesta == "success"){
                
 
-                echo '<script type="text/javascript">swal({
-                          title: "Order deleted",
-                          type: "error",
+            echo '<script type="text/javascript">swal({
+                      title: "Order deleted",
+                      type: "error",
 
-                          showCancelButton: false
-                        })
-                        .then((value) => {
-                          if (value) {
-                            window.location.href = "index.php?action=ordenes";
-                          } 
-                        });</script> ';
-
-
-             /*   echo '<script type="text/javascript">
-                        swal({
-                          title: "Order deleted", 
-                          text: "Please reload this page" , 
-                          type: "error",
-                          showCancelButton: false
-                        }, function() {
-                          // Redirect the user
-                          location.reload();
-                        });
-                    </script>';*/
+                      showCancelButton: false
+                    })
+                    .then((value) => {
+                      if (value) {
+                        window.location.href = "index.php?action=ordenes";
+                      } 
+                    });</script> ';
             }
         }
     }
@@ -645,6 +628,65 @@ class controller{
             }
         }
     }
+
+
+#   ----------------------------------------------------------------------------------------
+#   Notificacion por email de cambio de ordenes
+#   ----------------------------------------------------------------------------------------
+/*
+    public function notificarAuthor($name, $email, $author,$authorEmail){
+        
+
+            
+
+            $toemails = array();
+
+            $toemails[] = array(
+                            'email' => 'rickyurbina@gmail.com', // email a quien vas a informar
+                            'name' =>  'Sistema'// Su nombre
+                        );
+
+            $name = 'Jason';
+            $email = 'jason@durahaul.com';
+            $author = 'Ricardo Urbina';
+            $authorEmail = 'rickyurbina@gmail.com';
+            $subject = 'Modificacion de Orden';
+            $message = '';
+
+
+            // Form Processing Messages
+            $message_success = 'We have <strong>successfully</strong> received your Message and will get Back to you as soon as possible.';
+
+            // Add this only if you use reCaptcha with your Contact Forms
+            $recaptcha_secret = ''; // Your reCaptcha Secret
+
+            $mail = new PHPMailer();
+
+            $mail->SetFrom( $email , $name );
+            $mail->AddReplyTo( $email , $name );
+            foreach( $toemails as $toemail ) {
+                $mail->AddAddress( $toemail['email'] , $toemail['name'] );
+            }
+
+            $mail->Subject = $subject;
+
+            $referrer = $_SERVER['HTTP_REFERER'] ? '<br><br><br>This Form was submitted from: ' . $_SERVER['HTTP_REFERER'] : '';
+
+            $body = "$name $email $author $authorEmail $message $referrer";
+
+            $mail->MsgHTML( $body );
+            $sendEmail = $mail->Send();
+
+            if( $sendEmail == true ):
+                echo '<script>console.log("{ "alert": "success", "message": "' . $message_success . '" });</script>';
+            else:
+                echo '<script>console.log("{ "alert": "error", "message": "Email <strong>could not</strong> be sent due to some Unexpected Error. Please Try Again later.<br /><br /><strong>Reason:</strong><br />' . $mail->ErrorInfo .'" });</script>';
+            endif;
+
+
+    }
+*/
+
 
 
     # ACTUALIZA EMPLEADOS
@@ -897,7 +939,13 @@ class controller{
 
 #ACTUALIZACION DE ORDENES DE TRAILERS
     #------------------------------------
-    public function actualizaOrdenes($oldValues){
+    public function actualizaOrdenes($oldValues,$order,$author,$authorEmail,$myName,$myEmail){
+
+        // $resultado = self::notificarAuthor($myName, $myEmail, $author,$authorEmail);
+        
+        //notificarAuthor($myName, $myEmail, $author,$authorEmail);
+
+       // echo '<script>console.log("'.$author.$authorEmail.$myName.$myEmail.'");</script>';
 
         date_default_timezone_set("America/Chihuahua");
         date_default_timezone_get();
@@ -1151,7 +1199,7 @@ class controller{
             $respuesta = Datos::actualizaOrden($datosController, "orders");
 
             if ($respuesta=="success"){
-                echo '<script type="text/javascript">swal({
+               /* echo '<script type="text/javascript">swal({
                           title: "Order Updated",
                           type: "success",
 
@@ -1161,7 +1209,20 @@ class controller{
                           if (value) {
                             window.location.href = "index.php?action=ordenes";
                           } 
+                        });</script> ';*/
+
+                        echo '<script type="text/javascript">swal({
+                          title: "Order Updated",
+                          type: "success",
+
+                          showCancelButton: false
+                        })
+                        .then((value) => {
+                          if (value) {
+                            window.location.href = "controllers/sendemail.php?order='.$order.'&name='.$myName.'&email='.$myEmail.'&author='.$author.'&authorEmail='.$authorEmail.'";
+                          } 
                         });</script> ';
+
             }
 
         } // if

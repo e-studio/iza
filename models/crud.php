@@ -226,6 +226,27 @@ class Datos extends Conexion{
 	}
 
 
+	#BUSCA EMAIL DE USUARIO
+	#-------------------------------------
+
+	public function mailUsuarioModel($tabla, $usuario){
+
+		$stmt = Conexion::conectar()->prepare("SELECT email FROM $tabla WHERE nombre= :usuario");
+		$stmt->bindParam(":usuario", $usuario, PDO::PARAM_STR);
+		$stmt->execute();
+
+		if($stmt->execute()){
+			return $stmt -> fetch();
+		}
+
+		else{
+			return "error";
+		}
+		$stmt->close();
+
+	}
+
+
 public function llenaLista($tabla){
 
         $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY descEnglish");
