@@ -6,25 +6,28 @@ require '../extensions/phpmailer/src/PHPMailer.php';
 require '../extensions/phpmailer/src/SMTP.php';
 
 
+$order = $_GET["order"];
+$name = $_GET["name"];   	//quien modifico la orden
+$email = $_GET["email"];	//mail de quien modifica
+$author = $_GET["author"];   
+$authorEmail = $_GET["authorEmail"];
+$subject = 'Order '.$order.' Updated';
+$message = '';
+
+
 $toemails = array();
 
 $toemails[] = array(
-				'email' => 'rickyurbina@gmail.com', // email a quien vas a informar
-				'name' =>  'Sistema'// Su nombre
+				'email' => 'ricky_urbina@yahoo.com', // email de administrador de ordenes vas a informar
+				'name' =>  'Jason Sawatzky'// Su nombre
 			);
 
 
-		$order = $_GET["order"];
-		$name = $_GET["name"];   	//quien modifico la orden
-		$email = $_GET["email"];	//mail de quien modifica
-		$author = $_GET["author"];   
-		$authorEmail = $_GET["authorEmail"];
-		$subject = 'Order '.$order.' Updated';
-		$message = '';
+		
 
 
 // Form Processing Messages
-$message_success = '<strong>Received !!!</strong><br>';
+//$message_success = '<strong>Received !!!</strong><br>';
 
 
 if ($name != $author){
@@ -34,6 +37,7 @@ if ($name != $author){
 			$mail->AddReplyTo( 'noreply@izadm.com' , 'IZA IT Support' );
 			foreach( $toemails as $toemail ) {
 				$mail->AddAddress( $authorEmail , $author );
+			    $mail->AddAddress( $toemail['email'] , $toemail['name'] );
 			}
 
 			$mail->Subject = $subject;

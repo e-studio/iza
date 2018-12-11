@@ -266,7 +266,7 @@ function toMoney($val,$symbol='',$r=2)
                             </td>
                             <td>
                                 <select name="tHinch">
-                                    <option value="">Hinch?</option>
+                                    <option value="">Hitch?</option>
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
                                 </select>

@@ -18,10 +18,10 @@
               <a href="index.php?action=cotizador">Add Order</a>
             </li>
             <li>
-              <a href="index.php?action=cambiosOrdenes">Order Alerts</a>
+              <a href="index.php?action=ordenes">Orders List</a>
             </li>
             <li>
-              <a href="index.php?action=ordenes">Orders List</a>
+              <a href="index.php?action=cambiosOrdenes">Order Alerts</a>
             </li>
           </ul>
         </li>
@@ -70,10 +70,16 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseReportes">
             <li>
-              <a href="">Orders</a>
+              <a href="index.php?action=logins">User Logins</a>
             </li>
             <li>
-              <a href="">Clients</a>
+              <a href="views/modules/exportaTrailers.php">Trailer Prices .xls</a>
+            </li>
+            <li>
+              <a href="views/modules/exporta.php">Options Prices .xls</a>
+            </li>
+            <li>
+              <a href="views/modules/exportaLonas.php">Tarp Prices .xls</a>
             </li>
           </ul>
         </li>

@@ -39,7 +39,7 @@ else {
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>User</th>
+                  <th>Last Login</th>
                   <th>Access Type</th>
                   <th>Email</th>
                   <th>Phone</th>
@@ -50,7 +50,7 @@ else {
               <tfoot>
                 <tr>
                   <th>Name</th>
-                  <th>User</th>
+                  <th>Last Login</th>
                   <th>Access Type</th>
                   <th>Email</th>
                   <th>Phone</th>

@@ -432,6 +432,7 @@ public function llenaLista($tabla){
 	public function listaOrdenesModel($tabla){
 
 		$stmt = Conexion::conectar()->prepare("SELECT orderNo, author, trailerVin, dueDate, orderDate FROM $tabla");
+		
 		$stmt -> execute();
 		return $stmt -> fetchALL();
 
@@ -439,10 +440,23 @@ public function llenaLista($tabla){
 	}
 
 
-	#DEVUELVE UN LISTADO DE TODOS LOS EMPLEADOS
+	#DEVUELVE UN LISTADO DE TODOS LOS EMPLEADOS Y LA ULTIMA FECHA DE ACCESO DE LA TABLA logacces
 	#-------------------------------------
 
 	public function listaEmpleadosModel($tabla){
+
+		//$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+		$stmt = Conexion::conectar()->prepare("SELECT u.id, u.usuario, u.password, u.nombre, u.email, u.celular, u.rol, MAX(l.fecha) as fecha , l.ubicacion FROM usuarios as u, logacceso as l WHERE u.nombre = l.usuario group by u.usuario");
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
+	#DEVUELVE LA ULTIMA FECHA DE ACCESO DE UN USUARIO
+	#-------------------------------------
+
+	public function lastLoginModel($tabla){
 
 		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 		$stmt -> execute();
@@ -616,6 +630,32 @@ public function llenaLista($tabla){
 		$stmt->close();
 
 	}
+
+#REGISTRO DE ACCESO DE USUARIOS EN LA TABLA logaccesos
+	#-------------------------------------
+	public function logUsuarioModel($datosModel, $tabla){
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla VALUES (NULL,:usuario,:fecha,:ubicacion)");
+
+		$stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
+		$stmt->bindParam(":fecha", $datosModel["fecha"], PDO::PARAM_STR);
+		$stmt->bindParam(":ubicacion", $datosModel["ubicacion"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+
+			return "success";
+
+		}
+
+		else{
+
+			return "error";
+
+		}
+
+		$stmt->close();
+
+	}
+
 
 
 }

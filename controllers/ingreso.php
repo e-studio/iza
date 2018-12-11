@@ -39,7 +39,7 @@ class Ingreso{
 						$_SESSION["sistema"] = $respuesta["sistema"];
 						$_SESSION["email"] = $respuesta["email"];
 
-
+						$registro = RegistraLog::registraLogin($_SESSION["nombre"]);
 
 						header("location:index.php?action=inicio");
 

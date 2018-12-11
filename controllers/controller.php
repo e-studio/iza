@@ -564,12 +564,13 @@ class controller{
             if ($item["rol"] == 3 ) $tipoAcceso = "Accountant";
         echo'<tr>
                 <td>'.$item["nombre"].'</td>
-                <td>'.$item["usuario"].'</td>
+                <td>'.$item["fecha"].'<br><strong style="font-size: 10px;">'.$item["ubicacion"].'</strong></td>
                 <td>'.$tipoAcceso.'</td>
                 <td>'.$item["email"].'</td>
                 <td>'.$item["celular"].'</td>
                 <td>
                     <a href="index.php?action=editEmpleados&idEditar='.$item["id"].'"><button class="btn btn-warning">Edit</button></a>
+                    <a href="views/modules/accesos.php?usuario='.$item["nombre"].'"><button class="btn btn-info">Log</button></a>
                 </td>
                 <td>
                     <a href="index.php?action=empleados&idBorrar='.$item["id"].'" onclick="return Confirmation()"><button class="btn btn-danger">Delete</button></a>
@@ -1199,29 +1200,17 @@ class controller{
             $respuesta = Datos::actualizaOrden($datosController, "orders");
 
             if ($respuesta=="success"){
-               /* echo '<script type="text/javascript">swal({
-                          title: "Order Updated",
-                          type: "success",
+                echo '<script type="text/javascript">swal({
+                  title: "Order Updated",
+                  type: "success",
 
-                          showCancelButton: false
-                        })
-                        .then((value) => {
-                          if (value) {
-                            window.location.href = "index.php?action=ordenes";
-                          } 
-                        });</script> ';*/
-
-                        echo '<script type="text/javascript">swal({
-                          title: "Order Updated",
-                          type: "success",
-
-                          showCancelButton: false
-                        })
-                        .then((value) => {
-                          if (value) {
-                            window.location.href = "controllers/sendemail.php?order='.$order.'&name='.$myName.'&email='.$myEmail.'&author='.$author.'&authorEmail='.$authorEmail.'";
-                          } 
-                        });</script> ';
+                  showCancelButton: false
+                })
+                .then((value) => {
+                  if (value) {
+                    window.location.href = "controllers/sendemail.php?order='.$order.'&name='.$myName.'&email='.$myEmail.'&author='.$author.'&authorEmail='.$authorEmail.'";
+                  } 
+                });</script> ';
 
             }
 

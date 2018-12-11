@@ -8,6 +8,7 @@ require_once "controllers/template.php";
 require_once "controllers/enlaces.php";
 require_once "controllers/ingreso.php";
 require_once "controllers/controller.php";
+require_once "controllers/ubica.php";
 
 $template = new TemplateController();
 $template -> template();

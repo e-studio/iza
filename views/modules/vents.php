@@ -37,7 +37,7 @@ else {
                 <tr>
                   <th>Code</th>
                   <th>Description</th>
-                  <th>Spaish Description</th>
+                  <th>Spanish Description</th>
                   <th>Labor hrs</th>
                   <th>price</th>
                   <th></th>
@@ -47,7 +47,7 @@ else {
                 <tr>
                   <th>Code</th>
                   <th>Description</th>
-                  <th>Spaish Description</th>
+                  <th>Spanish Description</th>
                   <th>Labor hrs</th>
                   <th>price</th>
                   <th></th>
