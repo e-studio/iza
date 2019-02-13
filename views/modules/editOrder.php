@@ -60,6 +60,7 @@ $myEmail = $_SESSION["email"];
                     <p class="card-text">Trailer # : <input value="<?php echo $respuesta["trailerNo"];?>" class="ancho120" type="text" name="trailerNo" id="trailerNo"></p>
                     <p class="card-text">Trailer Vin # : <input value="<?php echo $respuesta["trailerVin"];?>" class="ancho120" type="text" name="trailerVin" id="trailerVin"></p>
                     <p class="card-text">Due Date : <input value="<?php echo $respuesta["dueDate"];?>" class="ancho170" type="date" name="dueDate" id="dueDate"></p>
+                     <p class="card-text">Inventory : <input type="checkbox" name="inventory" value="1" <?php if ($respuesta["inventory"]==1) echo 'checked="checked"';?> ></p>
                     <input hidden class="ancho170" type="text" name="author" id="author" value="<?php echo $respuesta["author"]; ?>">
                 </div>
             </div>
@@ -788,7 +789,7 @@ $myEmail = $_SESSION["email"];
   <?php
 
         $registro = new controller();
-        $registro -> actualizaOrdenes($respuesta,$orden, $author, $authorEmail, $myName,$myEmail);
+        $registro -> actualizaOrdenes($respuesta, $orden, $author, $authorEmail, $myName,$myEmail);
 
         ?>
   <?php include "views/modules/footer.php"; ?>

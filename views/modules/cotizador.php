@@ -44,6 +44,7 @@ function toMoney($val,$symbol='',$r=2)
                     <p class="card-text">Trailer # : <input class="ancho120" type="text" name="trailerNo" id="trailerNo" ></p>
                     <p class="card-text">Trailer Vin # : <input class="ancho120" type="text" name="trailerVin" id="trailerVin" ></p>
                     <p class="card-text">Due Date : <input class="ancho170" type="date" name="dueDate" id="dueDate"></p>
+                    <p class="card-text">Inventory  : <input type="checkbox" name="inventory" value="1"></p> 
                     <input hidden class="ancho170" type="text" name="author" id="author" value="<?php echo $_SESSION["nombre"]; ?>">
                 </div>
             </div>

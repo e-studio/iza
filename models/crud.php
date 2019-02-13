@@ -95,7 +95,7 @@ class Datos extends Conexion{
 	#-------------------------------------
 	public function registroOrden($datosModel, $tabla){
 
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (orderNo, trailerNo, trailerVin, dueDate, orderDate, author,notes, trailerHrs, totOpciones, trailerPrice, subTotal, discount, totHrs, totPrice, options, trailerSpecs) VALUES (:orderNo, :trailerNo, :trailerVin, :dueDate,:orderDate, :author, :notes, :horasMdl, :totOpciones, :precioMdl, :subTotal, :discount, :TotalHoras, :Total, :ops, :specifications)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (orderNo, trailerNo, trailerVin, dueDate, orderDate, author, inventory, notes, trailerHrs, totOpciones, trailerPrice, subTotal, discount, totHrs, totPrice, options, trailerSpecs) VALUES (:orderNo, :trailerNo, :trailerVin, :dueDate,:orderDate, :author, :inventory, :notes, :horasMdl, :totOpciones, :precioMdl, :subTotal, :discount, :TotalHoras, :Total, :ops, :specifications)");
 
 				$stmt->bindParam(":orderNo", $datosModel["order"], PDO::PARAM_INT);
 				$stmt->bindParam(":trailerNo", $datosModel["trailerNo"], PDO::PARAM_INT);
@@ -103,6 +103,7 @@ class Datos extends Conexion{
 				$stmt->bindParam(":dueDate", $datosModel["dueDate"], PDO::PARAM_STR);
 				$stmt->bindParam(":orderDate", $datosModel["orderDate"], PDO::PARAM_STR);
 				$stmt->bindParam(":author", $datosModel["author"], PDO::PARAM_STR);
+				$stmt->bindParam(":inventory", $datosModel["inventory"], PDO::PARAM_STR);
 				$stmt->bindParam(":notes", $datosModel["notes"], PDO::PARAM_STR);
 				$stmt->bindParam(":horasMdl", $datosModel["horasMdl"], PDO::PARAM_STR);
 				$stmt->bindParam(":precioMdl", $datosModel["precioMdl"], PDO::PARAM_STR);
@@ -137,12 +138,13 @@ class Datos extends Conexion{
 	#-------------------------------------
 	public function actualizaOrden($datosModel, $tabla){
 
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET orderNo=:orderNo, trailerNo=:trailerNo, trailerVin=:trailerVin, dueDate=:dueDate, orderDate=:orderDate, notes=:notes, trailerHrs=:horasMdl, trailerPrice=:precioMdl, subTotal=:subTotal, discount=:discount, totHrs=:TotalHoras, totOpciones=:totOpciones, totPrice=:Total, options=:ops, trailerSpecs=:specifications WHERE orderNo = :orderNo");
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET orderNo=:orderNo, trailerNo=:trailerNo, trailerVin=:trailerVin, dueDate=:dueDate, inventory=:inventory, orderDate=:orderDate, notes=:notes, trailerHrs=:horasMdl, trailerPrice=:precioMdl, subTotal=:subTotal, discount=:discount, totHrs=:TotalHoras, totOpciones=:totOpciones, totPrice=:Total, options=:ops, trailerSpecs=:specifications WHERE orderNo = :orderNo");
 
 				$stmt->bindParam(":orderNo", $datosModel["order"], PDO::PARAM_INT);
 				$stmt->bindParam(":trailerNo", $datosModel["trailerNo"], PDO::PARAM_INT);
 				$stmt->bindParam(":trailerVin", $datosModel["trailerVin"], PDO::PARAM_STR);
 				$stmt->bindParam(":dueDate", $datosModel["dueDate"], PDO::PARAM_STR);
+				$stmt->bindParam(":inventory", $datosModel["inventory"], PDO::PARAM_STR);
 				$stmt->bindParam(":orderDate", $datosModel["orderDate"], PDO::PARAM_STR);
 				$stmt->bindParam(":notes", $datosModel["notes"], PDO::PARAM_STR);
 				$stmt->bindParam(":horasMdl", $datosModel["horasMdl"], PDO::PARAM_STR);
@@ -431,7 +433,7 @@ public function llenaLista($tabla){
 
 	public function listaOrdenesModel($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT orderNo, author, trailerVin, dueDate, orderDate FROM $tabla");
+		$stmt = Conexion::conectar()->prepare("SELECT orderNo, author, inventory, trailerVin, dueDate, orderDate FROM $tabla");
 		
 		$stmt -> execute();
 		return $stmt -> fetchALL();

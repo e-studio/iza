@@ -388,13 +388,24 @@ class controller{
 
         $respuesta = Datos::listaOrdenesModel("orders");
 
+       
+
         foreach ($respuesta as $row => $item){
+        
+        if ($item["inventory"]==="1") {
+            $inv = "Yes";
+        }
+        else{
+           $inv = "";  
+        }
+        
         echo'<tr>
                 <td>'.$item["orderNo"].'</td>
                 <td>'.$item["author"].'</td>
                 <td>'.$item["trailerVin"].'</td>
                 <td>'.$item["orderDate"].'</td>
-                <td>'.$item["dueDate"].'</td>';
+                <td>'.$item["dueDate"].'</td>
+                <td>'.$inv.'</td>';
                 if ($nivel == 0 || $nivel == 1){
                 echo '<td>
                     <button class="btn btn-info btnImprimirOrdenP" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-usd"></i></button>
@@ -898,6 +909,7 @@ class controller{
                                     "dueDate" => $_POST["dueDate"],
                                     "orderDate" => date('Y-m-d H:i:s'),
                                     "author" => $_POST["author"],
+                                    "inventory" => $_POST['inventory'],
                                     "notes" => $_POST["notes"],
                                     "subTotal" => $_POST["subTotal"],
                                     "descuento" => $_POST["descuento"],
@@ -1185,6 +1197,7 @@ class controller{
                                     "trailerNo" => $_POST["trailerNo"],
                                     "trailerVin" => $_POST["trailerVin"],
                                     "dueDate" => $_POST["dueDate"],
+                                    "inventory" => $_POST["inventory"],
                                     "orderDate" => date('Y-m-d H:i:s'),
                                     "notes" => $_POST["notes"],
                                     "subTotal" => $_POST["subTotal"],

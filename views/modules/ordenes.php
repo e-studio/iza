@@ -43,6 +43,7 @@ elseif ($_SESSION["rol"]==0){
                   <th>Trailer Vin</th>
                   <th>Date</th>
                   <th>Due Date</th>
+                  <th>Inventory</th>
                   <th class="ancho250"></th>
                 </tr>
               </thead>
@@ -53,6 +54,7 @@ elseif ($_SESSION["rol"]==0){
                   <th>Trailer Vin</th>
                   <th>Date</th>
                   <th>Due Date</th>
+                  <th>Inventory</th>
                   <th class="ancho250"></th>
                 </tr>
               </tfoot>
