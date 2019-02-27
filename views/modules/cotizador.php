@@ -31,7 +31,7 @@ function toMoney($val,$symbol='',$r=2)
 
 
 <div class="content-wrapper">
-  <form action="" name="cotizador" method="post">
+  <form action="" name="cotizador" method="post" onkeypress="return event.keyCode != 13;">
 
     <div class="container-fluid">
 
@@ -90,6 +90,10 @@ function toMoney($val,$symbol='',$r=2)
                                     echo '<option value="">Seleccione:</option>';
                                     $lista ->llenaModelos();?>
                                 </select>
+                               <!--  <div class="lista-color">
+                                    <label class="Busca-pais">Busca tu País:</label><br/> 
+                                      <input type="text" name="MiPais" id="MiPais"  class="form-control"/>
+                                </div> -->
                             </td>
                             <td>
                                 <select class="ancho70" name="tLength" id="tLenght">

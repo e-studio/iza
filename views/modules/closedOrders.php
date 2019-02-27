@@ -61,9 +61,8 @@ elseif ($_SESSION["rol"]==0){
               <tbody>
                 <?php
                   $ingreso = new controller();
-                  $ingreso -> listaOrdenesController($_SESSION["rol"]);
-                  $ingreso -> borrarOrdenController();
-                   $ingreso -> cerrarOrdenController();
+                  $ingreso -> ordenesCerradasController($_SESSION["rol"]);
+                   $ingreso -> openOrderController();
                 ?>
               </tbody>
             </table>

@@ -21,6 +21,9 @@
               <a href="index.php?action=ordenes">Orders List</a>
             </li>
             <li>
+              <a href="index.php?action=closedOrders">Closed Orders</a>
+            </li>
+            <li>
               <a href="index.php?action=cambiosOrdenes">Order Alerts</a>
             </li>
           </ul>

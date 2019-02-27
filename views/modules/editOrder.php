@@ -40,7 +40,7 @@ $myEmail = $_SESSION["email"];
 
 
 <div class="content-wrapper">
-  <form action="" name="cotizador" id='cotizador' method="post">
+  <form action="" name="cotizador" id='cotizador' method="post" onkeypress="return event.keyCode != 13;">
 
     <div class="container-fluid">
 

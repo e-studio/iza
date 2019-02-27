@@ -14,6 +14,26 @@
     <script src="views/js/search.js"></script>;
     <script src="views/js/confirmacion.js"></script>;
 
+
+    <!-- formateo de campo modelos -->
+
+    <style>
+        .typeahead { border: 2px solid #fff;border-radius: 4px;padding: 8px 12px;max-width: 300px;min-width: 290px;background: rgba(128, 128, 128, 1);color: #FFF;}
+        .tt-menu { width:300px; }
+        ul.typeahead{margin:0px;padding:10px 0px;}
+        ul.typeahead.dropdown-menu li a {padding: 10px !important;border-bottom:#CCC 1px solid;color:#FFF;}
+        ul.typeahead.dropdown-menu li:last-child a { border-bottom:0px !important; }
+        .lista-color {max-width: 450px;min-width: 290px;max-height:340px;
+        border-radius:4px;text-align:left;margin:10px; margin-bottom:120px;}
+        .Busca-pais {font-size:1.5em;color: #686868;font-weight: 700; text-align:left}
+        .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
+          text-decoration: none;
+          background-color: #1f3f41;
+          outline: 0;
+        }
+        .form-control{width:300px;}
+  </style>
+
     <!-- Sweet Alert 2-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.29.1/dist/sweetalert2.all.min.js"></script>
 
@@ -101,6 +121,54 @@
       </div>
     </div>
 
+
+ <!-- Open Modal-->
+    <div class="modal fade" id="openModal" tabindex="-1" role="dialog" aria-labelledby="openModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="openModalLabel">Confirmation</h4>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <i class="fa fa-unlock fa-4x mb-3 animated rotateIn"></i>
+
+            <h5>You are about to re-open this order <br> Continue ?</h5>
+            <br><br>
+            
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-success" onclick="abrirOrden()"> Yes, Open it</button>
+          
+          </div>
+        </div>
+      </div>
+    </div>    
+
+ <!-- Close Modal-->
+    <div class="modal fade" id="closeModal" tabindex="-1" role="dialog" aria-labelledby="closeModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="closeModalLabel">Confirmation</h4>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <i class="fa fa-lock fa-4x mb-3 animated rotateIn"></i>
+
+            <h5>You are about to Close this order <br> Continue ?</h5>
+            <br><br>
+            
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-danger" onclick="cerrarOrden()"> Yes, Close it</button>
+          
+          </div>
+        </div>
+      </div>
+    </div>
    
 
     <script src="views/vendor/jquery/jquery.min.js"></script>
@@ -111,6 +179,7 @@
     <script src="views/vendor/datatables/dataTables.bootstrap4.js"></script>
     <script src="views/js/sb-admin.min.js"></script>
     <script src="views/js/sb-admin-datatables.min.js"></script>
+
     <script src="views/js/validarIngreso.js"></script>
     <script src="views/js/tablas.js"></script>
 

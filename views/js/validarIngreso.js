@@ -10,6 +10,16 @@ $('#deleteModal').on('show.bs.modal', function(e) {
 
 });
 
+$('#closeModal').on('show.bs.modal', function(e) {
+    cOrden = $(e.relatedTarget).data('cerrar');
+
+});
+
+$('#openModal').on('show.bs.modal', function(e) {
+    oOrden = $(e.relatedTarget).data('abrir');
+
+});
+
 
 function validarIngreso(){
 
@@ -43,3 +53,12 @@ function borraOrden(){
 
 }
 
+function abrirOrden(){
+        document.getElementById(oOrden).click();
+
+}
+
+function cerrarOrden(){
+        document.getElementById(cOrden).click();
+
+}

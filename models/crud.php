@@ -433,7 +433,22 @@ public function llenaLista($tabla){
 
 	public function listaOrdenesModel($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT orderNo, author, inventory, trailerVin, dueDate, orderDate FROM $tabla");
+		$stmt = Conexion::conectar()->prepare("SELECT orderNo, author, inventory, trailerVin, dueDate, orderDate FROM $tabla WHERE status='A'");
+		
+		$stmt -> execute();
+		return $stmt -> fetchALL();
+
+		$stmt->close();
+	}
+
+
+
+	#DEVUELVE UN LISTADO DE LAS ORDENES CERRADAS
+	#--------------------------------------------
+
+	public function ordenesCerradasModel($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT orderNo, author, inventory, trailerVin, dueDate, orderDate FROM $tabla WHERE status='C'");
 		
 		$stmt -> execute();
 		return $stmt -> fetchALL();
@@ -494,6 +509,32 @@ public function llenaLista($tabla){
 		$stmt -> close();
 	}
 
+	#CERRAR ORDEN
+	#-------------------------------------
+	public function cerrarOrdenModel($datosModel,$tabla){
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET status='C' WHERE orderNo = :id");
+		$stmt -> bindPARAM(":id",$datosModel, PDO::PARAM_INT);
+		if ($stmt->execute()){
+			return "success";
+		} else {
+			return "error";
+		}
+		$stmt -> close();
+	}
+
+
+	#ABRIR ORDEN
+	#-------------------------------------
+	public function openOrderModel($datosModel,$tabla){
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET status='A' WHERE orderNo = :id");
+		$stmt -> bindPARAM(":id",$datosModel, PDO::PARAM_INT);
+		if ($stmt->execute()){
+			return "success";
+		} else {
+			return "error";
+		}
+		$stmt -> close();
+	}
 
 	#BORRAR OPCION
 	#-------------------------------------------------------------------------------------

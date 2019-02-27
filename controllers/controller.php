@@ -411,12 +411,74 @@ class controller{
                     <button class="btn btn-info btnImprimirOrdenP" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-usd"></i></button>
                     <button class="btn btn-info btnImprimirOrden" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-print"></i></button>
                     <a href="index.php?action=editOrder&idEditar='.$item["orderNo"].'"><button class="btn btn-warning">Edit</button></a>
-                  
-                    <button class="btn btn-danger btnBorrar" data-toggle="modal" data-target="#deleteModal" data-borrar="'.$item["orderNo"].'">Delete</button>
-                    <a href="index.php?action=ordenes&idBorrar='.$item["orderNo"].'"><button id="'.$item["orderNo"].'" name="'.$item["orderNo"].'" hidden>X</button></a>
+
                     
-                    
+                    <button class="btn btn-danger" btnCerrar data-toggle="modal" data-target="#closeModal" data-cerrar="'.$item["orderNo"].'"><i class="fa fa-lock"></i></button>
+                    <a href="index.php?action=ordenes&idCerrar='.$item["orderNo"].'"><button id="'.$item["orderNo"].'" name="'.$item["orderNo"].'" hidden >C</button></a>
+
                 </td>';
+
+                    // --------------------------    Codigo para boton Eliminar orden ----------------------------------------------------------------------------
+                    //<button class="btn btn-danger btnBorrar" data-toggle="modal" data-target="#deleteModal" data-borrar="'.$item["orderNo"].'">Delete</button>
+                    //<a href="index.php?action=ordenes&idBorrar='.$item["orderNo"].'"><button id="'.$item["orderNo"].'" name="'.$item["orderNo"].'" hidden>X</button></a>
+                }
+                elseif($nivel == 2) {
+                 echo '<td>
+                    <button class="btn btn-info btnImprimirOrden" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-print"></i></button>
+                   </td>';   
+                }
+                elseif ($nivel == 3) {
+                 echo '<td>
+                    <button class="btn btn-info btnImprimirOrdenP" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-print"></i></button>
+                   </td>';   
+                }
+            echo '</tr>';
+        }
+
+    }
+
+
+     #LISTADO DE ORDENES CERRADAS
+    #------------------------------------
+    public function ordenesCerradasController($nivel){
+
+        $respuesta = Datos::ordenesCerradasModel("orders");
+
+       
+
+        foreach ($respuesta as $row => $item){
+        
+        if ($item["inventory"]==="1") {
+            $inv = "Yes";
+        }
+        else{
+           $inv = "";  
+        }
+        
+        echo'<tr>
+                <td>'.$item["orderNo"].'</td>
+                <td>'.$item["author"].'</td>
+                <td>'.$item["trailerVin"].'</td>
+                <td>'.$item["orderDate"].'</td>
+                <td>'.$item["dueDate"].'</td>
+                <td>'.$inv.'</td>';
+                if ($nivel == 0 || $nivel == 1){
+                echo '<td>
+                    <button class="btn btn-info btnImprimirOrdenP" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-usd"></i></button>
+                    <button class="btn btn-info btnImprimirOrden" codigoOrden = "'.$item["orderNo"].'"><i class="fa fa-print"></i></button>
+                    
+
+                    
+                    <button class="btn btn-success" btnCerrar data-toggle="modal" data-target="#openModal" data-abrir="'.$item["orderNo"].'"><i class="fa fa-unlock"></i></button>
+                    <a href="index.php?action=closedOrders&idOpen='.$item["orderNo"].'"><button id="'.$item["orderNo"].'" name="'.$item["orderNo"].'" hidden >O</button></a>
+
+                </td>';
+
+                    // --------------------------    Codigo para boton Eliminar orden ----------------------------------------------------------------------------
+                    //<button class="btn btn-danger btnBorrar" data-toggle="modal" data-target="#deleteModal" data-borrar="'.$item["orderNo"].'">Delete</button>
+                    //<a href="index.php?action=ordenes&idBorrar='.$item["orderNo"].'"><button id="'.$item["orderNo"].'" name="'.$item["orderNo"].'" hidden>X</button></a>
+                    // --------------------------    Codigo para boton Editar orden ----------------------------------------------------------------------------
+                    //<a href="index.php?action=editOrder&idEditar='.$item["orderNo"].'"><button class="btn btn-warning">Edit</button></a>
                 }
                 elseif($nivel == 2) {
                  echo '<td>
@@ -460,6 +522,58 @@ class controller{
             }
         }
     }
+
+
+ #CERRAR ORDEN
+    #------------------------------------
+    public function cerrarOrdenController(){
+        if (isset($_GET['idCerrar'])){
+            $datosController = $_GET['idCerrar'];
+
+            $respuesta = Datos::cerrarOrdenModel($datosController,"orders");
+            if ($respuesta == "success"){
+               
+
+            echo '<script type="text/javascript">swal({
+                      title: "Order closed",
+                      type: "info",
+
+                      showCancelButton: false
+                    })
+                    .then((value) => {
+                      if (value) {
+                        window.location.href = "index.php?action=ordenes";
+                      } 
+                    });</script> ';
+            }
+        }
+    }
+
+#ABRIR ORDEN
+    #------------------------------------
+    public function openOrderController(){
+        if (isset($_GET['idOpen'])){
+            $datosController = $_GET['idOpen'];
+
+            $respuesta = Datos::openOrderModel($datosController,"orders");
+            if ($respuesta == "success"){
+               
+
+            echo '<script type="text/javascript">swal({
+                      title: "Order Open",
+                      type: "success",
+
+                      showCancelButton: false
+                    })
+                    .then((value) => {
+                      if (value) {
+                        window.location.href = "index.php?action=closedOrders";
+                      } 
+                    });</script> ';
+            }
+        }
+    }
+
 
     #LISTADO DE TODAS LAS OPCIONES PARA TRAILERS
     #------------------------------------
